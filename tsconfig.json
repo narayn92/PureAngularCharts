@@ -17,7 +17,15 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "pure-angular-charts": [
+        "dist/pure-angular-charts"
+      ],
+      "pure-angular-charts/*": [
+        "dist/pure-angular-charts/*"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
