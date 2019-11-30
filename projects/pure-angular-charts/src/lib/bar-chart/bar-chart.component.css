@@ -1,0 +1,10 @@
+:host {
+    font-family: Verdana, Geneva, Tahoma, sans-serif
+}
+text,span{
+    font-size: 12px;
+}
+span{
+    display: inline-block;
+    vertical-align: middle;
+}

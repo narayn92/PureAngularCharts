@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "start:lib": "ng build PureAngularCharts --watch",
-    "start:demo": "ng serve demo",
+    "start:demo": "ng serve demo --vendorSourceMap",
     "build:lib": "ng build PureAngularCharts",
     "build:demo": "npm run build:lib && ng build demo --prod --output-path=docs --base-href=\"\"",
     "postinstall": "npm run build:lib && ng build demo --aot --prod"

@@ -1,1 +1,44 @@
-<p>bar-chart works! Hi Test Module for BarChart</p>
+
+<div style="border:solid 1px #ababab;padding: 5px;" [style.width.px]="width">
+    <div style="text-align:center;color:#333;font-size:28px;font-family:Verdana, Geneva, Tahoma, sans-serif">{{options.title}}</div>
+    <svg [attr.width]="width" [attr.height]="height">
+        <!-- <text x="50%" y="5" dominant-baseline="hanging" text-anchor="middle">
+                {{options.title}}
+        </text> -->
+        
+        <g *ngFor="let xlabel of pXaxis.labels">
+            <!-- <circle [attr.cx]="xlabel.px" [attr.cy]="xlabel.py" r="5" stroke="black" stroke-width="3" fill="red" /> -->
+            <line [attr.x1]="xlabel.px" [attr.y1]="xlabel.py - pXaxis.paddingBottom" [attr.x2]="xlabel.px" [attr.y2]="0" style="stroke:#e6e6e6;stroke-width:1;stroke-dasharray:10 5" />
+            <line [attr.x1]="xlabel.px" [attr.y1]="xlabel.py - pXaxis.paddingBottom" [attr.x2]="xlabel.px" [attr.y2]="xlabel.py - pXaxis.paddingBottom + pXaxis.ticks.length" style="stroke:#000;stroke-width:1" />
+            <text [attr.x]="xlabel.px" [attr.y]="xlabel.py - pXaxis.paddingBottom + pXaxis.ticks.length + 5" fill="#000" dominant-baseline="hanging" text-anchor="middle">{{xlabel.text}}</text>
+        </g>
+        
+    
+        <g *ngFor="let ylabel of pYaxis.labels">
+            <!-- <circle [attr.cx]="ylabel.px" [attr.cy]="ylabel.py" r="5" stroke="black" stroke-width="3" fill="red" /> -->
+            <line [attr.x1]="ylabel.px + pYaxis.paddingLeft" [attr.y1]="ylabel.py" [attr.x2]="width - pYaxis.paddingRight" [attr.y2]="ylabel.py" style="stroke:#e6e6e6;stroke-width:1;stroke-dasharray:10 5" />
+            <line [attr.x1]="ylabel.px + pYaxis.paddingLeft" [attr.y1]="ylabel.py" [attr.x2]="ylabel.px + pYaxis.paddingLeft - pYaxis.ticks.length" [attr.y2]="ylabel.py" style="stroke:#000;stroke-width:1" />
+            <text [attr.x]="ylabel.px + pYaxis.paddingLeft - pYaxis.ticks.length - 5" [attr.y]="ylabel.py" fill="#000" dominant-baseline="middle" text-anchor="end">{{ylabel.text}}</text>
+        </g>
+
+        <line [attr.x1]="pYaxis.paddingLeft" [attr.y1]="pxaxisLocation" [attr.x2]="width - pYaxis.paddingRight" [attr.y2]="pxaxisLocation" style="stroke:#000;stroke-width:1" />
+        <line [attr.x1]="pyaxisLocation" [attr.y1]="height - pXaxis.paddingBottom" [attr.x2]="pyaxisLocation" [attr.y2]="0  " style="stroke:#000;stroke-width:1" />
+
+        
+        <g *ngFor="let series of pData">
+            <g *ngFor="let point of series.data">
+                
+                <text *ngIf="point.px-(options.bar.width/2)>pYaxis.paddingLeft" [attr.x]="point.px" [attr.y]="(point.py<=pxaxisLocation)?point.py-8:point.py+15" fill="red" text-anchor="middle">{{point.y}}</text>
+
+                <rect *ngIf="point.px-(options.bar.width/2)>pYaxis.paddingLeft" [attr.x]="point.px-(options.bar.width/2)" [attr.y]="(point.py<=pxaxisLocation)?point.py:pxaxisLocation" [attr.width]="options.bar.width" [attr.height]="point.height"
+                    style="fill:blue;stroke:pink;stroke-width:5;opacity:0.5" />
+
+                <circle *ngIf="point.px-(options.bar.width/2)>pYaxis.paddingLeft" [attr.cx]="point.px" [attr.cy]="point.py" r="5" fill="#ff0000" />
+            </g>
+        </g>
+
+    </svg>
+    <div *ngFor="let item of options.series">
+        <span style="display:inline-block;width:10px;height:10px;" [style.background-color]="'#0000ff99'"></span> <span style="padding-left: 5px;">{{item.name}}</span>
+    </div>
+</div>
