@@ -12,7 +12,7 @@
     "start:demo":"ng serve demo",
     "build:lib":"ng build PureAngularCharts",
     "build:demo":"npm run build:lib && ng build demo --prod --output-path=docs --base-href=\"\"",
-    "postinstall": "npm run build:lib && ng build demo --aot -prod"
+    "postinstall": "npm run build:lib && ng build demo --aot --prod"
   },
   "private": true,
   "dependencies": {
@@ -28,7 +28,8 @@
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1",
     "@angular/cli": "~8.3.6",
-    "@angular/compiler-cli": "~8.2.8"
+    "@angular/compiler-cli": "~8.2.8",
+    "typescript": "~3.5.3"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.803.20",
@@ -53,5 +54,9 @@
     "tsickle": "^0.37.0",
     "tslint": "~5.15.0",
     "typescript": "~3.5.3"
+  },
+  "engines": {
+    "node": "10.16.3",
+    "npm": "6.9.0"
   }
 }
