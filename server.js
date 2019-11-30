@@ -1,9 +1,9 @@
 var express = require("express");
-var bodyParser = require("body-parser");
-var mongodb = require("mongodb");
-var ObjectID = mongodb.ObjectID;
+//var bodyParser = require("body-parser");
+//var mongodb = require("mongodb");
+//var ObjectID = mongodb.ObjectID;
 
-var CONTACTS_COLLECTION = "contacts";
+//var CONTACTS_COLLECTION = "contacts";
 
 var app = express();
 app.use(bodyParser.json());
