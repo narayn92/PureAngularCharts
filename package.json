@@ -12,7 +12,7 @@
     "start:demo": "ng serve demo",
     "build:lib": "ng build PureAngularCharts",
     "build:demo": "npm run build:lib && ng build demo --prod --output-path=docs --base-href=\"\"",
-    "postinstall": "npm run build:lib && ng build demo --aot --prod --output-path dist"
+    "postinstall": "npm run build:lib && ng build demo --aot --prod"
   },
   "private": true,
   "dependencies": {
