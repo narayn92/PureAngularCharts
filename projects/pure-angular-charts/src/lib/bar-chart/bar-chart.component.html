@@ -31,7 +31,7 @@
                 <text *ngIf="point.px-(options.bar.width/2)>pYaxis.paddingLeft" [attr.x]="point.px" [attr.y]="(point.py<=pxaxisLocation)?point.py-8:point.py+15" fill="red" text-anchor="middle">{{point.y}}</text>
 
                 <rect *ngIf="point.px-(options.bar.width/2)>pYaxis.paddingLeft" [attr.x]="point.px-(options.bar.width/2)" [attr.y]="(point.py<=pxaxisLocation)?point.py:pxaxisLocation" [attr.width]="options.bar.width" [attr.height]="point.height"
-                    style="fill:blue;stroke:pink;stroke-width:5;opacity:0.5" />
+                    style="fill:blue;stroke:pink;stroke-width:5;opacity:0.5" (mouseenter)="OnMouseEnter($event, point)" (mouseover)="OnMouseOver($event)" (mouseenter)="OnMouseLeave($event)"/>
 
                 <circle *ngIf="point.px-(options.bar.width/2)>pYaxis.paddingLeft" [attr.cx]="point.px" [attr.cy]="point.py" r="5" fill="#ff0000" />
             </g>
@@ -41,4 +41,8 @@
     <div *ngFor="let item of options.series">
         <span style="display:inline-block;width:10px;height:10px;" [style.background-color]="'#0000ff99'"></span> <span style="padding-left: 5px;">{{item.name}}</span>
     </div>
+</div>
+<div [hidden]="!pDisplayTooltip" class="p-tooltip-container" [style.top.px]="ptootltip.py" [style.left.px]="ptootltip.px" [style.opacity]="(pDisplayTooltip)?1:0">
+   <div>X : {{ptootltip.point.x}}</div>
+   <div>Y : {{ptootltip.point.y}}</div>
 </div>

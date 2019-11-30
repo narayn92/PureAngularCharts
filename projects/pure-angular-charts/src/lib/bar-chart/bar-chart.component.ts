@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'pac-bar-chart',
@@ -58,6 +59,17 @@ export class BarChartComponent implements OnInit {
   pYaxis: any;
   pxaxisLocation;
   pyaxisLocation;
+
+  pDisplayTooltip = false;
+  ptootltip = {
+    point: {
+      x: 0,
+      y: 0
+    },
+    px: 0,
+    py: 0
+  };
+  hideTooltip;
 
   constructor() { }
 
@@ -155,6 +167,32 @@ export class BarChartComponent implements OnInit {
     console.log('this.pXaxis', this.pXaxis);
     console.log('this.pYaxis', this.pYaxis);
     console.log('this.pData', this.pData);
+  }
+
+  OnMouseEnter(event, point) {
+    console.log(point);
+    this.ptootltip.point.x = point.x;
+    this.ptootltip.point.y = point.y;
+    this.ptootltip.px = event.clientX;
+    this.ptootltip.py = event.clientY;
+
+    clearTimeout(this.hideTooltip);
+    this.pDisplayTooltip = true;
+
+  }
+  OnMouseOver(event) {
+    console.log(event);
+    this.ptootltip.px = event.clientX + 20;
+    this.ptootltip.py = event.clientY + 20;
+  }
+
+  OnMouseLeave(event) {
+    // console.log(event);
+    // this.pDisplayTooltip = false;
+    let ref = this;
+    this.hideTooltip = setTimeout(() => {
+      ref.pDisplayTooltip = false;
+    }, 4000);
   }
 
 }
