@@ -11,7 +11,8 @@
     "start:lib":"ng build PureAngularCharts --watch",
     "start:demo":"ng serve demo",
     "build:lib":"ng build PureAngularCharts",
-    "build:demo":"npm run build:lib && ng build demo --prod --output-path=docs --base-href=\"\""
+    "build:demo":"npm run build:lib && ng build demo --prod --output-path=docs --base-href=\"\"",
+    "postinstall": "npm run build:lib && ng build demo --aot -prod"
   },
   "private": true,
   "dependencies": {
@@ -25,7 +26,9 @@
     "@angular/router": "~8.2.8",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
-    "zone.js": "~0.9.1"
+    "zone.js": "~0.9.1",
+    "@angular/cli": "~8.3.6",
+    "@angular/compiler-cli": "~8.2.8",
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.803.20",
