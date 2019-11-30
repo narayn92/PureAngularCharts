@@ -12,4 +12,6 @@ var app = express();
 var distDir = __dirname + "/dist/demo/";
 app.use(express.static(distDir));
 
+
+app.listen(8080);
 // Rest of server.js code below
