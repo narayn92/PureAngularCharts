@@ -13,5 +13,5 @@ var distDir = __dirname + "/dist/demo/";
 app.use(express.static(distDir));
 
 
-app.listen(8080);
+app.listen(process.env.PORT || 5000);
 // Rest of server.js code below
