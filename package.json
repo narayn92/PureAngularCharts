@@ -28,7 +28,7 @@
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1",
     "@angular/cli": "~8.3.6",
-    "@angular/compiler-cli": "~8.2.8",
+    "@angular/compiler-cli": "~8.2.8"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.803.20",
