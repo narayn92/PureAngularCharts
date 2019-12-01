@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ChartOptions, Xaxis, Yaxis } from '../pure-angular-charts.models';
 
 @Component({
   selector: 'pac-bar-chart',
@@ -14,35 +15,43 @@ export class BarChartComponent implements OnInit {
     // [{ x: 0, y: 0 }, { x: 1, y: 1 }, { x: 2, y: 2 }, { x: 3, y: 3 }, { x: 4, y: 4 }, { x: 5, y: 5 }]
   ];
 
-  @Input() options = {
+  @Input() options: ChartOptions = {
     title: 'PAC Chart',
     xaxis: {
       type: 'numeric',
       show: true,
-      // labels: ['0', '1', '2', '3', '4', '5'],
-      // min: 0,
-      // max: 6,
+      labels: [],
+      min: 0,
+      max: 0,
       title: 'xaxis',
       ticks: {
         show: true,
         count: 6,
         length: 5
       },
+      grid: {
+        show : true
+      },
+      minMax: 'auto',
       paddingBottom: 40,
       paddingTop: 20
     },
     yaxis: {
       type: 'numeric',
       show: true,
-      // labels: ['0', '1', '2', '3', '4', '5'],
-      // min: 0,
-      // max: 6,
+      labels: [],
+      min: 0,
+      max: 0,
       title: 'yaxis',
       ticks: {
         show: true,
         count: 6,
         length: 5
       },
+      grid: {
+        show : true
+      },
+      minMax: 'auto',
       paddingLeft: 40,
       paddingRight: 40
     },
@@ -51,12 +60,13 @@ export class BarChartComponent implements OnInit {
     ],
     bar: {
       width: 30
-    }
+    },
+    innerPaddingBottom: 10
   };
 
   pData: any[];
-  pXaxis: any;
-  pYaxis: any;
+  pXaxis: Xaxis;
+  pYaxis: Yaxis;
   pxaxisLocation;
   pyaxisLocation;
 
@@ -119,7 +129,8 @@ export class BarChartComponent implements OnInit {
 
     // tslint:disable-next-line:max-line-length
     const pPerUnitWidth = (this.width - this.pYaxis.paddingLeft - this.pYaxis.paddingRight - this.options.bar.width) / this.pXaxis.ticks.count;
-    const pPerUnitHeight = (this.height - this.pXaxis.paddingTop - this.pXaxis.paddingBottom) / this.pXaxis.ticks.count;
+    // tslint:disable-next-line:max-line-length
+    const pPerUnitHeight = (this.height - this.pXaxis.paddingTop - this.pXaxis.paddingBottom - this.options.innerPaddingBottom ) / this.pXaxis.ticks.count;
 
     // auto calulate axis ticks
     const xlabels = [];
@@ -137,13 +148,13 @@ export class BarChartComponent implements OnInit {
       ylabels.push({
         text: (this.pYaxis.min + (i * pPerUnitY)).toFixed(2),
         px: 0,
-        py: this.height - (i * pPerUnitHeight) - this.pXaxis.paddingBottom // + this.pXaxis.paddingTop,
+        py: this.height - (i * pPerUnitHeight) - this.pXaxis.paddingBottom - this.options.innerPaddingBottom // + this.pXaxis.paddingTop,
       });
     }
     this.pYaxis.labels = ylabels;
 
     // tslint:disable-next-line:max-line-length
-    this.pxaxisLocation = this.height - this.pXaxis.paddingBottom + ((this.pYaxis.min <= 0) ? ((this.pYaxis.min / pPerUnitY) * pPerUnitHeight) : 0);
+    this.pxaxisLocation = this.height - this.pXaxis.paddingBottom - this.options.innerPaddingBottom + ((this.pYaxis.min <= 0) ? ((this.pYaxis.min / pPerUnitY) * pPerUnitHeight) : 0);
     this.pyaxisLocation = this.pYaxis.paddingLeft - ((this.pXaxis.min < 0) ? ((this.pXaxis.min / pPerUnitX) * pPerUnitWidth) : 0);
 
     this.pData = this.data.map((series, si) => {
@@ -170,7 +181,7 @@ export class BarChartComponent implements OnInit {
   }
 
   OnMouseEnter(event, point) {
-    console.log(point);
+    // console.log(point);
     this.ptootltip.point.x = point.x;
     this.ptootltip.point.y = point.y;
     this.ptootltip.px = event.clientX;
@@ -181,7 +192,7 @@ export class BarChartComponent implements OnInit {
 
   }
   OnMouseOver(event) {
-    console.log(event);
+    // console.log(event);
     this.ptootltip.px = event.clientX + 20;
     this.ptootltip.py = event.clientY + 20;
   }

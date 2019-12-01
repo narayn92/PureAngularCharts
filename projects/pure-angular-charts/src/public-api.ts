@@ -5,3 +5,4 @@
 export * from './lib/pure-angular-charts.service';
 export * from './lib/pure-angular-charts.component';
 export * from './lib/pure-angular-charts.module';
+export * from './lib/pure-angular-charts.models';

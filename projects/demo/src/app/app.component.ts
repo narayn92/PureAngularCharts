@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ChartOptions } from 'pure-angular-charts';
 
 @Component({
   selector: 'app-root',
@@ -10,14 +11,14 @@ export class AppComponent {
   chartWidth = 600;
   chartHeight = 400;
   chartData = [
-    [{ x: -1, y: 25 }, { x: 1, y: 5 }, { x: 2, y: 20 }, { x: 3, y: 30 }, { x: 4, y: -40 }, { x: 5, y: 50 }]
+    [{ x: -10, y: 25 }, { x: 1, y: 5 }, { x: 2, y: 20 }, { x: 3, y: 30 }, { x: 4, y: -40 }, { x: 5, y: 50 }]
   ];
-  chartOptions = {
+  chartOptions: ChartOptions = {
     title : 'Simple Bar Chart',
     xaxis : {
       type: 'numeric',
       show: true,
-      // labels: ['0', '1', '2', '3', '4', '5'],
+      labels: [],
       min: 0,
       max: 6,
       title: 'xaxis',
@@ -36,9 +37,9 @@ export class AppComponent {
     yaxis : {
       type: 'numeric',
       show: true,
-      // labels: ['0', '1', '2', '3', '4', '5'],
+      labels: [],
       min: 0,
-      max: 'ss',
+      max: 0,
       title: 'yaxis',
       ticks: {
         show: true,
@@ -57,6 +58,7 @@ export class AppComponent {
     ],
     bar : {
       width: 30
-    }
+    },
+    innerPaddingBottom: 10
   };
 }
