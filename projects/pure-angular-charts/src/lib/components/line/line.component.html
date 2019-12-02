@@ -1,0 +1,12 @@
+<svg:path [attr.d]="plinePath" fill="none" style="stroke-width: 2;" [style.stroke]="series.series.color"></svg:path>
+<ng-container *ngFor="let point of series.data">    
+    <svg:g *ngIf="math.round(point.px-(options.bar.width/2))>=pYaxis.paddingLeft">
+        <svg:text [attr.x]="point.px" [attr.y]="(point.py<=pxaxisLocation)?point.py-8:point.py+15" [style.fill]="series.series.color" text-anchor="middle">{{point.y}}</text>
+
+        <!-- <svg:rect [attr.x]="point.px-(options.bar.width/2)" [attr.y]="(point.py<=pxaxisLocation)?point.py:pxaxisLocation" [attr.width]="(options.bar.width>pPerUnitWidth)?pPerUnitWidth:options.bar.width" [attr.height]="point.height"
+            [style.fill]="series.series.color" (mouseenter)="OnMouseEnter($event, point, series.series)" (mouseover)="OnMouseOver($event)" (mouseleave)="OnMouseLeave($event)"></rect> -->
+
+        <svg:circle [attr.cx]="point.px" [attr.cy]="point.py" r="5" [style.fill]="series.series.color" style="stroke: #000; stroke-width: 1;"
+            (mouseenter)="OnMouseEnter($event, point, series.series)" (mouseleave)="OnMouseLeave($event)"></circle>
+    </g>
+</ng-container>

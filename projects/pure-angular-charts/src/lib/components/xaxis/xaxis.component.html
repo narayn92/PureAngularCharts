@@ -1,0 +1,6 @@
+<svg:g *ngFor="let xlabel of pXaxis.labels">
+        <!-- <circle [attr.cx]="xlabel.px" [attr.cy]="xlabel.py" r="5" stroke="black" stroke-width="3" fill="red" /> -->
+    <svg:line [attr.x1]="xlabel.px" [attr.y1]="xlabel.py - pXaxis.paddingBottom" [attr.x2]="xlabel.px" [attr.y2]="0" style="stroke:#e6e6e6;stroke-width:1;stroke-dasharray:10 5" />
+    <svg:line [attr.x1]="xlabel.px" [attr.y1]="xlabel.py - pXaxis.paddingBottom" [attr.x2]="xlabel.px" [attr.y2]="xlabel.py - pXaxis.paddingBottom + pXaxis.ticks.length" style="stroke:#000;stroke-width:1" />
+    <svg:text [attr.x]="xlabel.px" [attr.y]="xlabel.py - pXaxis.paddingBottom + pXaxis.ticks.length + 5" fill="#000" dominant-baseline="hanging" text-anchor="middle">{{xlabel.text}}</text>
+</g>

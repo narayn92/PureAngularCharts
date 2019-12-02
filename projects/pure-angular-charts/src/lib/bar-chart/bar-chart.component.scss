@@ -1,14 +1,21 @@
-:host {
-    font-family: Verdana, Geneva, Tahoma, sans-serif
-}
-text,span{
+// :host {
+//     font-family: Verdana, Geneva, Tahoma, sans-serif;
+//     display: inline-block;
+// }
+
+text,
+span,
+div {
     font-size: 12px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-span{
+
+span {
     display: inline-block;
     vertical-align: middle;
 }
-.p-tooltip-container{
+
+.p-tooltip-container {
     background: #000000dd;
     color: #ffffff;
     padding: 5px;

@@ -5,6 +5,11 @@
   "projects": {
     "PureAngularCharts": {
       "projectType": "library",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "root": "projects/pure-angular-charts",
       "sourceRoot": "projects/pure-angular-charts/src",
       "prefix": "pac",

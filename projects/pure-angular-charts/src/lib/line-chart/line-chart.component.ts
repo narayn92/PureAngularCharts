@@ -1,13 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Observable } from 'rxjs';
 import { ChartOptions, Xaxis, Yaxis } from '../pure-angular-charts.models';
 
 @Component({
-  selector: 'pac-bar-chart',
-  templateUrl: './bar-chart.component.html',
-  styleUrls: ['./bar-chart.component.scss']
+  selector: 'pac-line-chart',
+  templateUrl: './line-chart.component.html',
+  styleUrls: ['./line-chart.component.scss']
 })
-export class BarChartComponent implements OnInit {
+export class LineChartComponent implements OnInit {
 
   @Input() width = 600;
   @Input() height = 400;
@@ -75,7 +74,7 @@ export class BarChartComponent implements OnInit {
   pDisplayTooltip = false;
   ptootltip = {
     series: {
-      name: '', color: '' 
+      name: '', color: ''
     },
     point: {
       x: 0,

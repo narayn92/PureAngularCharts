@@ -36,10 +36,10 @@
 
                 <circle *ngIf="point.px-(options.bar.width/2)>=pYaxis.paddingLeft" [attr.cx]="point.px" [attr.cy]="point.py" r="5" fill="#ff0000" />
             </g> -->
-            <!-- <g pac-line *ngIf="series.series.type=='line'" [options]="options" [series]="series" [pxaxisLocation]="pxaxisLocation" [pYaxis]="pYaxis"
-            (tmouseEnter)="OnMouseEnter($event)" (tmouseLeave)="OnMouseLeave($event)"></g> -->
-            <g pac-bar *ngIf="series.series.type=='bar'" [options]="options" [series]="series" [pxaxisLocation]="pxaxisLocation" [pPerUnitWidth]="pPerUnitWidth" [pYaxis]="pYaxis" 
-            (tmouseEnter)="OnMouseEnter($event)" (tmouseOver)="OnMouseOver($event)" (tmouseLeave)="OnMouseLeave($event)"></g>
+            <g pac-area *ngIf="series.series.type=='area'" [options]="options" [series]="series" [pxaxisLocation]="pxaxisLocation" [pYaxis]="pYaxis"
+            (tmouseEnter)="OnMouseEnter($event)" (tmouseLeave)="OnMouseLeave($event)"></g>
+            <!-- <g pac-bar *ngIf="series.series.type=='bar'" [options]="options" [series]="series" [pxaxisLocation]="pxaxisLocation" [pPerUnitWidth]="pPerUnitWidth" [pYaxis]="pYaxis" 
+            (tmouseEnter)="OnMouseEnter($event)" (tmouseOver)="OnMouseOver($event)" (tmouseLeave)="OnMouseLeave($event)"></g> -->
         </g>
 
     </svg>

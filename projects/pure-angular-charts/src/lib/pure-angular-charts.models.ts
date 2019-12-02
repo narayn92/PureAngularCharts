@@ -40,6 +40,7 @@ export interface Yaxis {
 export interface Series {
     name: string;
     color: string;
+    type: string;
 }
 
 export interface Bar {
