@@ -48,7 +48,7 @@ export interface Bar {
 }
 
 export interface ChartOptions {
-    title: string;
+    title?: string;
     xaxis: Xaxis;
     yaxis: Yaxis;
     series: Series[];

@@ -2,24 +2,8 @@
 <div style="padding: 5px;background-color: #ffffff;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);border:solid 1px #ababab;position: relative;" [style.width.px]="width">
     <div style="text-align:center;color:#333;font-size:20px;height:30px">{{options.title}}</div>
     <svg [attr.width]="width" [attr.height]="height">
-        <!-- <text x="50%" y="5" dominant-baseline="hanging" text-anchor="middle">
-                {{options.title}}
-        </text> -->
-        
-        <!-- <g *ngFor="let xlabel of pXaxis.labels">
-            <line [attr.x1]="xlabel.px" [attr.y1]="xlabel.py - pXaxis.paddingBottom" [attr.x2]="xlabel.px" [attr.y2]="0" style="stroke:#e6e6e6;stroke-width:1;stroke-dasharray:10 5" />
-            <line [attr.x1]="xlabel.px" [attr.y1]="xlabel.py - pXaxis.paddingBottom" [attr.x2]="xlabel.px" [attr.y2]="xlabel.py - pXaxis.paddingBottom + pXaxis.ticks.length" style="stroke:#000;stroke-width:1" />
-            <text [attr.x]="xlabel.px" [attr.y]="xlabel.py - pXaxis.paddingBottom + pXaxis.ticks.length + 5" fill="#000" dominant-baseline="hanging" text-anchor="middle">{{xlabel.text}}</text>
-        </g> -->
         <g pac-xaxis [pXaxis]="pXaxis"></g>
         
-    
-        <!-- <g *ngFor="let ylabel of pYaxis.labels">
-            <line [attr.x1]="ylabel.px + pYaxis.paddingLeft" [attr.y1]="ylabel.py" [attr.x2]="width - pYaxis.paddingRight" [attr.y2]="ylabel.py" style="stroke:#e6e6e6;stroke-width:1;stroke-dasharray:10 5" />
-            <line [attr.x1]="ylabel.px + pYaxis.paddingLeft" [attr.y1]="ylabel.py" [attr.x2]="ylabel.px + pYaxis.paddingLeft - pYaxis.ticks.length" [attr.y2]="ylabel.py" style="stroke:#000;stroke-width:1" />
-            <text [attr.x]="ylabel.px + pYaxis.paddingLeft - pYaxis.ticks.length - 5" [attr.y]="ylabel.py" fill="#000" dominant-baseline="middle" text-anchor="end">{{ylabel.text}}</text>
-        </g> -->
-
         <g pac-yaxis [pYaxis]="pYaxis" [width]="width"></g>
 
         <line [attr.x1]="pYaxis.paddingLeft" [attr.y1]="pxaxisLocation" [attr.x2]="width - pYaxis.paddingRight" [attr.y2]="pxaxisLocation" style="stroke:#000;stroke-width:1" />
@@ -27,19 +11,8 @@
 
         
         <g *ngFor="let series of pData">
-            <!-- <g *ngFor="let point of series.data">
-                
-                <text *ngIf="point.px-(options.bar.width/2)>=pYaxis.paddingLeft" [attr.x]="point.px" [attr.y]="(point.py<=pxaxisLocation)?point.py-8:point.py+15" fill="red" text-anchor="middle">{{point.y}}</text>
-
-                <rect *ngIf="point.px-(options.bar.width/2)>=pYaxis.paddingLeft" [attr.x]="point.px-(options.bar.width/2)" [attr.y]="(point.py<=pxaxisLocation)?point.py:pxaxisLocation" [attr.width]="(options.bar.width>pPerUnitWidth)?pPerUnitWidth:options.bar.width" [attr.height]="point.height"
-                    [style.fill]="series.series.color" style="stroke:pink;" (mouseenter)="OnMouseEnter($event, point)" (mouseover)="OnMouseOver($event)" (mouseenter)="OnMouseLeave($event)"/>
-
-                <circle *ngIf="point.px-(options.bar.width/2)>=pYaxis.paddingLeft" [attr.cx]="point.px" [attr.cy]="point.py" r="5" fill="#ff0000" />
-            </g> -->
             <g pac-area *ngIf="series.series.type=='area'" [options]="options" [series]="series" [pxaxisLocation]="pxaxisLocation" [pYaxis]="pYaxis"
             (tmouseEnter)="OnMouseEnter($event)" (tmouseLeave)="OnMouseLeave($event)"></g>
-            <!-- <g pac-bar *ngIf="series.series.type=='bar'" [options]="options" [series]="series" [pxaxisLocation]="pxaxisLocation" [pPerUnitWidth]="pPerUnitWidth" [pYaxis]="pYaxis" 
-            (tmouseEnter)="OnMouseEnter($event)" (tmouseOver)="OnMouseOver($event)" (tmouseLeave)="OnMouseLeave($event)"></g> -->
         </g>
 
     </svg>
