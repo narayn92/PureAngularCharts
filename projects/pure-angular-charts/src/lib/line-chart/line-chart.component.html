@@ -1,5 +1,5 @@
 
-<div style="padding: 5px;background-color: #ffffff;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);border:solid 1px #ababab" [style.width.px]="width">
+<div style="padding: 5px;background-color: #ffffff;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);border:solid 1px #ababab;position: relative;" [style.width.px]="width">
     <div style="text-align:center;color:#333;font-size:20px;height:30px">{{options.title}}</div>
     <svg [attr.width]="width" [attr.height]="height">
         <!-- <text x="50%" y="5" dominant-baseline="hanging" text-anchor="middle">
@@ -48,13 +48,13 @@
             <span style="display:inline-block;width:10px;height:10px;" [style.background-color]="item.color"></span> <span style="padding-left: 5px;">{{item.name}}</span>
         </span>
     </div>
+    <div class="p-tooltip-container" [style.top.px]="ptootltip.py" [style.left.px]="ptootltip.px" [style.opacity]="(pDisplayTooltip)?1:0">
+        <div>
+            <span style="display:inline-block;width:10px;height:10px;" [style.background-color]="ptootltip.series.color"></span> <span style="padding-left: 5px;">{{ptootltip.series.name}}</span>
+        </div>
+            <div>X : {{ptootltip.point.x}}</div>
+        <div>Y : {{ptootltip.point.y}}</div>
+    </div>
 </div>
-<div class="p-tooltip-container" [style.top.px]="ptootltip.py" [style.left.px]="ptootltip.px" [style.opacity]="(pDisplayTooltip)?1:0">
-   <!-- <div [style.color]="ptootltip.series.color">{{ptootltip.series.name}}</div> -->
-   <div>
-        <span style="display:inline-block;width:10px;height:10px;" [style.background-color]="ptootltip.series.color"></span> <span style="padding-left: 5px;">{{ptootltip.series.name}}</span>
-   </div>
-    <div>X : {{ptootltip.point.x}}</div>
-   <div>Y : {{ptootltip.point.y}}</div>
-</div>
+
 

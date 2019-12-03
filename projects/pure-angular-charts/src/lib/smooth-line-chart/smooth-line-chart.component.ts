@@ -187,11 +187,11 @@ export class SmoothLineChartComponent implements OnInit {
   }
 
   OnMouseEnter(event) {
-    // console.log('OnMouseEnter', event.point);
+    // console.log('OnMouseEnter', event.event, event.point);
     this.ptootltip.series = event.series;
     this.ptootltip.point = event.point;
-    this.ptootltip.px = event.event.clientX;
-    this.ptootltip.py = event.event.clientY;
+    this.ptootltip.px = event.event.offsetX + 20;
+    this.ptootltip.py = event.event.offsetY + 20;
 
     clearTimeout(this.hideTooltip);
     this.pDisplayTooltip = true;
@@ -199,8 +199,8 @@ export class SmoothLineChartComponent implements OnInit {
   }
   OnMouseOver(event) {
     // console.log('OnMouseOver', event);
-    this.ptootltip.px = event.clientX + 20;
-    this.ptootltip.py = event.clientY + 20;
+    this.ptootltip.px = event.event.offsetX + 20;
+    this.ptootltip.py = event.event.offsetY + 20;
   }
 
   OnMouseLeave(event) {
