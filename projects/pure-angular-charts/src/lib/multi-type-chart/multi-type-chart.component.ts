@@ -2,11 +2,11 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ChartOptions, Xaxis, Yaxis } from '../pure-angular-charts.models';
 
 @Component({
-  selector: 'pac-smooth-area-chart',
-  templateUrl: './smooth-area-chart.component.html',
-  styleUrls: ['./smooth-area-chart.component.scss']
+  selector: 'pac-multi-type-chart',
+  templateUrl: './multi-type-chart.component.html',
+  styleUrls: ['./multi-type-chart.component.scss']
 })
-export class SmoothAreaChartComponent implements OnInit {
+export class MultiTypeChartComponent implements OnInit {
 
   @Input() width = 600;
   @Input() height = 400;
@@ -102,30 +102,94 @@ export class SmoothAreaChartComponent implements OnInit {
 
     // tslint:disable-next-line:max-line-length
     if (this.pXaxis.minMax !== 'fixed' || (this.pXaxis.minMax === 'fixed' && ((!this.pXaxis.max && isNaN(this.pXaxis.max)) || isNaN(this.pXaxis.max)))) {
-      this.pXaxis.max = (this.data[0].reduce((prev, current) => {
+      const fMax = (this.data[0].reduce((prev, current) => {
         return (prev.x > current.x) ? prev : current;
       })).x;
+
+      if (this.data.length > 1) {
+        this.pXaxis.max = this.data.reduce((pd, cd, i) => {
+          let cMax;
+          if (i === 0) {
+            cMax = pd;
+          } else {
+            cMax = (cd.reduce((prev, current) => {
+              return (prev.x > current.x) ? prev : current;
+            }, '')).x;
+          }
+          return (pd > cMax) ? pd : cMax;
+        }, fMax);
+      } else {
+        this.pXaxis.max = fMax;
+      }
     }
 
     // tslint:disable-next-line:max-line-length
     if (this.pXaxis.minMax !== 'fixed' || (this.pXaxis.minMax === 'fixed' && ((!this.pXaxis.min && isNaN(this.pXaxis.min)) || isNaN(this.pXaxis.min)))) {
-      this.pXaxis.min = (this.data[0].reduce((prev, current) => {
+      const fMin = (this.data[0].reduce((prev, current) => {
         return (prev.x < current.x) ? prev : current;
       })).x;
+
+      if (this.data.length > 1) {
+        this.pXaxis.min = this.data.reduce((pd, cd, i) => {
+          let cMin;
+          if (i === 0) {
+            cMin = pd;
+          } else {
+            cMin = (cd.reduce((prev, current) => {
+              return (prev.x < current.x) ? prev : current;
+            }, '')).x;
+          }
+          return (pd < cMin) ? pd : cMin;
+        }, fMin);
+      } else {
+        this.pXaxis.min = fMin;
+      }
     }
 
     // tslint:disable-next-line:max-line-length
     if (this.pYaxis.minMax !== 'fixed' || (this.pYaxis.minMax === 'fixed' && ((!this.pYaxis.max && isNaN(this.pYaxis.max)) || isNaN(this.pYaxis.max)))) {
-      this.pYaxis.max = (this.data[0].reduce((prev, current) => {
+      const fMax = (this.data[0].reduce((prev, current) => {
         return (prev.y > current.y) ? prev : current;
       })).y;
+
+      if (this.data.length > 1) {
+        this.pYaxis.max = this.data.reduce((pd, cd, i) => {
+          let cMax;
+          if (i === 0) {
+            cMax = pd;
+          } else {
+            cMax = (cd.reduce((prev, current) => {
+              return (prev.y > current.y) ? prev : current;
+            }, '')).y;
+          }
+          return (pd > cMax) ? pd : cMax;
+        }, fMax);
+      } else {
+        this.pYaxis.max = fMax;
+      }
     }
 
     // tslint:disable-next-line:max-line-length
     if (this.pYaxis.minMax !== 'fixed' || (this.pYaxis.minMax === 'fixed' && ((!this.pYaxis.min && isNaN(this.pYaxis.min)) || isNaN(this.pYaxis.min)))) {
-      this.pYaxis.min = (this.data[0].reduce((prev, current) => {
+      const fMin = (this.data[0].reduce((prev, current) => {
         return (prev.y < current.y) ? prev : current;
       })).y;
+
+      if (this.data.length > 1) {
+        this.pYaxis.min = this.data.reduce((pd, cd, i) => {
+          let cMin;
+          if (i === 0) {
+            cMin = pd;
+          } else {
+            cMin = (cd.reduce((prev, current) => {
+              return (prev.y < current.y) ? prev : current;
+            }, '')).y;
+          }
+          return (pd < cMin) ? pd : cMin;
+        }, fMin);
+      } else {
+        this.pXaxis.min = fMin;
+      }
     }
 
     const pPerUnitX = (this.pXaxis.max - this.pXaxis.min) / this.pXaxis.ticks.count;

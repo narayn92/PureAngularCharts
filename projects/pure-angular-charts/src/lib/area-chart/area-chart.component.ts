@@ -199,8 +199,8 @@ export class AreaChartComponent implements OnInit {
   }
   OnMouseOver(event) {
     // console.log('OnMouseOver', event);
-    this.ptootltip.px = event.event.offsetX + 20;
-    this.ptootltip.py = event.event.offsetY + 20;
+    this.ptootltip.px = event.offsetX + 20;
+    this.ptootltip.py = event.offsetY + 20;
   }
 
   OnMouseLeave(event) {

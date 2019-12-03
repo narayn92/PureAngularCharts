@@ -1,26 +1,27 @@
 <div style="display: flex; flex-wrap: wrap;justify-content: center;">
-    <div id="barchart" style="padding: 10px;">
-        <pac-bar-chart [width]="chartWidth" [height]="chartHeight" [data]="barChartData" [options]="barChartOptions">
-        </pac-bar-chart>
+    <div id="lineChart" style="text-align: center;padding: 10px; ">
+        <pac-multi-type-chart [width]="chartWidth" [height]="chartHeight" [data]="multiTypeChartData" [options]="multiTypeChartOptions">
+        </pac-multi-type-chart>
     </div>
     <div id="lineChart" style="text-align: center;padding: 10px; ">
         <pac-line-chart [width]="chartWidth" [height]="chartHeight" [data]="lineChartData" [options]="lineChartOptions">
         </pac-line-chart>
-    </div> 
-    <div id="smoothlineChart" style="text-align: center;padding: 10px; ">
-        <pac-smooth-line-chart [width]="chartWidth" [height]="chartHeight" [data]="smoothLineChartData" [options]="smoothLineChartOptions">
-        </pac-smooth-line-chart>
     </div> 
     <div id="areachart" style="padding: 10px;">
         <pac-area-chart [width]="chartWidth" [height]="chartHeight" [data]="areaChartData" [options]="areaChartOptions">
         </pac-area-chart>
     </div>
+    <div id="barchart" style="padding: 10px;">
+        <pac-bar-chart [width]="chartWidth" [height]="chartHeight" [data]="barChartData" [options]="barChartOptions">
+        </pac-bar-chart>
+    </div>
+    <div id="smoothlineChart" style="text-align: center;padding: 10px; ">
+        <pac-smooth-line-chart [width]="chartWidth" [height]="chartHeight" [data]="smoothLineChartData" [options]="smoothLineChartOptions">
+        </pac-smooth-line-chart>
+    </div> 
     <div id="lineChart" style="text-align: center;padding: 10px; ">
         <pac-smooth-area-chart [width]="chartWidth" [height]="chartHeight" [data]="smoothAreaChartData" [options]="smoothAreaChartOptions">
         </pac-smooth-area-chart>
     </div> 
-    <div id="lineChart" style="text-align: center;padding: 10px; ">
-        <pac-line-chart [width]="chartWidth" [height]="chartHeight" [data]="lineChartData" [options]="lineChartOptions">
-        </pac-line-chart>
-    </div>
+    
 </div>
