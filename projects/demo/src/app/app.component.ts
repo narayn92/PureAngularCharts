@@ -277,4 +277,64 @@ export class AppComponent {
     },
     innerPaddingBottom: 10
   };
+
+  multiTypeChartData = [
+    [{ x: -1, y: 25 }, { x: 1, y: 35 }, { x: 2, y: 30 }, { x: 3, y: 40 }, { x: 4, y: 30 }, { x: 5, y: 45 }],
+    [{ x: -1, y: 20 }, { x: 1, y: 28 }, { x: 2, y: 24 }, { x: 3, y: 32 }, { x: 4, y: 24 }, { x: 5, y: 36 }],
+    [{ x: -1, y: 15 }, { x: 1, y: 21 }, { x: 2, y: 18 }, { x: 3, y: 24 }, { x: 4, y: 18 }, { x: 5, y: 27 }],
+    [{ x: -1, y: 10 }, { x: 1, y: 14 }, { x: 2, y: 12 }, { x: 3, y: 16 }, { x: 4, y: 12 }, { x: 5, y: 18 }],
+    [{ x: -1, y: 5 }, { x: 1, y: 7 }, { x: 2, y: 6 }, { x: 3, y: 8 }, { x: 4, y: 6 }, { x: 5, y: 9}]
+  ];
+  multiTypeChartOptions: ChartOptions = {
+    title : 'Multi Type Chart',
+    xaxis : {
+      type: 'numeric',
+      show: true,
+      labels: [],
+      min: 0,
+      max: 6,
+      title: 'xaxis',
+      ticks: {
+        show: true,
+        count: 6,
+        length: 5
+      },
+      grid : {
+        show: true
+      },
+      paddingBottom: 20,
+      paddingTop: 30,
+      minMax: 'auto'
+    },
+    yaxis : {
+      type: 'numeric',
+      show: true,
+      labels: [],
+      min: 0,
+      max: 0,
+      title: 'yaxis',
+      ticks: {
+        show: true,
+        count: 6,
+        length: 5
+      },
+      grid : {
+        show: true
+      },
+      paddingLeft: 50,
+      paddingRight: 0,
+      minMax: 'auto'
+    },
+    series : [
+      { name: 'Series1', color: '#bb78ff', type: 'bar' },
+      { name: 'Series2', color: '#fff766', type: 'line' },
+      { name: 'Series4', color: '#66ffed', type: 'smooth-line' },
+      { name: 'Series3', color: '#82ff66', type: 'area' },
+      { name: 'Series5', color: '#6670ff', type: 'smooth-area' }
+    ],
+    bar : {
+      width: 30
+    },
+    innerPaddingBottom: 10
+  };
 }

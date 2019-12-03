@@ -13,6 +13,7 @@ import { AreaComponent } from './components/area/area.component';
 import { SmoothAreaComponent } from './components/smooth-area/smooth-area.component';
 import { SmoothAreaChartComponent } from './smooth-area-chart/smooth-area-chart.component';
 import { AreaChartComponent } from './area-chart/area-chart.component';
+import { MultiTypeChartComponent } from './multi-type-chart/multi-type-chart.component';
 
 
 
@@ -30,7 +31,8 @@ import { AreaChartComponent } from './area-chart/area-chart.component';
     AreaComponent,
     SmoothAreaComponent,
     SmoothAreaChartComponent,
-    AreaChartComponent],
+    AreaChartComponent,
+    MultiTypeChartComponent],
   imports: [
     CommonModule
   ],
@@ -40,7 +42,8 @@ import { AreaChartComponent } from './area-chart/area-chart.component';
     LineChartComponent,
     AreaChartComponent,
     SmoothLineChartComponent,
-    SmoothAreaChartComponent
+    SmoothAreaChartComponent,
+    MultiTypeChartComponent
   ]
 })
 export class PureAngularChartsModule { }

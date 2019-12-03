@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Observable } from 'rxjs';
 import { ChartOptions, Xaxis, Yaxis } from '../pure-angular-charts.models';
 
 @Component({
@@ -200,8 +199,8 @@ export class BarChartComponent implements OnInit {
   }
   OnMouseOver(event) {
     // console.log('OnMouseOver', event);
-    this.ptootltip.px = event.event.offsetX + 20;
-    this.ptootltip.py = event.event.offsetY + 20;
+    this.ptootltip.px = event.offsetX + 20;
+    this.ptootltip.py = event.offsetY + 20;
   }
 
   OnMouseLeave(event) {
