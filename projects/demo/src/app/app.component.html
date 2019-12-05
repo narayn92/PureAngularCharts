@@ -1,27 +1,107 @@
-<div style="display: flex; flex-wrap: wrap;justify-content: center;">
+<!-- <div style="width:50%;height:500px">
+    <pac-responsive-container [templateRef]="BarChartTemplate">
+    </pac-responsive-container>
+    <ng-template #BarChartTemplate let-width="width" let-height="height">
+        <pac-bar-chart [width]="width" [height]="height" [data]="barChartData" [options]="barChartOptions">
+        </pac-bar-chart>
+    </ng-template>
+</div> -->
+
+<div class="container-fluid">
+    <h3 class="text-center p-1">Pure Angular Charts</h3>
+    <div class="row">
+        <div class="col-lg-4 col-sm-6">
+            <div style="height:300px;padding: 5px;">
+                <pac-responsive-container [templateRef]="MutiTypeChart">
+                </pac-responsive-container>
+                <ng-template #MutiTypeChart let-width="width" let-height="height">
+                    <pac-multi-type-chart [width]="width" [height]="height" [data]="multiTypeChartData"
+                        [options]="multiTypeChartOptions">
+                    </pac-multi-type-chart>
+                </ng-template>
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+            <div style="height:300px;padding: 5px;">
+                <pac-responsive-container [templateRef]="LineChart">
+                </pac-responsive-container>
+                <ng-template #LineChart let-width="width" let-height="height">
+                    <pac-line-chart [width]="width" [height]="height" [data]="lineChartData"
+                        [options]="lineChartOptions">
+                    </pac-line-chart>
+                </ng-template>
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+            <div style="height:300px;padding: 5px;">
+                <pac-responsive-container [templateRef]="AreaChart">
+                </pac-responsive-container>
+                <ng-template #AreaChart let-width="width" let-height="height">
+                    <pac-area-chart [width]="width" [height]="height" [data]="areaChartData"
+                        [options]="areaChartOptions">
+                    </pac-area-chart>
+                </ng-template>
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+            <div style="height:300px;padding: 5px;">
+                <pac-responsive-container [templateRef]="BarChart">
+                </pac-responsive-container>
+                <ng-template #BarChart let-width="width" let-height="height">
+                    <pac-bar-chart [width]="width" [height]="height" [data]="barChartData"
+                        [options]="barChartOptions">
+                    </pac-bar-chart>
+                </ng-template>
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+            <div style="height:300px;padding: 5px;">
+                <pac-responsive-container [templateRef]="SmoothLineChart">
+                </pac-responsive-container>
+                <ng-template #SmoothLineChart let-width="width" let-height="height">
+                    <pac-smooth-line-chart [width]="width" [height]="height" [data]="smoothLineChartData"
+                        [options]="smoothLineChartOptions">
+                    </pac-smooth-line-chart>
+                </ng-template>
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+            <div style="height:300px;padding: 5px;">
+                <pac-responsive-container [templateRef]="SmoothAreaChart">
+                </pac-responsive-container>
+                <ng-template #SmoothAreaChart let-width="width" let-height="height">
+                    <pac-smooth-area-chart [width]="width" [height]="height" [data]="smoothAreaChartData"
+                        [options]="smoothAreaChartOptions">
+                    </pac-smooth-area-chart>
+                </ng-template>
+            </div>
+        </div>˝
+    </div>
+</div>
+<!-- <div style="display: flex; flex-wrap: wrap;justify-content: center;">
     <div id="lineChart" style="text-align: center;padding: 10px; ">
-        <pac-multi-type-chart [width]="chartWidth" [height]="chartHeight" [data]="multiTypeChartData" [options]="multiTypeChartOptions">
+        <pac-multi-type-chart [width]="width" [height]="height" [data]="multiTypeChartData" [options]="multiTypeChartOptions">
         </pac-multi-type-chart>
     </div>
     <div id="lineChart" style="text-align: center;padding: 10px; ">
-        <pac-line-chart [width]="chartWidth" [height]="chartHeight" [data]="lineChartData" [options]="lineChartOptions">
+        <pac-line-chart [width]="width" [height]="height" [data]="lineChartData" [options]="lineChartOptions">
         </pac-line-chart>
     </div> 
     <div id="areachart" style="padding: 10px;">
-        <pac-area-chart [width]="chartWidth" [height]="chartHeight" [data]="areaChartData" [options]="areaChartOptions">
+        <pac-area-chart [width]="width" [height]="height" [data]="areaChartData" [options]="areaChartOptions">
         </pac-area-chart>
     </div>
     <div id="barchart" style="padding: 10px;">
-        <pac-bar-chart [width]="chartWidth" [height]="chartHeight" [data]="barChartData" [options]="barChartOptions">
+        <pac-bar-chart [width]="width" [height]="height" [data]="barChartData" [options]="barChartOptions">
         </pac-bar-chart>
     </div>
     <div id="smoothlineChart" style="text-align: center;padding: 10px; ">
-        <pac-smooth-line-chart [width]="chartWidth" [height]="chartHeight" [data]="smoothLineChartData" [options]="smoothLineChartOptions">
+        <pac-smooth-line-chart [width]="width" [height]="height" [data]="smoothLineChartData" [options]="smoothLineChartOptions">
         </pac-smooth-line-chart>
     </div> 
     <div id="lineChart" style="text-align: center;padding: 10px; ">
-        <pac-smooth-area-chart [width]="chartWidth" [height]="chartHeight" [data]="smoothAreaChartData" [options]="smoothAreaChartOptions">
+        <pac-smooth-area-chart [width]="width" [height]="height" [data]="smoothAreaChartData" [options]="smoothAreaChartOptions">
         </pac-smooth-area-chart>
     </div> 
     
-</div>
+</div> -->

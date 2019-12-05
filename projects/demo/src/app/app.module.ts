@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 // tslint:disable-next-line:max-line-length
-import { PureAngularChartsModule, BarChartModule, LineChartModule, SmoothLineChartModule, AreaChartModule, SmoothAreaChartModule, MultiTypeChartModule } from 'pure-angular-charts';
+import { PureAngularChartsModule, ResponsiveContainerModule, BarChartModule, LineChartModule, SmoothLineChartModule, AreaChartModule, SmoothAreaChartModule, MultiTypeChartModule } from 'pure-angular-charts';
 
 @NgModule({
   declarations: [
@@ -20,6 +20,7 @@ import { PureAngularChartsModule, BarChartModule, LineChartModule, SmoothLineCha
     // AreaChartModule,
     // SmoothAreaChartModule,
     // MultiTypeChartModule
+    ResponsiveContainerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

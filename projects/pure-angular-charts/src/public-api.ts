@@ -6,6 +6,7 @@
 // export * from './lib/pure-angular-charts.component';
 export * from './lib/pure-angular-charts.module';
 export * from './lib/pure-angular-charts.models';
+export * from './lib/modules/responsive-container/responsive-container.module';
 export * from './lib/modules/bar-chart/bar-chart.module';
 export * from './lib/modules/line-chart/line-chart.module';
 export * from './lib/modules/area-chart/area-chart.module';

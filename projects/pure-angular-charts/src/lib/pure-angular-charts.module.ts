@@ -7,6 +7,7 @@ import { AreaChartModule } from './modules/area-chart/area-chart.module';
 import { SmoothLineChartModule } from './modules/smooth-line-chart/smooth-line-chart.module';
 import { MultiTypeChartModule } from './modules/multi-type-chart/multi-type-chart.module';
 import { SmoothAreaChartModule } from './modules/smooth-area-chart/smooth-area-chart.module';
+import { ResponsiveContainerModule } from './modules/responsive-container/responsive-container.module';
 
 @NgModule({
   declarations: [
@@ -17,12 +18,13 @@ import { SmoothAreaChartModule } from './modules/smooth-area-chart/smooth-area-c
   ],
   exports: [
     PureAngularChartsComponent,
+    ResponsiveContainerModule,
     BarChartModule,
     LineChartModule,
     AreaChartModule,
     SmoothLineChartModule,
     SmoothAreaChartModule,
-    MultiTypeChartModule
+    MultiTypeChartModule,
   ]
 })
 export class PureAngularChartsModule { }
