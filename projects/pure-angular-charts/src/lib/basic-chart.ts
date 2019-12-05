@@ -4,10 +4,22 @@ import { Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 export class BasicChart implements OnInit, OnChanges {
 
     @Input() width = 600;
-    @Input() height = 400;
     @Input() data = [
         // [{ x: 0, y: 0 }, { x: 1, y: 1 }, { x: 2, y: 2 }, { x: 3, y: 3 }, { x: 4, y: 4 }, { x: 5, y: 5 }]
     ];
+    private pheight = 400;
+    get height() {
+        return this.pheight;
+    }
+    @Input()
+    set height(val: any) {
+        let titleHeight = 0;
+        const legendHeight = 0;
+        if (!this.options.title) {
+            titleHeight = 30;
+        }
+        this.pheight = val + titleHeight + legendHeight;
+    }
 
     private poptions;
 
@@ -65,7 +77,7 @@ export class BasicChart implements OnInit, OnChanges {
     }
 
     loadChart(changes: SimpleChanges) {
-
+        console.log('loadChart', changes);
         if (changes.options || changes.data) {
 
             this.pXaxis = Object.assign({}, this.options.xaxis);
@@ -182,7 +194,7 @@ export class BasicChart implements OnInit, OnChanges {
             this.pPerUnitY = (this.pYaxis.max - this.pYaxis.min) / this.pYaxis.ticks.count;
         }
 
-        if (changes.width || changes.height) {
+        if (changes.width || changes.height || changes.options || changes.data) {
 
             const xlabels = [];
             if (this.pXaxis.type === 'numeric') {

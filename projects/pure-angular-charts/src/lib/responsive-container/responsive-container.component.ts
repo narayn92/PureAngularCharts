@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, ElementRef, AfterViewInit, TemplateRef, ChangeDetectorRef, HostListener } from '@angular/core';
+// tslint:disable-next-line:max-line-length
+import { Component, OnInit, Input, ElementRef, AfterViewInit, TemplateRef, ChangeDetectorRef, HostListener, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'pac-responsive-container',
@@ -7,18 +8,38 @@ import { Component, OnInit, Input, ElementRef, AfterViewInit, TemplateRef, Chang
 })
 export class ResponsiveContainerComponent implements OnInit, AfterViewInit {
 
+  // @Input() data;
+  // @Input() options;
   @Input() templateRef: TemplateRef<any>;
 
-  @Input() data;
-  @Input() options;
   isElementLoaded = false;
 
   chartDimention = {
     width: 0,
     height: 0
+    // data: null,
+    // options: null
   };
 
   constructor(public el: ElementRef, public cdref: ChangeDetectorRef) { }
+
+  // ngOnChanges(changes: SimpleChanges) {
+  //   console.log('resp', changes);
+  //   if (this.isElementLoaded) {
+  //     const newOpt = Object.assign({}, this.chartDimention);
+  //     if (changes.options) {
+  //       newOpt.options = this.options;
+  //       this.chartDimention = newOpt;
+  //     }
+  //     // this.chartDimention = {
+  //     //   width: element.offsetWidth - paddingX - borderX - 12,
+  //     //   height: element.offsetHeight - paddingY - borderY - 72,
+  //     //   data: this.data,
+  //     //   options: this.options
+  //     // };
+  //   }
+
+  // }
 
   ngOnInit() {
     console.log('ngOnInit');
@@ -28,6 +49,8 @@ export class ResponsiveContainerComponent implements OnInit, AfterViewInit {
     this.getChartDimension();
     this.cdref.detectChanges();
   }
+
+
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
@@ -48,6 +71,8 @@ export class ResponsiveContainerComponent implements OnInit, AfterViewInit {
       this.chartDimention = {
         width: element.offsetWidth - paddingX - borderX - 12,
         height: element.offsetHeight - paddingY - borderY - 72
+        // data: this.data,
+        // options: this.options
       };
       this.isElementLoaded = true;
     }

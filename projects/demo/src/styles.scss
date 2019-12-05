@@ -7,6 +7,25 @@
 //         font-size: 12px;
 //     }
 // }
+@import "~jsoneditor/dist/jsoneditor.min.css";
+
+app-demo .jsoneditor{
+    min-height: calc(100vh - 220px);
+    // min-height: 500px;
+}
+app-demo .ace_editor.ace-jsoneditor, app-demo textarea.jsoneditor-text{
+    min-height: calc(100vh - 280px);
+    // min-height: 500px;
+}
+
 * {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.font-12 {
+    font-size: 12px;
+}
+
+.font-16 {
+    font-size: 16px;
 }

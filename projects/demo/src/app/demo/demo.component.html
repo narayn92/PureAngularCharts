@@ -1,0 +1,31 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Simple Bar Chart</h1>
+</div>
+<div class="row">
+    <div *ngIf="chartType=='simple-bar-chart'" class="col-lg-7 col-sm-12">
+        <div style="height: calc(100vh - 150px);min-height:300px;">
+            <pac-responsive-container [templateRef]="BarChart">
+            </pac-responsive-container>
+            <ng-template #BarChart let-width="width" let-height="height">
+                <pac-bar-chart [width]="width" [height]="height" [data]="barChartData" [options]="barChartOptions">
+                </pac-bar-chart>
+            </ng-template>
+        </div>
+    </div>
+
+    <div class="col-lg-5 col-sm-12">
+        <div style="border:solid 1px #cdcdcd; background: #fff;">
+            <div class="font-16 p-2 pl-3" style="background:#343a40 ;color:#fff">
+                Options
+                <!-- <button style="float: right;" class="btn btn-sm btn-primary">Apply</button> -->
+            </div>
+            <json-editor [options]="jeoptions" [data]="jebarChartOptions" (change)="getData($event)"></json-editor>
+        </div>
+    </div>
+    <!-- <div class="col-lg-3 col-sm-12 pl-0 pr-0" style="border:solid 1px #cdcdcd; background: #fff;">
+
+        <div class="font-16 p-1 pl-3" style="background:#343a40 ;color:#fff">Options</div>
+
+        <json-editor [options]="jeoptions" [data]="barChartOptions" (change)="getData($event)"></json-editor>
+    </div> -->
+</div>
