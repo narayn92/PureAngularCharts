@@ -67,63 +67,73 @@ export class BasicChart implements OnInit, OnChanges {
     loadChart(changes: SimpleChanges) {
 
         if (changes.options || changes.data) {
-            // this.pData.Object.assign(this.xaxis, {});
+
             this.pXaxis = Object.assign({}, this.options.xaxis);
             this.pYaxis = Object.assign({}, this.options.yaxis);
 
-            // const Xmax = (this.data[0].reduce((prev, current) => {
-            //   return (prev.x > current.x) ? prev : current;
-            // })).x;
-            // if ((!this.pXaxis.max && isNaN(this.pXaxis.max)) || isNaN(this.pXaxis.max) || (Xmax > this.pXaxis.max)) {
-            //   this.pXaxis.max = Xmax;
-            // }
 
-            // tslint:disable-next-line:max-line-length
-            if (this.pXaxis.minMax !== 'fixed' || (this.pXaxis.minMax === 'fixed' && ((!this.pXaxis.max && isNaN(this.pXaxis.max)) || isNaN(this.pXaxis.max)))) {
-                const fMax = (this.data[0].reduce((prev, current) => {
-                    return (prev.x > current.x) ? prev : current;
-                })).x;
+            if (this.pXaxis.type === 'numeric') {
+                // tslint:disable-next-line:max-line-length
+                if (this.pXaxis.minMax !== 'fixed' || (this.pXaxis.minMax === 'fixed' && ((!this.pXaxis.max && isNaN(this.pXaxis.max)) || isNaN(this.pXaxis.max)))) {
+                    const fMax = (this.data[0].reduce((prev, current) => {
+                        return (prev.x > current.x) ? prev : current;
+                    })).x;
 
-                if (this.data.length > 1) {
-                    this.pXaxis.max = this.data.reduce((pd, cd, i) => {
-                        let cMax;
-                        if (i === 0) {
-                            cMax = pd;
-                        } else {
-                            cMax = (cd.reduce((prev, current) => {
-                                return (prev.x > current.x) ? prev : current;
-                            }, '')).x;
-                        }
-                        return (pd > cMax) ? pd : cMax;
-                    }, fMax);
-                } else {
-                    this.pXaxis.max = fMax;
+                    if (this.data.length > 1) {
+                        this.pXaxis.max = this.data.reduce((pd, cd, i) => {
+                            let cMax;
+                            if (i === 0) {
+                                cMax = pd;
+                            } else {
+                                cMax = (cd.reduce((prev, current) => {
+                                    return (prev.x > current.x) ? prev : current;
+                                }, '')).x;
+                            }
+                            return (pd > cMax) ? pd : cMax;
+                        }, fMax);
+                    } else {
+                        this.pXaxis.max = fMax;
+                    }
                 }
-            }
 
-            // tslint:disable-next-line:max-line-length
-            if (this.pXaxis.minMax !== 'fixed' || (this.pXaxis.minMax === 'fixed' && ((!this.pXaxis.min && isNaN(this.pXaxis.min)) || isNaN(this.pXaxis.min)))) {
-                const fMin = (this.data[0].reduce((prev, current) => {
-                    return (prev.x < current.x) ? prev : current;
-                })).x;
+                // tslint:disable-next-line:max-line-length
+                if (this.pXaxis.minMax !== 'fixed' || (this.pXaxis.minMax === 'fixed' && ((!this.pXaxis.min && isNaN(this.pXaxis.min)) || isNaN(this.pXaxis.min)))) {
+                    const fMin = (this.data[0].reduce((prev, current) => {
+                        return (prev.x < current.x) ? prev : current;
+                    })).x;
 
-                if (this.data.length > 1) {
-                    this.pXaxis.min = this.data.reduce((pd, cd, i) => {
-                        let cMin;
-                        if (i === 0) {
-                            cMin = pd;
-                        } else {
-                            cMin = (cd.reduce((prev, current) => {
-                                return (prev.x < current.x) ? prev : current;
-                            }, '')).x;
-                        }
-                        return (pd < cMin) ? pd : cMin;
-                    }, fMin);
-                } else {
-                    this.pXaxis.min = fMin;
+                    if (this.data.length > 1) {
+                        this.pXaxis.min = this.data.reduce((pd, cd, i) => {
+                            let cMin;
+                            if (i === 0) {
+                                cMin = pd;
+                            } else {
+                                cMin = (cd.reduce((prev, current) => {
+                                    return (prev.x < current.x) ? prev : current;
+                                }, '')).x;
+                            }
+                            return (pd < cMin) ? pd : cMin;
+                        }, fMin);
+                    } else {
+                        this.pXaxis.min = fMin;
+                    }
                 }
-            }
+                this.pPerUnitX = (this.pXaxis.max - this.pXaxis.min) / this.pXaxis.ticks.count;
+            } else if (this.pXaxis.type === 'category') {
 
+                this.pXaxis.min = 0;
+                this.pXaxis.max = this.data.reduce((pd, cd, i) => {
+                    let cMax;
+                    if (i === 0) {
+                        cMax = pd;
+                    } else {
+                        cMax = cd.length;
+                    }
+                    return (pd > cMax) ? pd : cMax;
+                }, this.data[0].length);
+                this.pXaxis.ticks.count = this.pXaxis.max;
+                this.pPerUnitX = 1;
+            }
             // tslint:disable-next-line:max-line-length
             if (this.pYaxis.minMax !== 'fixed' || (this.pYaxis.minMax === 'fixed' && ((!this.pYaxis.max && isNaN(this.pYaxis.max)) || isNaN(this.pYaxis.max)))) {
                 const fMax = (this.data[0].reduce((prev, current) => {
@@ -169,27 +179,41 @@ export class BasicChart implements OnInit, OnChanges {
                     this.pYaxis.min = fMin;
                 }
             }
-
-            this.pPerUnitX = (this.pXaxis.max - this.pXaxis.min) / this.pXaxis.ticks.count;
             this.pPerUnitY = (this.pYaxis.max - this.pYaxis.min) / this.pYaxis.ticks.count;
         }
 
         if (changes.width || changes.height) {
-            // tslint:disable-next-line:max-line-length
-            this.pPerUnitWidth = (this.width - this.pYaxis.paddingLeft - this.pYaxis.paddingRight - this.options.bar.width) / this.pXaxis.ticks.count;
+
+            const xlabels = [];
+            if (this.pXaxis.type === 'numeric') {
+                // tslint:disable-next-line:max-line-length
+                this.pPerUnitWidth = (this.width - this.pYaxis.paddingLeft - this.pYaxis.paddingRight - this.options.bar.width) / this.pXaxis.ticks.count;
+                for (let i = 0; i <= this.pXaxis.ticks.count; i++) {
+                    xlabels.push({
+                        text: (this.pXaxis.min + (i * this.pPerUnitX)).toFixed(2),
+                        px: this.pYaxis.paddingLeft + (i * this.pPerUnitWidth) + (this.options.bar.width / 2),
+                        py: this.height
+                    });
+                }
+                this.pXaxis.labels = xlabels;
+
+                // tslint:disable-next-line:max-line-length
+                this.pyaxisLocation = this.pYaxis.paddingLeft + (this.options.bar.width / 2) - ((this.pXaxis.min < 0) ? ((this.pXaxis.min / this.pPerUnitX) * this.pPerUnitWidth) : 0);
+            } else if (this.pXaxis.type === 'category') {
+                this.pPerUnitWidth = (this.width - this.pYaxis.paddingLeft - this.pYaxis.paddingRight) / this.pXaxis.ticks.count;
+                for (let i = 0; i < this.pXaxis.ticks.count; i++) {
+                    xlabels.push({
+                        text: this.data[0][i].x,
+                        px: this.pYaxis.paddingLeft + (i * this.pPerUnitWidth) + (this.pPerUnitWidth / 2),
+                        py: this.height
+                    });
+                }
+                this.pXaxis.labels = xlabels;
+
+                this.pyaxisLocation = this.pYaxis.paddingLeft;
+            }
             // tslint:disable-next-line:max-line-length
             this.pPerUnitHeight = (this.height - this.pXaxis.paddingTop - this.pXaxis.paddingBottom - this.options.innerPaddingBottom) / this.pXaxis.ticks.count;
-
-            // auto calulate axis ticks
-            const xlabels = [];
-            for (let i = 0; i <= this.pXaxis.ticks.count; i++) {
-                xlabels.push({
-                    text: (this.pXaxis.min + (i * this.pPerUnitX)).toFixed(2),
-                    px: this.pYaxis.paddingLeft + (i * this.pPerUnitWidth) + (this.options.bar.width / 2),
-                    py: this.height
-                });
-            }
-            this.pXaxis.labels = xlabels;
 
             const ylabels = [];
             for (let i = 0; i <= this.pYaxis.ticks.count; i++) {
@@ -201,11 +225,8 @@ export class BasicChart implements OnInit, OnChanges {
                 });
             }
             this.pYaxis.labels = ylabels;
-
             // tslint:disable-next-line:max-line-length
             this.pxaxisLocation = this.height - this.pXaxis.paddingBottom - this.options.innerPaddingBottom + ((this.pYaxis.min <= 0) ? ((this.pYaxis.min / this.pPerUnitY) * this.pPerUnitHeight) : 0);
-            // tslint:disable-next-line:max-line-length
-            this.pyaxisLocation = this.pYaxis.paddingLeft + (this.options.bar.width / 2) - ((this.pXaxis.min < 0) ? ((this.pXaxis.min / this.pPerUnitX) * this.pPerUnitWidth) : 0);
 
             this.pData = this.data.map((series, si) => {
                 return {
@@ -214,7 +235,14 @@ export class BasicChart implements OnInit, OnChanges {
                         // tslint:disable-next-line:max-line-length
                         const distanceFromXAxis = (((this.pYaxis.min < 0) ? item.y : (item.y - this.pYaxis.min)) / this.pPerUnitY) * this.pPerUnitHeight;
                         // tslint:disable-next-line:max-line-length
-                        const distanceFromYAxis = (((this.pXaxis.min < 0) ? item.x : (item.x - this.pXaxis.min)) / this.pPerUnitX) * this.pPerUnitWidth;
+                        let distanceFromYAxis = 0;
+                        if (this.pXaxis.type === 'numeric') {
+                            // tslint:disable-next-line:max-line-length
+                            distanceFromYAxis = (((this.pXaxis.min < 0) ? item.x : (item.x - this.pXaxis.min)) / this.pPerUnitX) * this.pPerUnitWidth;
+                        } else if (this.pXaxis.type === 'category') {
+                            // tslint:disable-next-line:max-line-length
+                            distanceFromYAxis = indx * this.pPerUnitWidth + (this.pPerUnitWidth / 2);
+                        }
                         return {
                             x: item.x,
                             y: item.y,
