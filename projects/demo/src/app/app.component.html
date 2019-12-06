@@ -14,85 +14,107 @@
             <div class="sidebar-sticky">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link active" [routerLink]="['/home']">
-                            <span data-feather="home"></span>
-                            All Charts <span class="sr-only">(current)</span>
+                        <a class="nav-link" [routerLink]="['/home']" [routerLinkActive]="['active']">
+                            <i class="fa fa-home" aria-hidden="true"></i> All Charts
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['/demo', 'simple-bar-chart']" >
-                            <span data-feather="file"></span>
-                            Simple Bar
-                        </a>
-                    </li>
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="shopping-cart"></span>
-                            Simple Line
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="users"></span>
-                            Simple Area
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="bar-chart-2"></span>
-                            Smooth Line
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="layers"></span>
-                            Smooth Area
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="layers"></span>
-                            Multi Type
-                        </a>
-                    </li> -->
                 </ul>
-
-                <!-- <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                    <span>Saved reports</span>
+                <!-- <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-2 mb-1 text-muted">
+                    <span>Numeric Axis</span>
+                    <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">
+                    </a>
+                </h6> -->
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['/demo', 'simple-bar-chart']"
+                            [routerLinkActive]="['active']">
+                            <i class="fa fa-bar-chart barColor" aria-hidden="true"></i> Simple Bar Chart
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['/demo', 'simple-line-chart']"
+                            [routerLinkActive]="['active']">
+                            <i class="fa fa-line-chart barColor" aria-hidden="true"></i> Simple Line Chart
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['/demo', 'simple-area-chart']"
+                            [routerLinkActive]="['active']">
+                            <i class="fa fa-area-chart barColor" aria-hidden="true"></i> Simple Area Chart
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['/demo', 'smooth-line-chart']"
+                            [routerLinkActive]="['active']">
+                            <i class="fa fa-line-chart barColor" aria-hidden="true"></i> Smooth Line Chart
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['/demo', 'smooth-area-chart']"
+                            [routerLinkActive]="['active']">
+                            <i class="fa fa-area-chart barColor" aria-hidden="true"></i> Smooth Area Chart
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['/demo', 'multi-type-chart']"
+                            [routerLinkActive]="['active']">
+                            <span class="fa-stack barColor" style="width:1em;height:1em;line-height:1em">
+                                 <i class="fa fa-area-chart fa-stack-1x" aria-hidden="true" style="opacity: 0.5;"></i>
+                                <i class="fa fa-bar-chart fa-stack-1x" aria-hidden="true" style="opacity: 1.0;"></i>
+                                <i class="fa fa-line-chart fa-stack-1x" aria-hidden="true" style="opacity: 1.0;"></i>
+                            </span> Multi Type Chart
+                        </a>
+                    </li>
+                </ul>
+                <!-- <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-2 mb-1 text-muted">
+                    <span>Category Axis</span>
                     <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">
                         <span data-feather="plus-circle"></span>
                     </a>
                 </h6>
-                <ul class="nav flex-column mb-2">
+
+                <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="file-text"></span>
-                            Current month
+                        <a class="nav-link" [routerLink]="['/demo', 'simple-bar-category-chart']"
+                            [routerLinkActive]="['active']">
+                            Simple Bar Chart
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="file-text"></span>
-                            Last quarter
+                        <a class="nav-link" [routerLink]="['/demo', 'simple-line-category-chart']"
+                            [routerLinkActive]="['active']">
+                            Simple Line Chart
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="file-text"></span>
-                            Social engagement
+                        <a class="nav-link" [routerLink]="['/demo', 'simple-area-category-chart']"
+                            [routerLinkActive]="['active']">
+                            Simple Area Chart
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="file-text"></span>
-                            Year-end sale
+                        <a class="nav-link" [routerLink]="['/demo', 'smooth-line-category-chart']"
+                            [routerLinkActive]="['active']">
+                            Smooth Line Chart
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['/demo', 'smooth-area-category-chart']"
+                            [routerLinkActive]="['active']">
+                            Smooth Area Chart
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['/demo', 'multi-type-category-chart']"
+                            [routerLinkActive]="['active']">
+                            Multi Type Chart
                         </a>
                     </li>
                 </ul> -->
             </div>
         </nav>
         <main class="col-md-9 ml-sm-auto col-lg-10 px-4">
-           <router-outlet></router-outlet>
+            <router-outlet></router-outlet>
         </main>
     </div>
 </div>

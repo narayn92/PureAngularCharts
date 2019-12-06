@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ChartOptions } from 'pure-angular-charts';
 import { JsonEditorComponent, JsonEditorOptions } from 'ang-jsoneditor';
+import { SampleData } from '../sample-data';
 
 @Component({
   selector: 'app-demo',
@@ -10,92 +10,112 @@ import { JsonEditorComponent, JsonEditorOptions } from 'ang-jsoneditor';
 })
 export class DemoComponent implements OnInit {
 
-  @ViewChild(JsonEditorComponent, { static: true }) editor: JsonEditorComponent;
-
-  jeoptions = new JsonEditorOptions();
-  jebarChartOptions;
-
+  Pagetitle;
+  sd = new SampleData();
   chartType;
-  barChartData = [
-    [{ x: -1, y: 25 }, { x: 5, y: 5 }, { x: 2, y: 20 }, { x: 3, y: 30 }, { x: 4, y: -40 }, { x: 1, y: 50 }],
-    // [{ x: -1, y: 20 }, { x: 1, y: 10 }, { x: 2, y: 15 }, { x: 3, y: 35 }, { x: 4, y: -35 }, { x: 5, y: 45 }]
-  ];
-  barChartOptions: ChartOptions = {
-    title: '',
-    xaxis: {
-      type: 'numeric',
-      show: true,
-      labels: [],
-      min: 0,
-      max: 6,
-      title: 'xaxis',
-      ticks: {
-        show: true,
-        count: 6,
-        length: 5
-      },
-      grid: {
-        show: true
-      },
-      paddingBottom: 20,
-      paddingTop: 30,
-      minMax: 'auto'
-    },
-    yaxis: {
-      type: 'numeric',
-      show: true,
-      labels: [],
-      min: 0,
-      max: 0,
-      title: 'yaxis',
-      ticks: {
-        show: true,
-        count: 6,
-        length: 5
-      },
-      grid: {
-        show: true
-      },
-      paddingLeft: 50,
-      paddingRight: 0,
-      minMax: 'auto'
-    },
-    series: [
-      { name: 'Series1', color: '#619eff', type: 'bar' },
-      // { name: 'Series2', color: '#ff6161', type: 'line' }
-    ],
-    bar: {
-      width: 30
-    },
-    innerPaddingBottom: 10
-  };
+  templateType;
 
-  constructor(private route: ActivatedRoute, private _ngZone: NgZone) {
-    this.chartType = this.route.snapshot.params.type;
+  @ViewChild('BarChartRef', { static: true }) BarChartRef: TemplateRef<any>;
+  @ViewChild('LineChartRef', { static: true }) LineChartRef: TemplateRef<any>;
+  @ViewChild('AreaChartRef', { static: true }) AreaChartRef: TemplateRef<any>;
+  @ViewChild('SmoothLineChartRef', { static: true }) SmoothLineChartRef: TemplateRef<any>;
+  @ViewChild('SmoothAreaChartRef', { static: true }) SmoothAreaChartRef: TemplateRef<any>;
+  @ViewChild('MutiTypeChartRef', { static: true }) MutiTypeChartRef: TemplateRef<any>;
+
+  chartOptions;
+  chartData;
+
+  showData = false;
+
+  @ViewChild(JsonEditorComponent, { static: true }) editor: JsonEditorComponent;
+  chartOptionsEditorOptions = new JsonEditorOptions();
+  jeChartOptions;
+  chartDataEditorOptions = new JsonEditorOptions();
+  jeChartData;
+
+  constructor(private route: ActivatedRoute) {
+    route.params.subscribe(p => {
+      console.log(p.type);
+      this.chartType = p.type;
+      if (this.chartType) {
+        this.setChartOptions();
+      }
+    });
+    // this.chartType = this.route.snapshot.params.type;
   }
 
   ngOnInit() {
 
-    this.jebarChartOptions = Object.assign({}, this.barChartOptions);
-    this.jeoptions.mode = 'tree';
-    this.jeoptions.modes = ['code', 'text', 'tree', 'view'];
+    this.chartOptionsEditorOptions.mode = 'tree';
+    this.chartOptionsEditorOptions.modes = ['code', 'text', 'tree', 'view'];
+    this.chartDataEditorOptions.mode = 'tree';
+    this.chartDataEditorOptions.modes = ['code', 'text', 'tree', 'view'];
     // this.jeoptions.schema = schema;
     // this.jeoptions.statusBar = false;
-    // let ref = this;
     // this.jeoptions.onChange = () => {
     //   console.log(this.editor.get());
-    //   const ch = this.editor.get();
-    //   ref._ngZone.run(() => {
-    //     ref.barChartOptions = ch;
-    //   });
     // };
+    // if (this.chartType) {
+    //   this.setChartOptions();
+    // }
+    if (this.chartType) {
+      this.setChartOptions();
+    }
   }
 
-  getData(event) {
+  setChartOptions() {
+    switch (this.chartType) {
+      case 'simple-bar-chart':
+        this.Pagetitle = 'Simple Bar Chart';
+        this.chartOptions = this.sd.barChartOptions;
+        this.chartData = this.sd.barChartData;
+        this.templateType = this.BarChartRef;
+        break;
+      case 'simple-line-chart':
+        this.Pagetitle = 'Simple Line Chart';
+        this.chartOptions = this.sd.lineChartOptions;
+        this.chartData = this.sd.lineChartData;
+        this.templateType = this.LineChartRef;
+        break;
+      case 'simple-area-chart':
+        this.Pagetitle = 'Simple Area Chart';
+        this.chartOptions = this.sd.areaChartOptions;
+        this.chartData = this.sd.areaChartData;
+        this.templateType = this.AreaChartRef;
+        break;
+      case 'smooth-line-chart':
+        this.Pagetitle = 'Smooth Line Chart';
+        this.chartOptions = this.sd.smoothLineChartOptions;
+        this.chartData = this.sd.smoothLineChartData;
+        this.templateType = this.SmoothLineChartRef;
+        break;
+      case 'smooth-area-chart':
+        this.Pagetitle = 'Smooth Area Chart';
+        this.chartOptions = this.sd.smoothAreaChartOptions;
+        this.chartData = this.sd.smoothAreaChartData;
+        this.templateType = this.SmoothAreaChartRef;
+        break;
+      case 'multi-type-chart':
+        this.Pagetitle = 'Multi Type Chart';
+        this.chartOptions = this.sd.multiTypeChartOptions;
+        this.chartData = this.sd.multiTypeChartData;
+        this.templateType = this.MutiTypeChartRef;
+        break;
+    }
+
+    if (this.chartOptions && this.chartData) {
+      this.jeChartOptions = Object.assign({}, this.chartOptions);
+      this.jeChartData = this.chartData.slice(0);
+    }
+  }
+  OnOptionsChange(event) {
     // console.log('getData', event);
-    // this._ngZone.run(() => {
-    this.barChartOptions = event;
-    // });
+    this.chartOptions = event;
+  }
+
+  OnDataChange(event) {
+    // console.log('getData', event);
+    this.chartData = event;
   }
 
 }

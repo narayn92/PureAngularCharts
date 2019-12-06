@@ -1,25 +1,59 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Simple Bar Chart</h1>
+    <h1 class="h2">{{Pagetitle}}</h1>
 </div>
 <div class="row">
-    <div *ngIf="chartType=='simple-bar-chart'" class="col-lg-7 col-sm-12">
-        <div style="height: calc(100vh - 180px);min-height:300px;">
-            <pac-responsive-container [templateRef]="BarChart">
+    <div class="col-lg-7 col-sm-12">
+        <div style="height: calc(100vh - 170px);min-height:300px;">
+            <pac-responsive-container [templateRef]="templateType">
             </pac-responsive-container>
-            <ng-template #BarChart let-width="width" let-height="height">
-                <pac-bar-chart [width]="width" [height]="height" [data]="barChartData" [options]="barChartOptions">
+            <ng-template #BarChartRef let-width="width" let-height="height">
+                <pac-bar-chart [width]="width" [height]="height" [data]="chartData" [options]="chartOptions">
                 </pac-bar-chart>
             </ng-template>
+            <ng-template #LineChartRef let-width="width" let-height="height">
+                <pac-line-chart [width]="width" [height]="height" [data]="chartData" [options]="chartOptions">
+                </pac-line-chart>
+            </ng-template>
+            <ng-template #AreaChartRef let-width="width" let-height="height">
+                <pac-area-chart [width]="width" [height]="height" [data]="chartData" [options]="chartOptions">
+                </pac-area-chart>
+            </ng-template>
+            <ng-template #SmoothLineChartRef let-width="width" let-height="height">
+                <pac-smooth-line-chart [width]="width" [height]="height" [data]="chartData" [options]="chartOptions">
+                </pac-smooth-line-chart>
+            </ng-template>
+            <ng-template #SmoothAreaChartRef let-width="width" let-height="height">
+                <pac-smooth-area-chart [width]="width" [height]="height" [data]="chartData" [options]="chartOptions">
+                </pac-smooth-area-chart>
+            </ng-template>
+            <ng-template #MutiTypeChartRef let-width="width" let-height="height">
+                <pac-multi-type-chart [width]="width" [height]="height" [data]="chartData" [options]="chartOptions">
+                </pac-multi-type-chart>
+            </ng-template>
+
         </div>
     </div>
-
-    <div class="col-lg-5 col-sm-12">
+    <div class="col-lg-5 col-sm-12" [hidden]="showData">
         <div style="border:solid 1px #cdcdcd; background: #fff;">
-            <div class="font-16 p-2 pl-3" style="background:#343a40 ;color:#fff">
-                Options
-                <!-- <button style="float: right;" class="btn btn-sm btn-primary">Apply</button> -->
+            <div class="d-flex p-2 pl-3" style="background:#343a40 ;color:#fff">
+                <div class="font-16 flex-grow-1">Options</div>
+                <button class="btn btn-sm btn-primary" (click)="showData=true;"><i class="fa fa-pencil"
+                        aria-hidden="true"></i> Data</button>
             </div>
-            <json-editor [options]="jeoptions" [data]="jebarChartOptions" (change)="getData($event)"></json-editor>
+
+            <json-editor [options]="chartOptionsEditorOptions" [data]="jeChartOptions"
+                (change)="OnOptionsChange($event)"></json-editor>
+        </div>
+    </div>
+    <div class="col-lg-5 col-sm-12" [hidden]="!showData">
+        <div style="border:solid 1px #cdcdcd; background: #fff;">
+            <div class="d-flex p-2 pl-3" style="background:#343a40 ;color:#fff">
+                <div class="font-16 flex-grow-1">Data</div>
+                <button class="btn btn-sm btn-primary" (click)="showData=false;"><i class="fa fa-pencil"
+                        aria-hidden="true"></i> Options</button>
+            </div>
+            <json-editor [options]="chartDataEditorOptions" [data]="jeChartData" (change)="OnDataChange($event)">
+            </json-editor>
         </div>
     </div>
     <!-- <div class="col-lg-3 col-sm-12 pl-0 pr-0" style="border:solid 1px #cdcdcd; background: #fff;">

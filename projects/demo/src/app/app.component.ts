@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ChartOptions } from 'pure-angular-charts';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-root',
