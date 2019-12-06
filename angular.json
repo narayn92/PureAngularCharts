@@ -64,6 +64,8 @@
             "tsConfig": "projects/demo/tsconfig.app.json",
             "aot": false,
             "assets": [
+              "projects/demo/src/.nojekyll",
+              "projects/demo/src/.htaccess",
               "projects/demo/src/favicon.ico",
               "projects/demo/src/assets"
             ],

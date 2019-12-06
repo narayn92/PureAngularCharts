@@ -9,16 +9,18 @@ export class BasicChart implements OnInit, OnChanges {
     ];
     private pheight = 400;
     get height() {
-        return this.pheight;
-    }
-    @Input()
-    set height(val: any) {
         let titleHeight = 0;
         const legendHeight = 0;
         if (!this.options.title) {
             titleHeight = 30;
         }
-        this.pheight = val + titleHeight + legendHeight;
+        return this.pheight + titleHeight + legendHeight;
+    }
+    @Input()
+    set height(val: any) {
+        console.log('height', val);
+
+        this.pheight = val;
     }
 
     private poptions;
@@ -241,6 +243,11 @@ export class BasicChart implements OnInit, OnChanges {
             this.pxaxisLocation = this.height - this.pXaxis.paddingBottom - this.options.innerPaddingBottom + ((this.pYaxis.min <= 0) ? ((this.pYaxis.min / this.pPerUnitY) * this.pPerUnitHeight) : 0);
 
             this.pData = this.data.map((series, si) => {
+                if (this.pXaxis.type === 'numeric') {
+                    series.sort((a, b) => {
+                        return (a.x > b.x) ? 1 : -1;
+                    });
+                }
                 return {
                     series: this.options.series[si],
                     data: series.map((item, indx) => {

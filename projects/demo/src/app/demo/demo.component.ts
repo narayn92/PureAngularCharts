@@ -17,7 +17,7 @@ export class DemoComponent implements OnInit {
 
   chartType;
   barChartData = [
-    [{ x: -1, y: 25 }, { x: 1, y: 5 }, { x: 2, y: 20 }, { x: 3, y: 30 }, { x: 4, y: -40 }, { x: 5, y: 50 }],
+    [{ x: -1, y: 25 }, { x: 5, y: 5 }, { x: 2, y: 20 }, { x: 3, y: 30 }, { x: 4, y: -40 }, { x: 1, y: 50 }],
     // [{ x: -1, y: 20 }, { x: 1, y: 10 }, { x: 2, y: 15 }, { x: 3, y: 35 }, { x: 4, y: -35 }, { x: 5, y: 45 }]
   ];
   barChartOptions: ChartOptions = {

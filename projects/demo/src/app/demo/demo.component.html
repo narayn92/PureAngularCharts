@@ -3,7 +3,7 @@
 </div>
 <div class="row">
     <div *ngIf="chartType=='simple-bar-chart'" class="col-lg-7 col-sm-12">
-        <div style="height: calc(100vh - 150px);min-height:300px;">
+        <div style="height: calc(100vh - 180px);min-height:300px;">
             <pac-responsive-container [templateRef]="BarChart">
             </pac-responsive-container>
             <ng-template #BarChart let-width="width" let-height="height">
