@@ -3,8 +3,10 @@
 
     <div class="btn-group align-items-center" role="group">
         <span> Axis Type &nbsp;</span>
-        <button type="button" class="btn btn-secondary" [class.active]="axisType=='numeric'" (click)="setAxisType('numeric')">Numeric</button>
-        <button type="button" class="btn btn-secondary" [class.active]="axisType=='category'" (click)="setAxisType('category')">Category</button>
+        <button type="button" class="btn btn-secondary" [class.active]="axisType=='numeric'"
+            (click)="setAxisType('numeric')">Numeric</button>
+        <button type="button" class="btn btn-secondary" [class.active]="axisType=='category'"
+            (click)="setAxisType('category')">Category</button>
     </div>
 </div>
 <div class="row">
@@ -41,9 +43,9 @@
     <div class="col-lg-5 col-sm-12" [hidden]="showData">
         <div style="border:solid 1px #cdcdcd; background: #fff;">
             <div class="d-flex p-2 pl-3" style="background:#343a40 ;color:#fff">
-                <div class="font-16 flex-grow-1">Options</div>
-                <button class="btn btn-sm btn-primary" (click)="showData=true;"><i class="fa fa-pencil"
-                        aria-hidden="true"></i> Data</button>
+                <div class="font-16 flex-grow-1">Chart Options</div>
+                <button class="btn btn-sm btn-primary" (click)="showData=true;">
+                    <i class="fa fa-pencil" aria-hidden="true"></i> Data</button>
             </div>
 
             <json-editor [options]="chartOptionsEditorOptions" [data]="jeChartOptions"
@@ -53,9 +55,9 @@
     <div class="col-lg-5 col-sm-12" [hidden]="!showData">
         <div style="border:solid 1px #cdcdcd; background: #fff;">
             <div class="d-flex p-2 pl-3" style="background:#343a40 ;color:#fff">
-                <div class="font-16 flex-grow-1">Data</div>
-                <button class="btn btn-sm btn-primary" (click)="showData=false;"><i class="fa fa-pencil"
-                        aria-hidden="true"></i> Options</button>
+                <div class="font-16 flex-grow-1">Chart Data</div>
+                <button class="btn btn-sm btn-primary" (click)="showData=false;">
+                    <i class="fa fa-pencil" aria-hidden="true"></i> Options</button>
             </div>
             <json-editor [options]="chartDataEditorOptions" [data]="jeChartData" (change)="OnDataChange($event)">
             </json-editor>
