@@ -80,11 +80,42 @@ export class BasicChart implements OnInit, OnChanges {
 
     loadChart(changes: SimpleChanges) {
         console.log('loadChart', changes);
+        let categories = [];
         if (changes.options || changes.data) {
 
             this.pXaxis = Object.assign({}, this.options.xaxis);
             this.pYaxis = Object.assign({}, this.options.yaxis);
 
+            if (this.pXaxis.type === 'category') {
+                const catData = {};
+                categories = [];
+                this.data.forEach((series, si) => {
+                    series.forEach((item, indx) => {
+                        if (!catData[item.x]) {
+                            catData[item.x] = {};
+                        }
+                        catData[item.x][si] = item;
+                    });
+                });
+                if (this.pXaxis.labels && this.pXaxis.labels.length > 0) {
+                    categories = this.pXaxis.labels;
+                } else {
+                    categories = Object.keys(catData);
+                }
+
+                this.data = this.data.map((series, si) => {
+                    return categories.map((item, indx) => {
+                        // tslint:disable-next-line:max-line-length
+                        let point;
+                        if (catData[item] && catData[item][si]) {
+                            point = catData[item][si];
+                        } else {
+                            point = { x: item, y: 0 };
+                        }
+                        return point;
+                    });
+                });
+            }
 
             if (this.pXaxis.type === 'numeric') {
                 // tslint:disable-next-line:max-line-length
@@ -136,15 +167,7 @@ export class BasicChart implements OnInit, OnChanges {
             } else if (this.pXaxis.type === 'category') {
 
                 this.pXaxis.min = 0;
-                this.pXaxis.max = this.data.reduce((pd, cd, i) => {
-                    let cMax;
-                    if (i === 0) {
-                        cMax = pd;
-                    } else {
-                        cMax = cd.length;
-                    }
-                    return (pd > cMax) ? pd : cMax;
-                }, this.data[0].length);
+                this.pXaxis.max = this.data[0].length;
                 this.pXaxis.ticks.count = this.pXaxis.max;
                 this.pPerUnitX = 1;
             }

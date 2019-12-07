@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef, SimpleChanges, OnChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { JsonEditorComponent, JsonEditorOptions } from 'ang-jsoneditor';
 import { SampleData } from '../sample-data';
@@ -8,12 +8,14 @@ import { SampleData } from '../sample-data';
   templateUrl: './demo.component.html',
   styleUrls: ['./demo.component.scss']
 })
-export class DemoComponent implements OnInit {
+export class DemoComponent implements OnInit, OnChanges {
 
   Pagetitle;
   sd = new SampleData();
   chartType;
   templateType;
+
+  axisType = 'numeric';
 
   @ViewChild('BarChartRef', { static: true }) BarChartRef: TemplateRef<any>;
   @ViewChild('LineChartRef', { static: true }) LineChartRef: TemplateRef<any>;
@@ -63,42 +65,88 @@ export class DemoComponent implements OnInit {
     }
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    // if (changes.axisType) {
+    //   this.setChartOptions();
+    // }
+  }
+
+  setAxisType(type) {
+    this.axisType = type;
+    this.setChartOptions();
+  }
   setChartOptions() {
-    switch (this.chartType) {
-      case 'simple-bar-chart':
+    switch (this.chartType + '-' + this.axisType) {
+      case 'simple-bar-chart-numeric':
         this.Pagetitle = 'Simple Bar Chart';
         this.chartOptions = this.sd.barChartOptions;
         this.chartData = this.sd.barChartData;
         this.templateType = this.BarChartRef;
         break;
-      case 'simple-line-chart':
+      case 'simple-line-chart-numeric':
         this.Pagetitle = 'Simple Line Chart';
         this.chartOptions = this.sd.lineChartOptions;
         this.chartData = this.sd.lineChartData;
         this.templateType = this.LineChartRef;
         break;
-      case 'simple-area-chart':
+      case 'simple-area-chart-numeric':
         this.Pagetitle = 'Simple Area Chart';
         this.chartOptions = this.sd.areaChartOptions;
         this.chartData = this.sd.areaChartData;
         this.templateType = this.AreaChartRef;
         break;
-      case 'smooth-line-chart':
+      case 'smooth-line-chart-numeric':
         this.Pagetitle = 'Smooth Line Chart';
         this.chartOptions = this.sd.smoothLineChartOptions;
         this.chartData = this.sd.smoothLineChartData;
         this.templateType = this.SmoothLineChartRef;
         break;
-      case 'smooth-area-chart':
+      case 'smooth-area-chart-numeric':
         this.Pagetitle = 'Smooth Area Chart';
         this.chartOptions = this.sd.smoothAreaChartOptions;
         this.chartData = this.sd.smoothAreaChartData;
         this.templateType = this.SmoothAreaChartRef;
         break;
-      case 'multi-type-chart':
+      case 'multi-type-chart-numeric':
         this.Pagetitle = 'Multi Type Chart';
         this.chartOptions = this.sd.multiTypeChartOptions;
         this.chartData = this.sd.multiTypeChartData;
+        this.templateType = this.MutiTypeChartRef;
+        break;
+      case 'simple-bar-chart-category':
+        this.Pagetitle = 'Simple Bar Chart';
+        this.chartOptions = this.sd.barChartOptionsCategory;
+        this.chartData = this.sd.barChartDataCategory;
+        this.templateType = this.BarChartRef;
+        break;
+      case 'simple-line-chart-category':
+        this.Pagetitle = 'Simple Line Chart';
+        this.chartOptions = this.sd.lineChartOptionsCategory;
+        this.chartData = this.sd.lineChartDataCategory;
+        this.templateType = this.LineChartRef;
+        break;
+      case 'simple-area-chart-category':
+        this.Pagetitle = 'Simple Area Chart';
+        this.chartOptions = this.sd.areaChartOptionsCategory;
+        this.chartData = this.sd.areaChartDataCategory;
+        this.templateType = this.AreaChartRef;
+        break;
+      case 'smooth-line-chart-category':
+        this.Pagetitle = 'Smooth Line Chart';
+        this.chartOptions = this.sd.smoothLineChartOptionsCategory;
+        this.chartData = this.sd.smoothLineChartDataCategory;
+        this.templateType = this.SmoothLineChartRef;
+        break;
+      case 'smooth-area-chart-category':
+        this.Pagetitle = 'Smooth Area Chart';
+        this.chartOptions = this.sd.smoothAreaChartOptionsCategory;
+        this.chartData = this.sd.smoothAreaChartDataCategory;
+        this.templateType = this.SmoothAreaChartRef;
+        break;
+      case 'multi-type-chart-category':
+        this.Pagetitle = 'Multi Type Chart';
+        this.chartOptions = this.sd.multiTypeChartOptionsCategory;
+        this.chartData = this.sd.multiTypeChartDataCategory;
         this.templateType = this.MutiTypeChartRef;
         break;
     }
