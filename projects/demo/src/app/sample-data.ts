@@ -770,4 +770,64 @@ export class SampleData {
         innerPaddingBottom: 10
     };
 
+    stackedBarChartDataCategory = [
+        [{ x: 'Mon', y: 25 }, { x: 'Tue', y: 5 }, { x: 'Wed', y: 20 }, { x: 'Thu', y: 30 }, { x: 'Fri', y: -40 }, { x: 'Sat', y: 50 }],
+        [{ x: 'Mon', y: 20 }, { x: 'Tue', y: 10 }, { x: 'Wed', y: 15 }, { x: 'Thu', y: 25 }, { x: 'Fri', y: -30 }, { x: 'Sat', y: 30 }],
+        [{ x: 'Mon', y: 20 }, { x: 'Tue', y: 10 }, { x: 'Wed', y: 15 }, { x: 'Thu', y: 25 }, { x: 'Fri', y: -30 }, { x: 'Sat', y: 30 }]
+    ];
+    stackedBarChartOptionsCategory: ChartOptions = {
+        title: 'Stacked Bar Chart',
+        xaxis: {
+            type: 'category',
+            show: true,
+            labels: [],
+            showLabels: true,
+            showAxisLine: true,
+            min: 0,
+            max: 6,
+            title: 'xaxis',
+            ticks: {
+                show: true,
+                count: 6,
+                length: 5
+            },
+            grid: {
+                show: true
+            },
+            axisHeight: 20,
+            minMax: 'auto'
+        },
+        yaxis: {
+            type: 'numeric',
+            show: true,
+            labels: [],
+            showLabels: true,
+            showAxisLine: true,
+            min: 0,
+            max: 0,
+            title: 'yaxis',
+            ticks: {
+                show: true,
+                count: 6,
+                length: 5
+            },
+            grid: {
+                show: true
+            },
+            axisWidth: 50,
+            paddingRight: 0,
+            minMax: 'auto'
+        },
+        series: [
+            { name: 'Series1', color: '#619eff', type: 'bar' },
+            { name: 'Series2', color: '#ff6161', type: 'bar' },
+            { name: 'Series3', color: '#66ffed', type: 'bar' },
+        ],
+        bar: {
+            width: 15
+            // ,spacing: 5
+        },
+        innerPaddingTop: 20,
+        innerPaddingBottom: 10
+    };
 }

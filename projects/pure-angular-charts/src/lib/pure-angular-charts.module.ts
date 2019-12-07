@@ -9,6 +9,7 @@ import { MultiTypeChartModule } from './modules/multi-type-chart/multi-type-char
 import { SmoothAreaChartModule } from './modules/smooth-area-chart/smooth-area-chart.module';
 import { ResponsiveContainerModule } from './modules/responsive-container/responsive-container.module';
 import { GroupedBarChartModule } from './modules/grouped-bar-chart/grouped-bar-chart.module';
+import { StackedBarChartModule } from './modules/stacked-bar-chart/stacked-bar-chart.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { GroupedBarChartModule } from './modules/grouped-bar-chart/grouped-bar-c
     SmoothLineChartModule,
     SmoothAreaChartModule,
     MultiTypeChartModule,
-    GroupedBarChartModule
+    GroupedBarChartModule,
+    StackedBarChartModule
   ]
 })
 export class PureAngularChartsModule { }
