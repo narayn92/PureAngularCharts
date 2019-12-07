@@ -760,7 +760,7 @@ export class SampleData {
         series: [
             { name: 'Series1', color: '#619eff', type: 'bar' },
             { name: 'Series2', color: '#ff6161', type: 'bar' },
-            { name: 'Series3', color: '#66ffed', type: 'bar' },
+            { name: 'Series3', color: '#66ae2c', type: 'bar' },
         ],
         bar: {
             width: 15

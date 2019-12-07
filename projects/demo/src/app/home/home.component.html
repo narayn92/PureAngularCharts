@@ -78,34 +78,23 @@
     </div>
     <div class="col-lg-6 col-sm-6">
         <div style="height:300px;padding: 5px;">
-            <pac-responsive-container [templateRef]="LineChartCategory">
+            <pac-responsive-container [templateRef]="GroupedBarChartCategory">
             </pac-responsive-container>
-            <ng-template #LineChartCategory let-width="width" let-height="height">
-                <pac-line-chart [width]="width" [height]="height" [data]="sd.lineChartDataCategory"
-                    [options]="sd.lineChartOptionsCategory">
-                </pac-line-chart>
+            <ng-template #GroupedBarChartCategory let-width="width" let-height="height">
+                <pac-grouped-bar-chart [width]="width" [height]="height" [data]="sd.groupedBarChartDataCategory"
+                    [options]="sd.groupedBarChartOptionsCategory">
+                </pac-grouped-bar-chart>
             </ng-template>
         </div>
     </div>
     <div class="col-lg-6 col-sm-6">
         <div style="height:300px;padding: 5px;">
-            <pac-responsive-container [templateRef]="AreaChartCategory">
+            <pac-responsive-container [templateRef]="SmoothAreaChartCategory">
             </pac-responsive-container>
-            <ng-template #AreaChartCategory let-width="width" let-height="height">
-                <pac-area-chart [width]="width" [height]="height" [data]="sd.areaChartDataCategory"
-                    [options]="sd.areaChartOptionsCategory">
-                </pac-area-chart>
-            </ng-template>
-        </div>
-    </div>
-    <div class="col-lg-6 col-sm-6">
-        <div style="height:300px;padding: 5px;">
-            <pac-responsive-container [templateRef]="BarChartCategory">
-            </pac-responsive-container>
-            <ng-template #BarChartCategory let-width="width" let-height="height">
-                <pac-bar-chart [width]="width" [height]="height" [data]="sd.barChartDataCategory"
-                    [options]="sd.barChartOptionsCategory">
-                </pac-bar-chart>
+            <ng-template #SmoothAreaChartCategory let-width="width" let-height="height">
+                <pac-smooth-area-chart [width]="width" [height]="height" [data]="sd.smoothAreaChartDataCategory"
+                    [options]="sd.smoothAreaChartOptionsCategory">
+                </pac-smooth-area-chart>
             </ng-template>
         </div>
     </div>
@@ -122,13 +111,38 @@
     </div>
     <div class="col-lg-6 col-sm-6">
         <div style="height:300px;padding: 5px;">
-            <pac-responsive-container [templateRef]="SmoothAreaChartCategory">
+            <pac-responsive-container [templateRef]="AreaChartCategory">
             </pac-responsive-container>
-            <ng-template #SmoothAreaChartCategory let-width="width" let-height="height">
-                <pac-smooth-area-chart [width]="width" [height]="height" [data]="sd.smoothAreaChartDataCategory"
-                    [options]="sd.smoothAreaChartOptionsCategory">
-                </pac-smooth-area-chart>
+            <ng-template #AreaChartCategory let-width="width" let-height="height">
+                <pac-area-chart [width]="width" [height]="height" [data]="sd.areaChartDataCategory"
+                    [options]="sd.areaChartOptionsCategory">
+                </pac-area-chart>
             </ng-template>
         </div>
     </div>
+    <div class="col-lg-6 col-sm-6">
+        <div style="height:300px;padding: 5px;">
+            <pac-responsive-container [templateRef]="LineChartCategory">
+            </pac-responsive-container>
+            <ng-template #LineChartCategory let-width="width" let-height="height">
+                <pac-line-chart [width]="width" [height]="height" [data]="sd.lineChartDataCategory"
+                    [options]="sd.lineChartOptionsCategory">
+                </pac-line-chart>
+            </ng-template>
+        </div>
+    </div>
+
+    <div class="col-lg-6 col-sm-6">
+        <div style="height:300px;padding: 5px;">
+            <pac-responsive-container [templateRef]="BarChartCategory">
+            </pac-responsive-container>
+            <ng-template #BarChartCategory let-width="width" let-height="height">
+                <pac-bar-chart [width]="width" [height]="height" [data]="sd.barChartDataCategory"
+                    [options]="sd.barChartOptionsCategory">
+                </pac-bar-chart>
+            </ng-template>
+        </div>
+    </div>
+
+
 </div>
