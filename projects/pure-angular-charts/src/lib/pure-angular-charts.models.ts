@@ -12,13 +12,14 @@ export interface Xaxis {
     type: string;
     show: boolean;
     labels?: string[];
+    showLabels?: boolean;
+    showAxisLine?: boolean;
     min?: number;
     max?: number;
     title: string;
     ticks: Ticks;
     grid: Grid;
-    paddingBottom: number;
-    paddingTop: number;
+    axisHeight: number;
     minMax: string;
 }
 
@@ -27,12 +28,14 @@ export interface Yaxis {
     type: string;
     show: boolean;
     labels?: string[];
+    showLabels?: boolean;
+    showAxisLine?: boolean;
     min?: number;
     max?: number;
     title: string;
     ticks: Ticks;
     grid: Grid;
-    paddingLeft: number;
+    axisWidth: number;
     paddingRight: number;
     minMax: string;
 }
@@ -53,6 +56,7 @@ export interface ChartOptions {
     yaxis: Yaxis;
     series: Series[];
     bar: Bar;
+    innerPaddingTop: number;
     innerPaddingBottom: number;
 }
 

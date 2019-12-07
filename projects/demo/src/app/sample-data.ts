@@ -11,6 +11,8 @@ export class SampleData {
             type: 'numeric',
             show: true,
             labels: [],
+            showLabels: true,
+            showAxisLine: true,
             min: 0,
             max: 6,
             title: 'xaxis',
@@ -22,14 +24,15 @@ export class SampleData {
             grid: {
                 show: true
             },
-            paddingBottom: 20,
-            paddingTop: 30,
+            axisHeight: 20,
             minMax: 'auto'
         },
         yaxis: {
             type: 'numeric',
             show: true,
             labels: [],
+            showLabels: true,
+            showAxisLine: true,
             min: 0,
             max: 0,
             title: 'yaxis',
@@ -41,7 +44,7 @@ export class SampleData {
             grid: {
                 show: true
             },
-            paddingLeft: 50,
+            axisWidth: 50,
             paddingRight: 0,
             minMax: 'auto'
         },
@@ -52,6 +55,7 @@ export class SampleData {
         bar: {
             width: 30
         },
+        innerPaddingTop: 20,
         innerPaddingBottom: 10
     };
     lineChartData = [
@@ -64,6 +68,8 @@ export class SampleData {
             type: 'numeric',
             show: true,
             labels: [],
+            showLabels: true,
+            showAxisLine: true,
             min: 0,
             max: 6,
             title: 'xaxis',
@@ -75,14 +81,15 @@ export class SampleData {
             grid: {
                 show: true
             },
-            paddingBottom: 20,
-            paddingTop: 30,
+            axisHeight: 20,
             minMax: 'auto'
         },
         yaxis: {
             type: 'numeric',
             show: true,
             labels: [],
+            showLabels: true,
+            showAxisLine: true,
             min: 0,
             max: 0,
             title: 'yaxis',
@@ -94,7 +101,7 @@ export class SampleData {
             grid: {
                 show: true
             },
-            paddingLeft: 50,
+            axisWidth: 50,
             paddingRight: 0,
             minMax: 'auto'
         },
@@ -105,6 +112,7 @@ export class SampleData {
         bar: {
             width: 30
         },
+        innerPaddingTop: 20,
         innerPaddingBottom: 10
     };
     smoothLineChartData = [
@@ -117,6 +125,8 @@ export class SampleData {
             type: 'numeric',
             show: true,
             labels: [],
+            showLabels: true,
+            showAxisLine: true,
             min: 0,
             max: 6,
             title: 'xaxis',
@@ -128,14 +138,15 @@ export class SampleData {
             grid: {
                 show: true
             },
-            paddingBottom: 20,
-            paddingTop: 30,
+            axisHeight: 20,
             minMax: 'auto'
         },
         yaxis: {
             type: 'numeric',
             show: true,
             labels: [],
+            showLabels: true,
+            showAxisLine: true,
             min: 0,
             max: 0,
             title: 'yaxis',
@@ -147,7 +158,7 @@ export class SampleData {
             grid: {
                 show: true
             },
-            paddingLeft: 50,
+            axisWidth: 50,
             paddingRight: 0,
             minMax: 'auto'
         },
@@ -158,6 +169,7 @@ export class SampleData {
         bar: {
             width: 30
         },
+        innerPaddingTop: 20,
         innerPaddingBottom: 10
     };
 
@@ -171,6 +183,8 @@ export class SampleData {
             type: 'numeric',
             show: true,
             labels: [],
+            showLabels: true,
+            showAxisLine: true,
             min: 0,
             max: 6,
             title: 'xaxis',
@@ -182,14 +196,15 @@ export class SampleData {
             grid: {
                 show: true
             },
-            paddingBottom: 20,
-            paddingTop: 30,
+            axisHeight: 20,
             minMax: 'auto'
         },
         yaxis: {
             type: 'numeric',
             show: true,
             labels: [],
+            showLabels: true,
+            showAxisLine: true,
             min: 0,
             max: 0,
             title: 'yaxis',
@@ -201,7 +216,7 @@ export class SampleData {
             grid: {
                 show: true
             },
-            paddingLeft: 50,
+            axisWidth: 50,
             paddingRight: 0,
             minMax: 'auto'
         },
@@ -212,6 +227,7 @@ export class SampleData {
         bar: {
             width: 30
         },
+        innerPaddingTop: 20,
         innerPaddingBottom: 10
     };
 
@@ -225,6 +241,8 @@ export class SampleData {
             type: 'numeric',
             show: true,
             labels: [],
+            showLabels: true,
+            showAxisLine: true,
             min: 0,
             max: 6,
             title: 'xaxis',
@@ -236,14 +254,15 @@ export class SampleData {
             grid: {
                 show: true
             },
-            paddingBottom: 20,
-            paddingTop: 30,
+            axisHeight: 20,
             minMax: 'auto'
         },
         yaxis: {
             type: 'numeric',
             show: true,
             labels: [],
+            showLabels: true,
+            showAxisLine: true,
             min: 0,
             max: 0,
             title: 'yaxis',
@@ -255,7 +274,7 @@ export class SampleData {
             grid: {
                 show: true
             },
-            paddingLeft: 50,
+            axisWidth: 50,
             paddingRight: 0,
             minMax: 'auto'
         },
@@ -266,6 +285,7 @@ export class SampleData {
         bar: {
             width: 30
         },
+        innerPaddingTop: 20,
         innerPaddingBottom: 10
     };
 
@@ -282,6 +302,8 @@ export class SampleData {
             type: 'numeric',
             show: true,
             labels: [],
+            showLabels: true,
+            showAxisLine: true,
             min: 0,
             max: 6,
             title: 'xaxis',
@@ -293,14 +315,15 @@ export class SampleData {
             grid: {
                 show: true
             },
-            paddingBottom: 20,
-            paddingTop: 30,
+            axisHeight: 20,
             minMax: 'auto'
         },
         yaxis: {
             type: 'numeric',
             show: true,
             labels: [],
+            showLabels: true,
+            showAxisLine: true,
             min: 0,
             max: 0,
             title: 'yaxis',
@@ -312,7 +335,7 @@ export class SampleData {
             grid: {
                 show: true
             },
-            paddingLeft: 50,
+            axisWidth: 50,
             paddingRight: 0,
             minMax: 'auto'
         },
@@ -326,6 +349,7 @@ export class SampleData {
         bar: {
             width: 30
         },
+        innerPaddingTop: 20,
         innerPaddingBottom: 10
     };
 
@@ -343,6 +367,8 @@ export class SampleData {
             type: 'category',
             show: true,
             labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+            showLabels: true,
+            showAxisLine: true,
             min: 0,
             max: 6,
             title: 'xaxis',
@@ -354,14 +380,15 @@ export class SampleData {
             grid: {
                 show: true
             },
-            paddingBottom: 20,
-            paddingTop: 30,
+            axisHeight: 20,
             minMax: 'auto'
         },
         yaxis: {
             type: 'numeric',
             show: true,
             labels: [],
+            showLabels: true,
+            showAxisLine: true,
             min: 0,
             max: 0,
             title: 'yaxis',
@@ -373,7 +400,7 @@ export class SampleData {
             grid: {
                 show: true
             },
-            paddingLeft: 50,
+            axisWidth: 50,
             paddingRight: 0,
             minMax: 'auto'
         },
@@ -387,6 +414,7 @@ export class SampleData {
         bar: {
             width: 30
         },
+        innerPaddingTop: 20,
         innerPaddingBottom: 10
     };
 
@@ -400,6 +428,8 @@ export class SampleData {
             type: 'category',
             show: true,
             labels: [],
+            showLabels: true,
+            showAxisLine: true,
             min: 0,
             max: 6,
             title: 'xaxis',
@@ -411,14 +441,15 @@ export class SampleData {
             grid: {
                 show: true
             },
-            paddingBottom: 20,
-            paddingTop: 30,
+            axisHeight: 20,
             minMax: 'auto'
         },
         yaxis: {
             type: 'numeric',
             show: true,
             labels: [],
+            showLabels: true,
+            showAxisLine: true,
             min: 0,
             max: 0,
             title: 'yaxis',
@@ -430,7 +461,7 @@ export class SampleData {
             grid: {
                 show: true
             },
-            paddingLeft: 50,
+            axisWidth: 50,
             paddingRight: 0,
             minMax: 'auto'
         },
@@ -441,6 +472,7 @@ export class SampleData {
         bar: {
             width: 30
         },
+        innerPaddingTop: 20,
         innerPaddingBottom: 10
     };
     lineChartDataCategory = [
@@ -452,6 +484,8 @@ export class SampleData {
             type: 'category',
             show: true,
             labels: [],
+            showLabels: true,
+            showAxisLine: true,
             min: 0,
             max: 6,
             title: 'xaxis',
@@ -463,14 +497,15 @@ export class SampleData {
             grid: {
                 show: true
             },
-            paddingBottom: 20,
-            paddingTop: 30,
+            axisHeight: 20,
             minMax: 'auto'
         },
         yaxis: {
             type: 'numeric',
             show: true,
             labels: [],
+            showLabels: true,
+            showAxisLine: true,
             min: 0,
             max: 0,
             title: 'yaxis',
@@ -482,7 +517,7 @@ export class SampleData {
             grid: {
                 show: true
             },
-            paddingLeft: 50,
+            axisWidth: 50,
             paddingRight: 0,
             minMax: 'auto'
         },
@@ -493,6 +528,7 @@ export class SampleData {
         bar: {
             width: 30
         },
+        innerPaddingTop: 20,
         innerPaddingBottom: 10
     };
     smoothLineChartDataCategory = [
@@ -504,6 +540,8 @@ export class SampleData {
             type: 'category',
             show: true,
             labels: [],
+            showLabels: true,
+            showAxisLine: true,
             min: 0,
             max: 6,
             title: 'xaxis',
@@ -515,14 +553,15 @@ export class SampleData {
             grid: {
                 show: true
             },
-            paddingBottom: 20,
-            paddingTop: 30,
+            axisHeight: 20,
             minMax: 'auto'
         },
         yaxis: {
             type: 'numeric',
             show: true,
             labels: [],
+            showLabels: true,
+            showAxisLine: true,
             min: 0,
             max: 0,
             title: 'yaxis',
@@ -534,7 +573,7 @@ export class SampleData {
             grid: {
                 show: true
             },
-            paddingLeft: 50,
+            axisWidth: 50,
             paddingRight: 0,
             minMax: 'auto'
         },
@@ -545,6 +584,7 @@ export class SampleData {
         bar: {
             width: 30
         },
+        innerPaddingTop: 20,
         innerPaddingBottom: 10
     };
 
@@ -557,6 +597,8 @@ export class SampleData {
             type: 'category',
             show: true,
             labels: [],
+            showLabels: true,
+            showAxisLine: true,
             min: 0,
             max: 6,
             title: 'xaxis',
@@ -568,14 +610,15 @@ export class SampleData {
             grid: {
                 show: true
             },
-            paddingBottom: 20,
-            paddingTop: 30,
+            axisHeight: 20,
             minMax: 'auto'
         },
         yaxis: {
             type: 'numeric',
             show: true,
             labels: [],
+            showLabels: true,
+            showAxisLine: true,
             min: 0,
             max: 0,
             title: 'yaxis',
@@ -587,7 +630,7 @@ export class SampleData {
             grid: {
                 show: true
             },
-            paddingLeft: 50,
+            axisWidth: 50,
             paddingRight: 0,
             minMax: 'auto'
         },
@@ -598,6 +641,7 @@ export class SampleData {
         bar: {
             width: 30
         },
+        innerPaddingTop: 20,
         innerPaddingBottom: 10
     };
 
@@ -610,6 +654,8 @@ export class SampleData {
             type: 'category',
             show: true,
             labels: [],
+            showLabels: true,
+            showAxisLine: true,
             min: 0,
             max: 6,
             title: 'xaxis',
@@ -621,14 +667,15 @@ export class SampleData {
             grid: {
                 show: true
             },
-            paddingBottom: 20,
-            paddingTop: 30,
+            axisHeight: 20,
             minMax: 'auto'
         },
         yaxis: {
             type: 'numeric',
             show: true,
             labels: [],
+            showLabels: true,
+            showAxisLine: true,
             min: 0,
             max: 0,
             title: 'yaxis',
@@ -640,7 +687,7 @@ export class SampleData {
             grid: {
                 show: true
             },
-            paddingLeft: 50,
+            axisWidth: 50,
             paddingRight: 0,
             minMax: 'auto'
         },
@@ -651,6 +698,7 @@ export class SampleData {
         bar: {
             width: 30
         },
+        innerPaddingTop: 20,
         innerPaddingBottom: 10
     };
 

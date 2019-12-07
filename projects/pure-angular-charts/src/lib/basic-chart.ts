@@ -224,33 +224,33 @@ export class BasicChart implements OnInit, OnChanges {
             const xlabels = [];
             if (this.pXaxis.type === 'numeric') {
                 // tslint:disable-next-line:max-line-length
-                this.pPerUnitWidth = (this.width - this.pYaxis.paddingLeft - this.pYaxis.paddingRight - this.options.bar.width) / this.pXaxis.ticks.count;
+                this.pPerUnitWidth = (this.width - this.pYaxis.axisWidth - this.pYaxis.paddingRight - this.options.bar.width) / this.pXaxis.ticks.count;
                 for (let i = 0; i <= this.pXaxis.ticks.count; i++) {
                     xlabels.push({
                         text: (this.pXaxis.min + (i * this.pPerUnitX)).toFixed(2),
-                        px: this.pYaxis.paddingLeft + (i * this.pPerUnitWidth) + (this.options.bar.width / 2),
+                        px: this.pYaxis.axisWidth + (i * this.pPerUnitWidth) + (this.options.bar.width / 2),
                         py: this.height
                     });
                 }
                 this.pXaxis.labels = xlabels;
 
                 // tslint:disable-next-line:max-line-length
-                this.pyaxisLocation = this.pYaxis.paddingLeft + (this.options.bar.width / 2) - ((this.pXaxis.min < 0) ? ((this.pXaxis.min / this.pPerUnitX) * this.pPerUnitWidth) : 0);
+                this.pyaxisLocation = this.pYaxis.axisWidth + (this.options.bar.width / 2) - ((this.pXaxis.min < 0) ? ((this.pXaxis.min / this.pPerUnitX) * this.pPerUnitWidth) : 0);
             } else if (this.pXaxis.type === 'category') {
-                this.pPerUnitWidth = (this.width - this.pYaxis.paddingLeft - this.pYaxis.paddingRight) / this.pXaxis.ticks.count;
+                this.pPerUnitWidth = (this.width - this.pYaxis.axisWidth - this.pYaxis.paddingRight) / this.pXaxis.ticks.count;
                 for (let i = 0; i < this.pXaxis.ticks.count; i++) {
                     xlabels.push({
                         text: this.data[0][i].x,
-                        px: this.pYaxis.paddingLeft + (i * this.pPerUnitWidth) + (this.pPerUnitWidth / 2),
+                        px: this.pYaxis.axisWidth + (i * this.pPerUnitWidth) + (this.pPerUnitWidth / 2),
                         py: this.height
                     });
                 }
                 this.pXaxis.labels = xlabels;
 
-                this.pyaxisLocation = this.pYaxis.paddingLeft;
+                this.pyaxisLocation = this.pYaxis.axisWidth;
             }
             // tslint:disable-next-line:max-line-length
-            this.pPerUnitHeight = (this.height - this.pXaxis.paddingTop - this.pXaxis.paddingBottom - this.options.innerPaddingBottom) / this.pYaxis.ticks.count;
+            this.pPerUnitHeight = (this.height - this.options.innerPaddingTop - this.pXaxis.axisHeight - this.options.innerPaddingBottom) / this.pYaxis.ticks.count;
 
             const ylabels = [];
             for (let i = 0; i <= this.pYaxis.ticks.count; i++) {
@@ -258,12 +258,12 @@ export class BasicChart implements OnInit, OnChanges {
                     text: (this.pYaxis.min + (i * this.pPerUnitY)).toFixed(2),
                     px: 0,
                     // tslint:disable-next-line:max-line-length
-                    py: this.height - (i * this.pPerUnitHeight) - this.pXaxis.paddingBottom - this.options.innerPaddingBottom // + this.pXaxis.paddingTop,
+                    py: this.height - (i * this.pPerUnitHeight) - this.pXaxis.axisHeight - this.options.innerPaddingBottom // + this.pXaxis.innerPaddingTop,
                 });
             }
             this.pYaxis.labels = ylabels;
             // tslint:disable-next-line:max-line-length
-            this.pxaxisLocation = this.height - this.pXaxis.paddingBottom - this.options.innerPaddingBottom + ((this.pYaxis.min <= 0) ? ((this.pYaxis.min / this.pPerUnitY) * this.pPerUnitHeight) : 0);
+            this.pxaxisLocation = this.height - this.pXaxis.axisHeight - this.options.innerPaddingBottom + ((this.pYaxis.min <= 0) ? ((this.pYaxis.min / this.pPerUnitY) * this.pPerUnitHeight) : 0);
 
             this.pData = this.data.map((series, si) => {
                 if (this.pXaxis.type === 'numeric') {
@@ -290,7 +290,7 @@ export class BasicChart implements OnInit, OnChanges {
                             y: item.y,
                             height: Math.abs(distanceFromXAxis),
                             px: this.pyaxisLocation + distanceFromYAxis,
-                            py: this.pxaxisLocation - distanceFromXAxis// + this.pXaxis.paddingTop
+                            py: this.pxaxisLocation - distanceFromXAxis// + this.pXaxis.innerPaddingTop
                         };
                     })
                 };

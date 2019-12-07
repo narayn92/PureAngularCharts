@@ -10,6 +10,8 @@ export class XaxisComponent implements OnInit {
 
   @Input() pXaxis: Xaxis;
 
+  @Input() showYGrid = true;
+
   constructor() { }
 
   ngOnInit() {

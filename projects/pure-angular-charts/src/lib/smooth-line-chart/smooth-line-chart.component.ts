@@ -15,6 +15,8 @@ export class SmoothLineChartComponent extends BasicChart implements OnInit {
         type: 'numeric',
         show: true,
         labels: [],
+        showLabels: true,
+        showAxisLine: true,
         min: 0,
         max: 0,
         title: 'xaxis',
@@ -27,13 +29,14 @@ export class SmoothLineChartComponent extends BasicChart implements OnInit {
           show: true
         },
         minMax: 'auto',
-        paddingBottom: 40,
-        paddingTop: 20
+        axisHeight: 40,
       },
       yaxis: {
         type: 'numeric',
         show: true,
         labels: [],
+        showLabels: true,
+        showAxisLine: true,
         min: 0,
         max: 0,
         title: 'yaxis',
@@ -46,7 +49,7 @@ export class SmoothLineChartComponent extends BasicChart implements OnInit {
           show: true
         },
         minMax: 'auto',
-        paddingLeft: 40,
+        axisWidth: 40,
         paddingRight: 40
       },
       series: [
@@ -55,6 +58,7 @@ export class SmoothLineChartComponent extends BasicChart implements OnInit {
       bar: {
         width: 30
       },
+      innerPaddingTop: 20,
       innerPaddingBottom: 10
     };
     super(defaultOptions);
