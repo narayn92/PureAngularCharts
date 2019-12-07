@@ -15,7 +15,7 @@ export class DemoComponent implements OnInit, OnChanges {
   chartType;
   templateType;
 
-  axisType = 'numeric';
+  axisType = 'category';
 
   @ViewChild('BarChartRef', { static: true }) BarChartRef: TemplateRef<any>;
   @ViewChild('LineChartRef', { static: true }) LineChartRef: TemplateRef<any>;

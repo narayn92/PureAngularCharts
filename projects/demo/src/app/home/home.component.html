@@ -1,18 +1,8 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">All Charts</h1>
-    <!-- <div class="btn-toolbar mb-2 mb-md-0">
-                    <div class="btn-group mr-2">
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
-                    </div>
-                    <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-                        <span data-feather="calendar"></span>
-                        This week
-                    </button>
-                </div> -->
 </div>
 <div class="row">
-    <div class="col-lg-6 col-sm-6">
+    <!-- `
         <div style="height:300px;padding: 5px;">
             <pac-responsive-container [templateRef]="MutiTypeChart">
             </pac-responsive-container>
@@ -74,14 +64,14 @@
                 </pac-smooth-area-chart>
             </ng-template>
         </div>
-    </div>
+    </div> -->
     <div class="col-lg-6 col-sm-6">
         <div style="height:300px;padding: 5px;">
             <pac-responsive-container [templateRef]="MutiTypeChartCategory">
             </pac-responsive-container>
             <ng-template #MutiTypeChartCategory let-width="width" let-height="height">
-                <pac-multi-type-chart [width]="width" [height]="height" [data]="multiTypeChartDataCategory"
-                    [options]="multiTypeChartOptionsCategory">
+                <pac-multi-type-chart [width]="width" [height]="height" [data]="sd.multiTypeChartDataCategory"
+                    [options]="sd.multiTypeChartOptionsCategory">
                 </pac-multi-type-chart>
             </ng-template>
         </div>
@@ -91,8 +81,8 @@
             <pac-responsive-container [templateRef]="LineChartCategory">
             </pac-responsive-container>
             <ng-template #LineChartCategory let-width="width" let-height="height">
-                <pac-line-chart [width]="width" [height]="height" [data]="lineChartDataCategory"
-                    [options]="lineChartOptionsCategory">
+                <pac-line-chart [width]="width" [height]="height" [data]="sd.lineChartDataCategory"
+                    [options]="sd.lineChartOptionsCategory">
                 </pac-line-chart>
             </ng-template>
         </div>
@@ -102,8 +92,8 @@
             <pac-responsive-container [templateRef]="AreaChartCategory">
             </pac-responsive-container>
             <ng-template #AreaChartCategory let-width="width" let-height="height">
-                <pac-area-chart [width]="width" [height]="height" [data]="areaChartDataCategory"
-                    [options]="areaChartOptionsCategory">
+                <pac-area-chart [width]="width" [height]="height" [data]="sd.areaChartDataCategory"
+                    [options]="sd.areaChartOptionsCategory">
                 </pac-area-chart>
             </ng-template>
         </div>
@@ -113,8 +103,8 @@
             <pac-responsive-container [templateRef]="BarChartCategory">
             </pac-responsive-container>
             <ng-template #BarChartCategory let-width="width" let-height="height">
-                <pac-bar-chart [width]="width" [height]="height" [data]="barChartDataCategory"
-                    [options]="barChartOptionsCategory">
+                <pac-bar-chart [width]="width" [height]="height" [data]="sd.barChartDataCategory"
+                    [options]="sd.barChartOptionsCategory">
                 </pac-bar-chart>
             </ng-template>
         </div>
@@ -124,8 +114,8 @@
             <pac-responsive-container [templateRef]="SmoothLineChartCategory">
             </pac-responsive-container>
             <ng-template #SmoothLineChartCategory let-width="width" let-height="height">
-                <pac-smooth-line-chart [width]="width" [height]="height" [data]="smoothLineChartDataCategory"
-                    [options]="smoothLineChartOptionsCategory">
+                <pac-smooth-line-chart [width]="width" [height]="height" [data]="sd.smoothLineChartDataCategory"
+                    [options]="sd.smoothLineChartOptionsCategory">
                 </pac-smooth-line-chart>
             </ng-template>
         </div>
@@ -135,8 +125,8 @@
             <pac-responsive-container [templateRef]="SmoothAreaChartCategory">
             </pac-responsive-container>
             <ng-template #SmoothAreaChartCategory let-width="width" let-height="height">
-                <pac-smooth-area-chart [width]="width" [height]="height" [data]="smoothAreaChartDataCategory"
-                    [options]="smoothAreaChartOptionsCategory">
+                <pac-smooth-area-chart [width]="width" [height]="height" [data]="sd.smoothAreaChartDataCategory"
+                    [options]="sd.smoothAreaChartOptionsCategory">
                 </pac-smooth-area-chart>
             </ng-template>
         </div>

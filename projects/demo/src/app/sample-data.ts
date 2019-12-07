@@ -6,7 +6,7 @@ export class SampleData {
         // [{ x: -1, y: 20 }, { x: 1, y: 10 }, { x: 2, y: 15 }, { x: 3, y: 35 }, { x: 4, y: -35 }, { x: 5, y: 45 }]
     ];
     barChartOptions: ChartOptions = {
-        title: 'Simple Bar Chart',
+        title: 'Simple Bar Chart - Numeric Axis',
         xaxis: {
             type: 'numeric',
             show: true,
@@ -59,7 +59,7 @@ export class SampleData {
         // [{ x: -1, y: 20 }, { x: 1, y: 10 }, { x: 2, y: 15 }, { x: 3, y: 35 }, { x: 4, y: -35 }, { x: 5, y: 45 }]
     ];
     lineChartOptions: ChartOptions = {
-        title: 'Simple Line Chart',
+        title: 'Simple Line Chart - Numeric Axis',
         xaxis: {
             type: 'numeric',
             show: true,
@@ -112,7 +112,7 @@ export class SampleData {
         // [{ x: -1, y: 20 }, { x: 1, y: 10 }, { x: 2, y: 15 }, { x: 3, y: 35 }, { x: 4, y: -35 }, { x: 5, y: 45 }]
     ];
     smoothLineChartOptions: ChartOptions = {
-        title: 'Smooth Line Chart',
+        title: 'Smooth Line Chart - Numeric Axis',
         xaxis: {
             type: 'numeric',
             show: true,
@@ -166,7 +166,7 @@ export class SampleData {
         // [{ x: -1, y: 20 }, { x: 1, y: 10 }, { x: 2, y: 15 }, { x: 3, y: 35 }, { x: 4, y: -35 }, { x: 5, y: 45 }]
     ];
     areaChartOptions: ChartOptions = {
-        title: 'Simple Area Chart',
+        title: 'Simple Area Chart - Numeric Axis',
         xaxis: {
             type: 'numeric',
             show: true,
@@ -220,7 +220,7 @@ export class SampleData {
         // [{ x: -1, y: 20 }, { x: 1, y: 10 }, { x: 2, y: 15 }, { x: 3, y: 35 }, { x: 4, y: -35 }, { x: 5, y: 45 }]
     ];
     smoothAreaChartOptions: ChartOptions = {
-        title: 'Smooth Area Chart',
+        title: 'Smooth Area Chart - Numeric Axis',
         xaxis: {
             type: 'numeric',
             show: true,
@@ -277,7 +277,7 @@ export class SampleData {
         [{ x: -1, y: 5 }, { x: 1, y: 7 }, { x: 2, y: 6 }, { x: 3, y: 8 }, { x: 4, y: 6 }, { x: 5, y: 9 }]
     ];
     multiTypeChartOptions: ChartOptions = {
-        title: 'Multi Type Chart',
+        title: 'Multi Type Chart  - Numeric Axis',
         xaxis: {
             type: 'numeric',
             show: true,
