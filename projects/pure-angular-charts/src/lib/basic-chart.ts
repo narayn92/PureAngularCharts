@@ -227,7 +227,7 @@ export class BasicChart implements OnInit, OnChanges {
                 this.pyaxisLocation = this.pYaxis.paddingLeft;
             }
             // tslint:disable-next-line:max-line-length
-            this.pPerUnitHeight = (this.height - this.pXaxis.paddingTop - this.pXaxis.paddingBottom - this.options.innerPaddingBottom) / this.pXaxis.ticks.count;
+            this.pPerUnitHeight = (this.height - this.pXaxis.paddingTop - this.pXaxis.paddingBottom - this.options.innerPaddingBottom) / this.pYaxis.ticks.count;
 
             const ylabels = [];
             for (let i = 0; i <= this.pYaxis.ticks.count; i++) {
