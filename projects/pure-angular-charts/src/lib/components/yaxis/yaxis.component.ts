@@ -10,7 +10,6 @@ export class YaxisComponent implements OnInit {
 
   @Input() pYaxis: Yaxis;
   @Input() width;
-  @Input() showXGrid;
 
   constructor() { }
 

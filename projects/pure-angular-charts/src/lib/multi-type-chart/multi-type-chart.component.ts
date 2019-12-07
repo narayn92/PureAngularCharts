@@ -56,7 +56,8 @@ export class MultiTypeChartComponent extends BasicChart implements OnInit {
         // { name: 'Series1' }
       ],
       bar: {
-        width: 30
+        width: 30,
+        spacing: 5
       },
       innerPaddingTop: 20,
       innerPaddingBottom: 10

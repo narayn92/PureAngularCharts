@@ -354,12 +354,16 @@ export class SampleData {
     };
 
     multiTypeChartDataCategory = [
+
+        // [{ x: 'Sun', y: 25 }, { x: 'Tue', y: 35 }, { x: 'Wed', y: 30 }, { x: 'Thu', y: 40 }, { x: 'Fri', y: 30 }, { x: 'Sat', y: 45 }],
         // tslint:disable-next-line:max-line-length
-        [{ x: 'Sun', y: 25 }, { x: 'Tue', y: 35 }, { x: 'Wed', y: 30 }, { x: 'Thu', y: 40 }, { x: 'Fri', y: 30 }, { x: 'Sat', y: 45 }],
+        [{ x: 'Sun', y: 25 }, { x: 'Mon', y: 40 }, { x: 'Tue', y: 35 }, { x: 'Wed', y: 30 }, { x: 'Thu', y: 40 }, { x: 'Fri', y: 30 }, { x: 'Sat', y: 45 }],
+        // [{ x: 'Mon', y: 10 }, { x: 'Tue', y: 14 }, { x: 'Wed', y: 12 }, { x: 'Thu', y: 16 }, { x: 'Fri', y: 12 }, { x: 'Sat', y: 18 }],
         [{ x: 'Mon', y: 20 }, { x: 'Tue', y: 28 }, { x: 'Wed', y: 24 }, { x: 'Thu', y: 32 }, { x: 'Fri', y: 24 }, { x: 'Sat', y: 36 }],
         [{ x: 'Mon', y: 15 }, { x: 'Tue', y: 21 }, { x: 'Wed', y: 18 }, { x: 'Thu', y: 24 }, { x: 'Fri', y: 18 }, { x: 'Sat', y: 27 }],
         [{ x: 'Mon', y: 10 }, { x: 'Tue', y: 14 }, { x: 'Wed', y: 12 }, { x: 'Thu', y: 16 }, { x: 'Fri', y: 12 }, { x: 'Sat', y: 18 }],
         [{ x: 'Mon', y: 5 }, { x: 'Tue', y: 7 }, { x: 'Wed', y: 6 }, { x: 'Thu', y: 8 }, { x: 'Fri', y: 6 }, { x: 'Sat', y: 9 }]
+
     ];
     multiTypeChartOptionsCategory: ChartOptions = {
         title: 'Multi Type Chart - Category Axis',
@@ -405,14 +409,17 @@ export class SampleData {
             minMax: 'auto'
         },
         series: [
+            // { name: 'Series1', color: '#ff6161', type: 'bar' },
             { name: 'Series1', color: '#bb78ff', type: 'bar' },
+            // { name: 'Series7', color: '#6670ff', type: 'bar' },
             { name: 'Series2', color: '#fff766', type: 'line' },
-            { name: 'Series4', color: '#66ffed', type: 'smooth-line' },
-            { name: 'Series3', color: '#82ff66', type: 'area' },
+            { name: 'Series3', color: '#66ffed', type: 'smooth-line' },
+            { name: 'Series4', color: '#82ff66', type: 'area' },
             { name: 'Series5', color: '#6670ff', type: 'smooth-area' }
+
         ],
         bar: {
-            width: 30
+            width: 25
         },
         innerPaddingTop: 20,
         innerPaddingBottom: 10
@@ -697,6 +704,67 @@ export class SampleData {
         ],
         bar: {
             width: 30
+        },
+        innerPaddingTop: 20,
+        innerPaddingBottom: 10
+    };
+
+    groupedBarChartDataCategory = [
+        [{ x: 'Mon', y: 25 }, { x: 'Tue', y: 5 }, { x: 'Wed', y: 20 }, { x: 'Thu', y: 30 }, { x: 'Fri', y: -40 }, { x: 'Sat', y: 50 }],
+        [{ x: 'Mon', y: 20 }, { x: 'Tue', y: 10 }, { x: 'Wed', y: 15 }, { x: 'Thu', y: 25 }, { x: 'Fri', y: -30 }, { x: 'Sat', y: 30 }],
+        [{ x: 'Mon', y: 20 }, { x: 'Tue', y: 10 }, { x: 'Wed', y: 15 }, { x: 'Thu', y: 25 }, { x: 'Fri', y: -30 }, { x: 'Sat', y: 30 }]
+    ];
+    groupedBarChartOptionsCategory: ChartOptions = {
+        title: 'Grouped Bar Chart',
+        xaxis: {
+            type: 'category',
+            show: true,
+            labels: [],
+            showLabels: true,
+            showAxisLine: true,
+            min: 0,
+            max: 6,
+            title: 'xaxis',
+            ticks: {
+                show: true,
+                count: 6,
+                length: 5
+            },
+            grid: {
+                show: true
+            },
+            axisHeight: 20,
+            minMax: 'auto'
+        },
+        yaxis: {
+            type: 'numeric',
+            show: true,
+            labels: [],
+            showLabels: true,
+            showAxisLine: true,
+            min: 0,
+            max: 0,
+            title: 'yaxis',
+            ticks: {
+                show: true,
+                count: 6,
+                length: 5
+            },
+            grid: {
+                show: true
+            },
+            axisWidth: 50,
+            paddingRight: 0,
+            minMax: 'auto'
+        },
+        series: [
+            { name: 'Series1', color: '#619eff', type: 'bar' },
+            { name: 'Series2', color: '#ff6161', type: 'bar' },
+            { name: 'Series3', color: '#66ffed', type: 'bar' },
+        ],
+        bar: {
+            width: 15
+            // ,spacing: 5
         },
         innerPaddingTop: 20,
         innerPaddingBottom: 10

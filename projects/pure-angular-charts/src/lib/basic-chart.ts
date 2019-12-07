@@ -31,7 +31,8 @@ export class BasicChart implements OnInit, OnChanges {
 
     @Input()
     set options(val: any) {
-        Object.assign(this.poptions, val);
+        // this.poptions = this.mergeObj(this.poptions, val);
+        this.mergerDefaultOptions(val);
     }
 
     pData: any[];
@@ -58,8 +59,6 @@ export class BasicChart implements OnInit, OnChanges {
     };
     hideTooltip;
 
-    isChartLoaded = false;
-
     constructor(options: ChartOptions) {
         // Object.assign(this.options, options);
         this.poptions = options;
@@ -79,7 +78,7 @@ export class BasicChart implements OnInit, OnChanges {
     }
 
     loadChart(changes: SimpleChanges) {
-        console.log('loadChart', changes);
+        console.log('loadChart - basic', changes);
         let categories = [];
         if (changes.options || changes.data) {
 
@@ -265,37 +264,60 @@ export class BasicChart implements OnInit, OnChanges {
             // tslint:disable-next-line:max-line-length
             this.pxaxisLocation = this.height - this.pXaxis.axisHeight - this.options.innerPaddingBottom + ((this.pYaxis.min <= 0) ? ((this.pYaxis.min / this.pPerUnitY) * this.pPerUnitHeight) : 0);
 
-            this.pData = this.data.map((series, si) => {
-                if (this.pXaxis.type === 'numeric') {
-                    series.sort((a, b) => {
-                        return (a.x > b.x) ? 1 : -1;
-                    });
-                }
-                return {
-                    series: this.options.series[si],
-                    data: series.map((item, indx) => {
+            this.plotDataPoints();
+        }
+    }
+
+    plotDataPoints() {
+
+        let barSeriesCount = 0;
+        this.options.series.forEach((item, indx) => {
+            if (item.type === 'bar') {
+                barSeriesCount++;
+            }
+        });
+        const hasGroupedBar = (barSeriesCount > 1) ? true : false;
+
+        let barSeriesCounter = 0;
+        this.pData = this.data.map((series, si) => {
+            if (this.pXaxis.type === 'numeric') {
+                series.sort((a, b) => {
+                    return (a.x > b.x) ? 1 : -1;
+                });
+            }
+            if (this.options.series[si].type === 'bar') {
+                barSeriesCounter++;
+            }
+            return {
+                series: this.options.series[si],
+                data: series.map((item, indx) => {
+                    // tslint:disable-next-line:max-line-length
+                    const distanceFromXAxis = (((this.pYaxis.min < 0) ? item.y : (item.y - this.pYaxis.min)) / this.pPerUnitY) * this.pPerUnitHeight;
+                    // tslint:disable-next-line:max-line-length
+                    let distanceFromYAxis = 0;
+                    if (this.pXaxis.type === 'numeric') {
                         // tslint:disable-next-line:max-line-length
-                        const distanceFromXAxis = (((this.pYaxis.min < 0) ? item.y : (item.y - this.pYaxis.min)) / this.pPerUnitY) * this.pPerUnitHeight;
+                        distanceFromYAxis = (((this.pXaxis.min < 0) ? item.x : (item.x - this.pXaxis.min)) / this.pPerUnitX) * this.pPerUnitWidth;
+                    } else if (this.pXaxis.type === 'category') {
                         // tslint:disable-next-line:max-line-length
-                        let distanceFromYAxis = 0;
-                        if (this.pXaxis.type === 'numeric') {
-                            // tslint:disable-next-line:max-line-length
-                            distanceFromYAxis = (((this.pXaxis.min < 0) ? item.x : (item.x - this.pXaxis.min)) / this.pPerUnitX) * this.pPerUnitWidth;
-                        } else if (this.pXaxis.type === 'category') {
-                            // tslint:disable-next-line:max-line-length
+                        if (this.options.series[si].type === 'bar' && hasGroupedBar) {
+                            const microUnit = this.options.bar.width + this.options.bar.spacing;
+                            const offset = (this.pPerUnitWidth - (microUnit * barSeriesCount)) / 2;
+                            distanceFromYAxis = (indx * this.pPerUnitWidth) + offset + ((barSeriesCounter * microUnit)) - (microUnit / 2);
+                        } else {
                             distanceFromYAxis = indx * this.pPerUnitWidth + (this.pPerUnitWidth / 2);
                         }
-                        return {
-                            x: item.x,
-                            y: item.y,
-                            height: Math.abs(distanceFromXAxis),
-                            px: this.pyaxisLocation + distanceFromYAxis,
-                            py: this.pxaxisLocation - distanceFromXAxis// + this.pXaxis.innerPaddingTop
-                        };
-                    })
-                };
-            });
-        }
+                    }
+                    return {
+                        x: item.x,
+                        y: item.y,
+                        height: Math.abs(distanceFromXAxis),
+                        px: this.pyaxisLocation + distanceFromYAxis,
+                        py: this.pxaxisLocation - distanceFromXAxis// + this.pXaxis.innerPaddingTop
+                    };
+                })
+            };
+        });
     }
     OnMouseEnter(event) {
         // console.log('OnMouseEnter', event.event, event.point);
@@ -322,4 +344,80 @@ export class BasicChart implements OnInit, OnChanges {
             ref.pDisplayTooltip = false;
         }, 4000);
     }
+
+    mergerDefaultOptions(val) {
+        if (val.title) { this.poptions.title = val.title; }
+        if (val.xaxis) {
+            if (val.xaxis.type) { this.poptions.xaxis.type = val.xaxis.type; }
+            if (typeof val.xaxis.show === 'boolean') { this.poptions.xaxis.show = val.xaxis.show; }
+            if (val.xaxis.labels) { this.poptions.xaxis.labels = val.xaxis.labels; }
+            if (typeof val.xaxis.showLabels === 'boolean') { this.poptions.xaxis.showLabels = val.xaxis.showLabels; }
+            if (typeof val.xaxis.showAxisLine === 'boolean') { this.poptions.xaxis.showAxisLine = val.xaxis.showAxisLine; }
+            if (typeof val.xaxis.min === 'number') { this.poptions.xaxis.min = val.xaxis.min; }
+            if (typeof val.xaxis.max === 'number') { this.poptions.xaxis.max = val.xaxis.max; }
+            if (val.xaxis.title) { this.poptions.xaxis.title = val.xaxis.title; }
+            if (typeof val.xaxis.ticks === 'object') {
+                if (typeof val.xaxis.ticks.show === 'boolean') { this.poptions.xaxis.ticks.show = val.xaxis.ticks.show; }
+                if (typeof val.xaxis.ticks.count === 'number') { this.poptions.xaxis.ticks.count = val.xaxis.ticks.count; }
+                if (typeof val.xaxis.ticks.length === 'number') { this.poptions.xaxis.ticks.length = val.xaxis.ticks.length; }
+            }
+            if (typeof val.xaxis.grid === 'object') {
+                if (typeof val.xaxis.grid.show === 'boolean') { this.poptions.xaxis.grid.show = val.xaxis.grid.show; }
+            }
+            if (typeof val.xaxis.axisHeight === 'number') { this.poptions.xaxis.axisHeight = val.xaxis.axisHeight; }
+            if (val.xaxis.minMax) { this.poptions.xaxis.minMax = val.xaxis.minMax; }
+        }
+        if (val.yaxis) {
+            if (val.yaxis.type) { this.poptions.yaxis.type = val.yaxis.type; }
+            if (typeof val.yaxis.show === 'boolean') { this.poptions.yaxis.show = val.yaxis.show; }
+            if (val.yaxis.labels) { this.poptions.yaxis.labels = val.yaxis.labels; }
+            if (typeof val.yaxis.showLabels === 'boolean') { this.poptions.yaxis.showLabels = val.yaxis.showLabels; }
+            if (typeof val.yaxis.showAxisLine === 'boolean') { this.poptions.yaxis.showAxisLine = val.yaxis.showAxisLine; }
+            if (typeof val.yaxis.min === 'number') { this.poptions.yaxis.min = val.yaxis.min; }
+            if (typeof val.yaxis.max === 'number') { this.poptions.yaxis.max = val.yaxis.max; }
+            if (val.yaxis.title) { this.poptions.yaxis.title = val.yaxis.title; }
+            if (typeof val.yaxis.ticks === 'object') {
+                if (typeof val.yaxis.ticks.show === 'boolean') { this.poptions.yaxis.ticks.show = val.yaxis.ticks.show; }
+                if (typeof val.yaxis.ticks.count === 'number') { this.poptions.yaxis.ticks.count = val.yaxis.ticks.count; }
+                if (typeof val.yaxis.ticks.length === 'number') { this.poptions.yaxis.ticks.length = val.yaxis.ticks.length; }
+            }
+            if (typeof val.yaxis.grid === 'object') {
+                if (typeof val.yaxis.grid.show === 'boolean') { this.poptions.yaxis.grid.show = val.yaxis.grid.show; }
+            }
+            if (typeof val.yaxis.axisWidth === 'number') { this.poptions.yaxis.axisWidth = val.yaxis.axisWidth; }
+            if (typeof val.yaxis.paddingRight === 'number') { this.poptions.yaxis.paddingRight = val.yaxis.paddingRight; }
+            if (val.yaxis.minMax) { this.poptions.yaxis.minMax = val.yaxis.minMax; }
+        }
+        if (typeof val.series === 'object') {
+            this.poptions.series = val.series;
+        }
+        if (typeof val.bar === 'object') {
+            if (typeof val.bar.width === 'number') { this.poptions.bar.width = val.bar.width; }
+            if (typeof val.bar.spacing === 'number') { this.poptions.bar.spacing = val.bar.spacing; }
+        }
+        if (typeof val.innerPaddingTop === 'number') { this.poptions.innerPaddingTop = val.innerPaddingTop; }
+        if (typeof val.innerPaddingBottom === 'number') { this.poptions.innerPaddingBottom = val.innerPaddingBottom; }
+    }
+
+
+
+    mergeObj(src, target) {
+        Object.keys(target).map((item, indx) => {
+            if (typeof target[item] === 'object') {
+                if (src[item]) {
+                    src[item] = this.mergeObj(src[item], target[item]);
+                } else {
+                    src[item] = target[item];
+                }
+            } else if (typeof target[item] === 'boolean') {
+                src[item] = target[item];
+            } else {
+                if (target[item]) {
+                    src[item] = target[item];
+                }
+            }
+        });
+        return src;
+    }
+
 }

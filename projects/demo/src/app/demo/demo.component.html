@@ -38,6 +38,10 @@
                 <pac-multi-type-chart [width]="width" [height]="height" [data]="chartData" [options]="chartOptions">
                 </pac-multi-type-chart>
             </ng-template>
+            <ng-template #GroupedBarChartRef let-width="width" let-height="height">
+                <pac-grouped-bar-chart [width]="width" [height]="height" [data]="chartData" [options]="chartOptions">
+                </pac-grouped-bar-chart>
+            </ng-template>
         </div>
     </div>
     <div class="col-lg-5 col-sm-12" [hidden]="showData">
