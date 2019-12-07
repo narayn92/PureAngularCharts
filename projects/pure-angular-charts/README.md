@@ -1,5 +1,11 @@
 # PureAngularCharts
 
+![Demo Snapshot](https://raw.githubusercontent.com/narayn92/PureAngularCharts/master/demo.png)
+
+Github : [https://github.com/narayn92/PureAngularCharts](https://github.com/narayn92/PureAngularCharts)
+
+Demo : [https://narayn92.github.io/PureAngularCharts](https://narayn92.github.io/PureAngularCharts)
+
 This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.14.
 
 ## Code scaffolding

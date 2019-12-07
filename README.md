@@ -2,6 +2,8 @@
 
 ![Demo Snapshot](demo.png)
 
+Demo : [https://narayn92.github.io/PureAngularCharts](https://narayn92.github.io/PureAngularCharts)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.6.
 
 ## Development server
