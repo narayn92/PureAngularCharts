@@ -1,6 +1,6 @@
-<svg:g pac-xaxis *ngIf="pXaxis.show" [pXaxis]="pXaxis" [showYGrid]="pYaxis.grid.show"></g>
+<svg:g pac-xaxis *ngIf="pXaxis.show" [pXaxis]="pXaxis"></g>
 
-<svg:g pac-yaxis *ngIf="pYaxis.show" [pYaxis]="pYaxis" [width]="width" [showXGrid]="pXaxis.grid.show"></g>
+<svg:g pac-yaxis *ngIf="pYaxis.show" [pYaxis]="pYaxis" [width]="width"></g>
 
 <svg:line *ngIf="pXaxis.show && pXaxis.showAxisLine" [attr.x1]="pYaxis.axisWidth" [attr.y1]="pxaxisLocation"
     [attr.x2]="width - pYaxis.paddingRight" [attr.y2]="pxaxisLocation" style="stroke:#000;stroke-width:1" />

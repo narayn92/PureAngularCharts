@@ -13,3 +13,4 @@ export * from './lib/modules/area-chart/area-chart.module';
 export * from './lib/modules/smooth-line-chart/smooth-line-chart.module';
 export * from './lib/modules/smooth-area-chart/smooth-area-chart.module';
 export * from './lib/modules/multi-type-chart/multi-type-chart.module';
+export * from './lib/modules/grouped-bar-chart/grouped-bar-chart.module';

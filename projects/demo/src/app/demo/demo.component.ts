@@ -23,6 +23,7 @@ export class DemoComponent implements OnInit, OnChanges {
   @ViewChild('SmoothLineChartRef', { static: true }) SmoothLineChartRef: TemplateRef<any>;
   @ViewChild('SmoothAreaChartRef', { static: true }) SmoothAreaChartRef: TemplateRef<any>;
   @ViewChild('MutiTypeChartRef', { static: true }) MutiTypeChartRef: TemplateRef<any>;
+  @ViewChild('GroupedBarChartRef', { static: true }) GroupedBarChartRef: TemplateRef<any>;
 
   chartOptions;
   chartData;
@@ -148,6 +149,18 @@ export class DemoComponent implements OnInit, OnChanges {
         this.chartOptions = this.sd.multiTypeChartOptionsCategory;
         this.chartData = this.sd.multiTypeChartDataCategory;
         this.templateType = this.MutiTypeChartRef;
+        break;
+      // case 'grouped-bar-chart-numeric':
+      //   this.Pagetitle = 'Simple Bar Chart';
+      //   this.chartOptions = this.sd.barChartOptions;
+      //   this.chartData = this.sd.barChartData;
+      //   this.templateType = this.BarChartRef;
+      //   break;
+      case 'grouped-bar-chart-category':
+        this.Pagetitle = 'Grouped Bar Chart';
+        this.chartOptions = this.sd.groupedBarChartOptionsCategory;
+        this.chartData = this.sd.groupedBarChartDataCategory;
+        this.templateType = this.GroupedBarChartRef;
         break;
     }
 

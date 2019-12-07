@@ -47,7 +47,8 @@ export interface Series {
 }
 
 export interface Bar {
-    width: number;
+    width?: number;
+    spacing?: number;
 }
 
 export interface ChartOptions {
