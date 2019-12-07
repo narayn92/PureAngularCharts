@@ -51,12 +51,17 @@ export interface Bar {
     spacing?: number;
 }
 
+export interface DataLabels {
+    show?: boolean;
+}
+
 export interface ChartOptions {
     title?: string;
     xaxis: Xaxis;
     yaxis: Yaxis;
     series: Series[];
     bar: Bar;
+    dataLabels?: DataLabels;
     innerPaddingTop: number;
     innerPaddingBottom: number;
 }

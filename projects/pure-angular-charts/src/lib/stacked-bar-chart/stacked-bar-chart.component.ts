@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { ChartOptions } from '../pure-angular-charts.models';
 import { BasicChart } from '../basic-chart';
 
@@ -60,6 +60,9 @@ export class StackedBarChartComponent extends BasicChart implements OnInit {
         width: 30,
         spacing: 5
       },
+      dataLabels: {
+        show: true
+      },
       innerPaddingTop: 20,
       innerPaddingBottom: 10
     };
@@ -69,44 +72,167 @@ export class StackedBarChartComponent extends BasicChart implements OnInit {
   ngOnInit() {
   }
 
-  // loadChart(changes: SimpleChanges) {
-  //   // super.loadChart(changes);
-  //   console.log('loadchart - grouped bar');
-  // }
+  loadChart(changes: SimpleChanges) {
+    console.log('loadChart - stacked', changes);
+    let categories = [];
+    if (changes.options || changes.data) {
+
+      this.pXaxis = Object.assign({}, this.options.xaxis);
+      this.pYaxis = Object.assign({}, this.options.yaxis);
+
+      if (this.pXaxis.type === 'category') {
+        const catData = {};
+        categories = [];
+        this.data.forEach((series, si) => {
+          series.forEach((item, indx) => {
+            if (!catData[item.x]) {
+              catData[item.x] = {};
+            }
+            catData[item.x][si] = item;
+          });
+        });
+        if (this.pXaxis.labels && this.pXaxis.labels.length > 0) {
+          categories = this.pXaxis.labels;
+        } else {
+          categories = Object.keys(catData);
+        }
+
+        this.data = this.data.map((series, si) => {
+          return categories.map((item, indx) => {
+            // tslint:disable-next-line:max-line-length
+            let point;
+            if (catData[item] && catData[item][si]) {
+              point = catData[item][si];
+            } else {
+              point = { x: item, y: 0 };
+            }
+            return point;
+          });
+        });
+      }
+
+      if (this.pXaxis.type === 'category') {
+
+        this.pXaxis.min = 0;
+        this.pXaxis.max = this.data[0].length;
+        this.pXaxis.ticks.count = this.pXaxis.max;
+        this.pPerUnitX = 1;
+      }
+      // tslint:disable-next-line:max-line-length
+      if (this.pYaxis.minMax !== 'fixed' || (this.pYaxis.minMax === 'fixed' && ((!this.pYaxis.max && isNaN(this.pYaxis.max)) || isNaN(this.pYaxis.max)))) {
+        this.pYaxis.max = this.data.reduce((pd, cd, i) => {
+          const cMax = (cd.reduce((prev, current) => {
+            return (prev.y > current.y) ? prev : current;
+          }, '')).y;
+          return pd + cMax;
+        }, 0);
+      }
+
+      // tslint:disable-next-line:max-line-length
+      if (this.pYaxis.minMax !== 'fixed' || (this.pYaxis.minMax === 'fixed' && ((!this.pYaxis.min && isNaN(this.pYaxis.min)) || isNaN(this.pYaxis.min)))) {
+
+        const fMin = (this.data[0].reduce((prev, current) => {
+          return (prev.y < current.y) ? prev : current;
+        })).y;
+
+        if (this.data.length > 1) {
+          this.pYaxis.min = this.data.reduce((pd, cd, i) => {
+            let cMin = 0;
+            if (i === 0) {
+              if (pd < 0) {
+                cMin = pd;
+              }
+            } else {
+              cMin = (cd.reduce((prev, current) => {
+                return (prev.y < current.y) ? prev : current;
+              }, '')).y;
+              cMin = (cMin < 0) ? cMin : 0;
+              cMin += pd;
+            }
+            return cMin;
+          }, fMin);
+        } else {
+          this.pYaxis.min = fMin;
+        }
+
+        this.pYaxis.min = (this.pYaxis.min > 0) ? 0 : this.pYaxis.min;
+      }
+      this.pPerUnitY = (this.pYaxis.max - this.pYaxis.min) / this.pYaxis.ticks.count;
+    }
+
+    if (changes.width || changes.height || changes.options || changes.data) {
+
+      const xlabels = [];
+      if (this.pXaxis.type === 'category') {
+        this.pPerUnitWidth = (this.width - this.pYaxis.axisWidth - this.pYaxis.paddingRight) / this.pXaxis.ticks.count;
+        for (let i = 0; i < this.pXaxis.ticks.count; i++) {
+          xlabels.push({
+            text: this.data[0][i].x,
+            px: this.pYaxis.axisWidth + (i * this.pPerUnitWidth) + (this.pPerUnitWidth / 2),
+            py: this.height
+          });
+        }
+        this.pXaxis.labels = xlabels;
+
+        this.pyaxisLocation = this.pYaxis.axisWidth;
+      }
+      // tslint:disable-next-line:max-line-length
+      this.pPerUnitHeight = (this.height - this.options.innerPaddingTop - this.pXaxis.axisHeight - this.options.innerPaddingBottom) / this.pYaxis.ticks.count;
+
+      const ylabels = [];
+      for (let i = 0; i <= this.pYaxis.ticks.count; i++) {
+        ylabels.push({
+          text: (this.pYaxis.min + (i * this.pPerUnitY)).toFixed(2),
+          px: 0,
+          // tslint:disable-next-line:max-line-length
+          py: this.height - (i * this.pPerUnitHeight) - this.pXaxis.axisHeight - this.options.innerPaddingBottom // + this.pXaxis.innerPaddingTop,
+        });
+      }
+      this.pYaxis.labels = ylabels;
+      // tslint:disable-next-line:max-line-length
+      this.pxaxisLocation = this.height - this.pXaxis.axisHeight - this.options.innerPaddingBottom + ((this.pYaxis.min <= 0) ? ((this.pYaxis.min / this.pPerUnitY) * this.pPerUnitHeight) : 0);
+
+      this.plotDataPoints();
+    }
+  }
 
   plotDataPoints() {
     console.log('plotDataPoints');
-    // this.pData = this.data.map((series, si) => {
-    //   return {
-    //     series: this.options.series[si],
-    //     data: series.map((item, indx) => {
-    //       // tslint:disable-next-line:max-line-length
-    // tslint:disable-next-line:max-line-length
-    //       const distanceFromXAxis = (((this.pYaxis.min < 0) ? item.y : (item.y - this.pYaxis.min)) / this.pPerUnitY) * this.pPerUnitHeight;
-    //       let distanceFromYAxis = 0;
 
-    //       const microSpacing = 4;
-    //       const microUnit = this.options.bar.width + microSpacing;
-    //       const offset = (this.pPerUnitWidth - (microUnit * this.data.length)) / 2;
-    //       distanceFromYAxis = (indx * this.pPerUnitWidth) + offset + (((si + 1) * microUnit)) - (microUnit / 2);
+    let stackedBarSeriesCount = 0;
+    this.options.series.forEach((item, indx) => {
+      if (item.type === 'stacked-bar') {
+        stackedBarSeriesCount++;
+      }
+    });
+    const hasStackedBar = (stackedBarSeriesCount > 1) ? true : false;
 
-    //       // working version
-    //       // const microUnit = this.pPerUnitWidth / ((this.data.length * 2) + 1);
-    //       // distanceFromYAxis = (indx * this.pPerUnitWidth) + (((si + 1) * 2 * microUnit)) - (microUnit / 2);
-    //       // working version - end
-    //       return {
-    //         x: item.x,
-    //         y: item.y,
-    //         height: Math.abs(distanceFromXAxis),
-    //         px: this.pyaxisLocation + distanceFromYAxis,
-    //         py: this.pxaxisLocation - distanceFromXAxis// + this.pXaxis.innerPaddingTop
-    //       };
-    //     })
-    //   };
-    // });
-    // console.log(this.width + '-' + this.pYaxis.axisWidth + '-' + this.pPerUnitWidth);
-    // console.log(this.pXaxis.labels);
-    // console.log(this.pData);
+    this.pData = [];
+    this.data.forEach((series, si) => {
+      const sData = {
+        series: this.options.series[si],
+        data: series.map((item, indx) => {
+          // tslint:disable-next-line:max-line-length
+          // tslint: disable - next - line: max - line - length
+          const distanceFromXAxis = (((this.pYaxis.min < 0) ? item.y : (item.y - this.pYaxis.min)) / this.pPerUnitY) * this.pPerUnitHeight;
+          const distanceFromYAxis = indx * this.pPerUnitWidth + (this.pPerUnitWidth / 2);
+
+          return {
+            x: item.x,
+            y: item.y,
+            total: (si > 0) ? (item.y + this.pData[si - 1].data[indx].total) : item.y,
+            height: Math.abs(distanceFromXAxis),
+            px: this.pyaxisLocation + distanceFromYAxis,
+            // tslint:disable-next-line:max-line-length
+            py: (si > 0) ? this.pData[si - 1].data[indx].py - distanceFromXAxis : this.pxaxisLocation - distanceFromXAxis// + this.pXaxis.innerPaddingTop
+          };
+        })
+      };
+      this.pData.push(sData);
+    });
+    console.log(this.height + '-' + this.pXaxis.axisHeight + '-' + this.pPerUnitHeight);
+    console.log(this.pXaxis.labels);
+    console.log(this.pData);
   }
 
 }

@@ -89,6 +89,17 @@
     </div>
     <div class="col-lg-6 col-sm-6">
         <div style="height:300px;padding: 5px;">
+            <pac-responsive-container [templateRef]="StackedBarChartCategory">
+            </pac-responsive-container>
+            <ng-template #StackedBarChartCategory let-width="width" let-height="height">
+                <pac-stacked-bar-chart [width]="width" [height]="height" [data]="sd.stackedBarChartDataCategory"
+                    [options]="sd.stackedBarChartOptionsCategory">
+                </pac-stacked-bar-chart>
+            </ng-template>
+        </div>
+    </div>
+    <div class="col-lg-6 col-sm-6">
+        <div style="height:300px;padding: 5px;">
             <pac-responsive-container [templateRef]="SmoothAreaChartCategory">
             </pac-responsive-container>
             <ng-template #SmoothAreaChartCategory let-width="width" let-height="height">

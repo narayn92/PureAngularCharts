@@ -5,8 +5,9 @@
         
         <g pac-axis [pXaxis]="pXaxis" [pYaxis]="pYaxis" [pxaxisLocation]="pxaxisLocation" [pyaxisLocation]="pyaxisLocation" [width]="width" [height]="height"></g>
         
-        <g *ngFor="let series of pData">
-            <g pac-bar *ngIf="series.series.type=='bar'" [options]="options" [series]="series" [pxaxisLocation]="pxaxisLocation" [pPerUnitWidth]="pPerUnitWidth" [pYaxis]="pYaxis" 
+        <g *ngFor="let series of pData; let i = index">
+            <g pac-bar *ngIf="series.series.type=='stacked-bar'" [options]="options" [series]="series" [pxaxisLocation]="pxaxisLocation" [pPerUnitWidth]="pPerUnitWidth" [pYaxis]="pYaxis" 
+            [showTotal]="i==pData.length-1"
             (tmouseEnter)="OnMouseEnter($event)" (tmouseOver)="OnMouseOver($event)" (tmouseLeave)="OnMouseLeave($event)"></g>
         </g>
 

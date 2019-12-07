@@ -60,6 +60,9 @@ export class GroupedBarChartComponent extends BasicChart implements OnInit {
         width: 30,
         spacing: 5
       },
+      dataLabels: {
+        show: true
+      },
       innerPaddingTop: 20,
       innerPaddingBottom: 10
     };

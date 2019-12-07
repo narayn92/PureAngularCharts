@@ -58,6 +58,9 @@ export class AreaChartComponent extends BasicChart implements OnInit {
       bar: {
         width: 30
       },
+      dataLabels: {
+        show: true
+      },
       innerPaddingTop: 20,
       innerPaddingBottom: 10
     };

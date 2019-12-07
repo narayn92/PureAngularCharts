@@ -12,6 +12,7 @@ export class BarComponent implements OnInit {
   @Input() pxaxisLocation;
   @Input() pPerUnitWidth;
   @Input() pYaxis;
+  @Input() showTotal = false;
 
   // @Output() tooltipEvents = new EventEmitter();
   @Output() tmouseEnter = new EventEmitter();
