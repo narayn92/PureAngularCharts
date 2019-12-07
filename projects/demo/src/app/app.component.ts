@@ -9,5 +9,6 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AppComponent {
   title = 'demo';
+  showSideBar = false;
 
 }

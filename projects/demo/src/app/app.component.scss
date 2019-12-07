@@ -16,6 +16,7 @@
     z-index: 100; /* Behind the navbar */
     padding: 48px 0 0; /* Height of navbar */
     box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+    transition: left 1s ease;
   }
   
   .sidebar-sticky {
@@ -37,6 +38,7 @@
   .sidebar .nav-link {
     font-weight: 500;
     color: #333;
+    font-size: 14px;
   }
   
   .sidebar .nav-link .feather {
@@ -103,5 +105,25 @@
 
   .nav-link:not(.active) .barColor{
     // color:#619eff;
+  }
+  @media screen and (min-width: 767px){
+   
+  }
+  
+  @media screen and (max-width: 768px){
+    .sidebar{
+      display: block!important;
+      width: 215px;
+      left: -215px;
+    }
+    .showSideBar{
+      left: 0;
+    }
+    .navbar-toggler{
+      position: absolute;
+      right: 0;
+      outline: none;
+      padding: 12px;
+    }
   }
  
