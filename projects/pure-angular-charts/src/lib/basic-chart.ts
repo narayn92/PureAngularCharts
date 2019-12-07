@@ -395,6 +395,9 @@ export class BasicChart implements OnInit, OnChanges {
             if (typeof val.bar.width === 'number') { this.poptions.bar.width = val.bar.width; }
             if (typeof val.bar.spacing === 'number') { this.poptions.bar.spacing = val.bar.spacing; }
         }
+        if (typeof val.dataLabels === 'object') {
+            if (typeof val.dataLabels.show === 'boolean') { this.poptions.dataLabels.show = val.dataLabels.show; }
+        }
         if (typeof val.innerPaddingTop === 'number') { this.poptions.innerPaddingTop = val.innerPaddingTop; }
         if (typeof val.innerPaddingBottom === 'number') { this.poptions.innerPaddingBottom = val.innerPaddingBottom; }
     }

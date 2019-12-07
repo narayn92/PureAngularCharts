@@ -42,6 +42,10 @@
                 <pac-grouped-bar-chart [width]="width" [height]="height" [data]="chartData" [options]="chartOptions">
                 </pac-grouped-bar-chart>
             </ng-template>
+            <ng-template #StackedBarChartRef let-width="width" let-height="height">
+                <pac-stacked-bar-chart [width]="width" [height]="height" [data]="chartData" [options]="chartOptions">
+                </pac-stacked-bar-chart>
+            </ng-template>
         </div>
     </div>
     <div class="col-lg-5 col-sm-12" [hidden]="showData">
