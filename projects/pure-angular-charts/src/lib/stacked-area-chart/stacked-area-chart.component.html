@@ -1,0 +1,28 @@
+
+<div style="padding: 5px;background-color: #ffffff;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);border:solid 1px #ababab;position: relative;" [style.width.px]="width+12">
+    <div *ngIf="options.title" style="text-align:center;color:#333;font-size:16px;height:30px">{{options.title}}</div>
+    <svg [attr.width]="width" [attr.height]="height">
+        
+        <g pac-axis [pXaxis]="pXaxis" [pYaxis]="pYaxis" [pxaxisLocation]="pxaxisLocation" [pyaxisLocation]="pyaxisLocation" [width]="width" [height]="height"></g>
+        
+        <g *ngFor="let series of stackData;let si = index" [style.opacity]="(pIsLegendFiltered)? ((pSelectedLegends.indexOf(si)!=-1)?1:0) : ((pHoverActiveLegend == null || pHoverActiveLegend == si)?1.0:0.5)">
+            <g pac-area *ngIf="series.series.type=='stacked-area'" [options]="options" [series]="series" [pxaxisLocation]="pxaxisLocation" [pYaxis]="pYaxis"
+            (tmouseEnter)="OnMouseEnter($event)" (tmouseLeave)="OnMouseLeave($event)"></g>
+        </g>
+
+    </svg>
+    <div *ngIf="options.legends.show" style="text-align: center;height:30px">
+        <span *ngFor="let item of options.series; let si = index" style="padding: 5px;cursor: default;" (click)="OnLegendSelected(item, si)" (mouseenter)="OnLegendMouseEnter($event,item, si)" (mouseover)="OnLegendMouseOver($event,item, si)" (mouseleave)="OnLegendMouseLeave($event,item, si)" [style.opacity]="(pIsLegendFiltered)? ((pSelectedLegends.indexOf(si)!=-1)?1:0.5) : ((pHoverActiveLegend == null || pHoverActiveLegend == si)?1.0:0.5)">
+            <span style="display:inline-block;width:10px;height:10px;" [style.background-color]="item.color"></span> <span style="padding-left: 5px;">{{item.name}}</span>
+        </span>
+    </div>
+    <div class="p-tooltip-container" [style.top.px]="ptootltip.py" [style.left.px]="ptootltip.px" [style.opacity]="(pDisplayTooltip)?1:0">
+        <div>
+            <span style="display:inline-block;width:10px;height:10px;" [style.background-color]="ptootltip.series.color"></span> <span style="padding-left: 5px;">{{ptootltip.series.name}}</span>
+        </div>
+            <div>X : {{ptootltip.point.x}}</div>
+        <div>Y : {{ptootltip.point.y}}</div>
+    </div>
+</div>
+
+

@@ -24,6 +24,7 @@ export class DemoComponent implements OnInit, OnChanges {
   @ViewChild('SmoothAreaChartRef', { static: true }) SmoothAreaChartRef: TemplateRef<any>;
   @ViewChild('MutiTypeChartRef', { static: true }) MutiTypeChartRef: TemplateRef<any>;
   @ViewChild('StackedBarChartRef', { static: true }) StackedBarChartRef: TemplateRef<any>;
+  @ViewChild('StackedAreaChartRef', { static: true }) StackedAreaChartRef: TemplateRef<any>;
 
   chartOptions;
   chartData;
@@ -168,6 +169,13 @@ export class DemoComponent implements OnInit, OnChanges {
         this.chartOptions = this.sd.stackedBarChartOptionsCategory;
         this.chartData = this.sd.stackedBarChartDataCategory;
         this.templateType = this.StackedBarChartRef;
+        break;
+      case 'stacked-area-chart-category':
+        this.axisType = 'category';
+        this.Pagetitle = 'Stacked Bar Chart';
+        this.chartOptions = this.sd.stackedAreaChartOptionsCategory;
+        this.chartData = this.sd.stackedAreaChartDataCategory;
+        this.templateType = this.StackedAreaChartRef;
         break;
     }
 

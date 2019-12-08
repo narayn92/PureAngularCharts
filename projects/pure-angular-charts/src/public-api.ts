@@ -14,3 +14,4 @@ export * from './lib/modules/smooth-line-chart/smooth-line-chart.module';
 export * from './lib/modules/smooth-area-chart/smooth-area-chart.module';
 export * from './lib/modules/multi-type-chart/multi-type-chart.module';
 export * from './lib/modules/stacked-bar-chart/stacked-bar-chart.module';
+export * from './lib/modules/stacked-area-chart/stacked-area-chart.module';

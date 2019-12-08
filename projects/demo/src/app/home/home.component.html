@@ -100,6 +100,17 @@
     </div>
     <div class="col-lg-6 col-sm-6">
         <div style="height:300px;padding: 5px;">
+            <pac-responsive-container [templateRef]="StackedAreaChartCategory">
+            </pac-responsive-container>
+            <ng-template #StackedAreaChartCategory let-width="width" let-height="height">
+                <pac-stacked-area-chart [width]="width" [height]="height" [data]="sd.stackedAreaChartDataCategory"
+                    [options]="sd.stackedAreaChartOptionsCategory">
+                </pac-stacked-area-chart>
+            </ng-template>
+        </div>
+    </div>
+    <div class="col-lg-6 col-sm-6">
+        <div style="height:300px;padding: 5px;">
             <pac-responsive-container [templateRef]="SmoothAreaChartCategory">
             </pac-responsive-container>
             <ng-template #SmoothAreaChartCategory let-width="width" let-height="height">
@@ -142,6 +153,7 @@
             </ng-template>
         </div>
     </div>
+
 
 
 </div>

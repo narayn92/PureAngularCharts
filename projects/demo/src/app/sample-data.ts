@@ -931,4 +931,71 @@ export class SampleData {
         innerPaddingTop: 20,
         innerPaddingBottom: 10
     };
+
+    stackedAreaChartDataCategory = [
+        [{ x: 'Mon', y: 25 }, { x: 'Tue', y: 25 }, { x: 'Wed', y: 20 }, { x: 'Thu', y: 30 }, { x: 'Fri', y: 40 }, { x: 'Sat', y: 50 }],
+        [{ x: 'Mon', y: 25 }, { x: 'Tue', y: 25 }, { x: 'Wed', y: 35 }, { x: 'Thu', y: 25 }, { x: 'Fri', y: 30 }, { x: 'Sat', y: 30 }],
+        [{ x: 'Mon', y: 25 }, { x: 'Tue', y: 35 }, { x: 'Wed', y: 35 }, { x: 'Thu', y: 25 }, { x: 'Fri', y: 30 }, { x: 'Sat', y: 30 }]
+    ];
+    stackedAreaChartOptionsCategory: ChartOptions = {
+        title: 'Stacked Area Chart',
+        xaxis: {
+            type: 'category',
+            show: true,
+            labels: [],
+            showLabels: true,
+            showAxisLine: true,
+            min: 0,
+            max: 6,
+            title: 'xaxis',
+            ticks: {
+                show: true,
+                count: 6,
+                length: 5
+            },
+            grid: {
+                show: true
+            },
+            axisHeight: 20,
+            minMax: 'auto'
+        },
+        yaxis: {
+            type: 'numeric',
+            show: true,
+            labels: [],
+            showLabels: true,
+            showAxisLine: true,
+            min: 0,
+            max: 0,
+            title: 'yaxis',
+            ticks: {
+                show: true,
+                count: 6,
+                length: 5
+            },
+            grid: {
+                show: true
+            },
+            axisWidth: 50,
+            paddingRight: 0,
+            minMax: 'auto'
+        },
+        series: [
+            { name: 'Series1', color: '#619eff', type: 'stacked-area' },
+            { name: 'Series2', color: '#ff6161', type: 'stacked-area' },
+            { name: 'Series3', color: '#66ae2c', type: 'stacked-area' },
+        ],
+        bar: {
+            width: 30
+            // ,spacing: 5
+        },
+        dataLabels: {
+            show: true
+        },
+        legends: {
+            show: true
+        },
+        innerPaddingTop: 20,
+        innerPaddingBottom: 10
+    };
 }

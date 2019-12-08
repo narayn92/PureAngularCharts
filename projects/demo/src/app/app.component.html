@@ -1,5 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top p-0">
-    <a class="navbar-brand col-sm-12 col-md-2 mr-0" href="#"><img src="assets/paclogo.svg" style="width: 25px;height: 25px;margin-right: 10px" hei>Pure Angular Charts</a>
+    <a class="navbar-brand col-sm-12 col-md-2 mr-0" href="#"><img src="assets/paclogo.svg"
+            style="width: 25px;height: 25px;margin-right: 10px" hei>Pure Angular Charts</a>
     <!-- <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
@@ -22,7 +23,8 @@
             <div class="sidebar-sticky">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['/home']" [routerLinkActive]="['active']" (click)="showSideBar=false">
+                        <a class="nav-link" [routerLink]="['/home']" [routerLinkActive]="['active']"
+                            (click)="showSideBar=false">
                             <i class="fa fa-home" aria-hidden="true"></i> All Charts
                         </a>
                     </li>
@@ -67,6 +69,12 @@
                         <a class="nav-link" [routerLink]="['/demo', 'stacked-bar-chart']" (click)="showSideBar=false"
                             [routerLinkActive]="['active']">
                             <i class="fa fa-bar-chart barColor" aria-hidden="true"></i> Stacked Bar Chart
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['/demo', 'stacked-area-chart']" (click)="showSideBar=false"
+                            [routerLinkActive]="['active']">
+                            <i class="fa fa-area-chart barColor" aria-hidden="true"></i> Stacked Area Chart
                         </a>
                     </li>
                     <li class="nav-item">
