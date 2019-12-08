@@ -59,7 +59,10 @@ export class MultiTypeChartComponent extends BasicChart implements OnInit {
         width: 30,
         spacing: 5
       },
-      dataLabels: {
+     dataLabels: {
+        show: true
+      },
+      legends: {
         show: true
       },
       innerPaddingTop: 20,

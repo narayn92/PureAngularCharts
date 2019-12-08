@@ -14,6 +14,9 @@ export class BasicChart implements OnInit, OnChanges {
         if (!this.options.title) {
             titleHeight = 30;
         }
+        if (!this.options.legends.show) {
+            titleHeight = 30;
+        }
         return this.pheight + titleHeight + legendHeight;
     }
     @Input()
@@ -428,6 +431,9 @@ export class BasicChart implements OnInit, OnChanges {
         }
         if (typeof val.dataLabels === 'object') {
             if (typeof val.dataLabels.show === 'boolean') { this.poptions.dataLabels.show = val.dataLabels.show; }
+        }
+        if (typeof val.legends === 'object') {
+            if (typeof val.legends.show === 'boolean') { this.poptions.legends.show = val.legends.show; }
         }
         if (typeof val.innerPaddingTop === 'number') { this.poptions.innerPaddingTop = val.innerPaddingTop; }
         if (typeof val.innerPaddingBottom === 'number') { this.poptions.innerPaddingBottom = val.innerPaddingBottom; }

@@ -19,7 +19,7 @@
         </g>
 
     </svg>
-    <div style="text-align: center;height:30px">
+    <div *ngIf="options.legends.show" style="text-align: center;height:30px">
         <span *ngFor="let item of options.series; let si = index" style="padding: 5px;cursor: default;" (click)="OnLegendSelected(item, si)" (mouseenter)="OnLegendMouseEnter($event,item, si)" (mouseover)="OnLegendMouseOver($event,item, si)" (mouseleave)="OnLegendMouseLeave($event,item, si)" [style.opacity]="(pIsLegendFiltered)? ((pSelectedLegends.indexOf(si)!=-1)?1:0.5) : ((pHoverActiveLegend == null || pHoverActiveLegend == si)?1.0:0.5)">
             <span style="display:inline-block;width:10px;height:10px;" [style.background-color]="item.color"></span> <span style="padding-left: 5px;">{{item.name}}</span>
         </span>

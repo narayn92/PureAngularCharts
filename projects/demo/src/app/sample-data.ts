@@ -60,6 +60,9 @@ export class SampleData {
         dataLabels: {
             show: true
         },
+        legends: {
+            show: true
+        },
         innerPaddingTop: 20,
         innerPaddingBottom: 10
     };
@@ -122,6 +125,9 @@ export class SampleData {
         dataLabels: {
             show: true
         },
+        legends: {
+            show: true
+        },
         innerPaddingTop: 20,
         innerPaddingBottom: 10
     };
@@ -182,6 +188,9 @@ export class SampleData {
             width: 30
         },
         dataLabels: {
+            show: true
+        },
+        legends: {
             show: true
         },
         innerPaddingTop: 20,
@@ -247,6 +256,9 @@ export class SampleData {
         dataLabels: {
             show: true
         },
+        legends: {
+            show: true
+        },
         innerPaddingTop: 20,
         innerPaddingBottom: 10
     };
@@ -308,6 +320,9 @@ export class SampleData {
             width: 30
         },
         dataLabels: {
+            show: true
+        },
+        legends: {
             show: true
         },
         innerPaddingTop: 20,
@@ -375,6 +390,9 @@ export class SampleData {
             width: 30
         },
         dataLabels: {
+            show: true
+        },
+        legends: {
             show: true
         },
         innerPaddingTop: 20,
@@ -447,6 +465,9 @@ export class SampleData {
             width: 25
         },
         dataLabels: {
+            show: true
+        },
+        legends: {
             show: true
         },
         innerPaddingTop: 20,
@@ -573,6 +594,9 @@ export class SampleData {
         dataLabels: {
             show: true
         },
+        legends: {
+            show: true
+        },
         innerPaddingTop: 20,
         innerPaddingBottom: 10
     };
@@ -633,6 +657,9 @@ export class SampleData {
             width: 30
         },
         dataLabels: {
+            show: true
+        },
+        legends: {
             show: true
         },
         innerPaddingTop: 20,
@@ -698,6 +725,9 @@ export class SampleData {
         dataLabels: {
             show: true
         },
+        legends: {
+            show: true
+        },
         innerPaddingTop: 20,
         innerPaddingBottom: 10
     };
@@ -759,6 +789,9 @@ export class SampleData {
             width: 30
         },
         dataLabels: {
+            show: true
+        },
+        legends: {
             show: true
         },
         innerPaddingTop: 20,
@@ -825,6 +858,9 @@ export class SampleData {
         dataLabels: {
             show: true
         },
+        legends: {
+            show: true
+        },
         innerPaddingTop: 20,
         innerPaddingBottom: 10
     };
@@ -887,6 +923,9 @@ export class SampleData {
             // ,spacing: 5
         },
         dataLabels: {
+            show: true
+        },
+        legends: {
             show: true
         },
         innerPaddingTop: 20,
