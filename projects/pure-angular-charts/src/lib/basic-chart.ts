@@ -61,6 +61,8 @@ export class BasicChart implements OnInit, OnChanges {
 
     pIsLegendHoverActive = false;
     pHoverActiveLegend = null;
+    pIsLegendFiltered = false;
+    pSelectedLegends = [];
 
     constructor(options: ChartOptions) {
         // Object.assign(this.options, options);
@@ -357,6 +359,21 @@ export class BasicChart implements OnInit, OnChanges {
     }
     OnLegendMouseLeave(event, series, targetSi) {
         this.pHoverActiveLegend = null;
+    }
+
+    OnLegendSelected(series, targetSi) {
+        this.pIsLegendFiltered = true;
+
+        if (this.pSelectedLegends.indexOf(targetSi) !== -1) {
+            this.pSelectedLegends = this.pSelectedLegends.filter(obj => obj !== targetSi);
+        } else {
+            this.pSelectedLegends.push(targetSi);
+        }
+
+        if (this.pSelectedLegends.length === 0 || this.pSelectedLegends.length === this.options.series.length) {
+            this.pSelectedLegends = [];
+            this.pIsLegendFiltered = false;
+        }
     }
 
     mergerDefaultOptions(val) {
