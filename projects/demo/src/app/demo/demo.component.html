@@ -11,7 +11,7 @@
 </div>
 <div class="row">
     <div class="col-lg-7 col-sm-12">
-        <div style="height: calc(100vh - 170px);min-height:300px;">
+        <div class="chartContainer">
             <pac-responsive-container [templateRef]="templateType">
             </pac-responsive-container>
             <ng-template #BarChartRef let-width="width" let-height="height">
@@ -37,10 +37,6 @@
             <ng-template #MutiTypeChartRef let-width="width" let-height="height">
                 <pac-multi-type-chart [width]="width" [height]="height" [data]="chartData" [options]="chartOptions">
                 </pac-multi-type-chart>
-            </ng-template>
-            <ng-template #GroupedBarChartRef let-width="width" let-height="height">
-                <pac-grouped-bar-chart [width]="width" [height]="height" [data]="chartData" [options]="chartOptions">
-                </pac-grouped-bar-chart>
             </ng-template>
             <ng-template #StackedBarChartRef let-width="width" let-height="height">
                 <pac-stacked-bar-chart [width]="width" [height]="height" [data]="chartData" [options]="chartOptions">

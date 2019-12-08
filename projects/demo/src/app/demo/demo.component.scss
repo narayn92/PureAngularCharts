@@ -1,0 +1,15 @@
+.btn.btn-secondary.active {
+    color: rgb(187, 120, 255);
+    background-color: #343a40;
+}
+.chartContainer{
+    height: calc(100vh - 170px);
+    min-height:300px;
+}
+
+@media screen and (max-width: 768px){
+    .chartContainer{
+        max-height: 300px;
+        margin-bottom: 15px;
+    }
+}

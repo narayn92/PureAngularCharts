@@ -58,7 +58,10 @@ export class SmoothAreaChartComponent extends BasicChart implements OnInit {
       bar: {
         width: 30
       },
-      dataLabels: {
+     dataLabels: {
+        show: true
+      },
+      legends: {
         show: true
       },
       innerPaddingTop: 20,

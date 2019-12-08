@@ -14,6 +14,9 @@ export class BasicChart implements OnInit, OnChanges {
         if (!this.options.title) {
             titleHeight = 30;
         }
+        if (!this.options.legends.show) {
+            titleHeight = 30;
+        }
         return this.pheight + titleHeight + legendHeight;
     }
     @Input()
@@ -58,6 +61,11 @@ export class BasicChart implements OnInit, OnChanges {
         py: 0
     };
     hideTooltip;
+
+    pIsLegendHoverActive = false;
+    pHoverActiveLegend = null;
+    pIsLegendFiltered = false;
+    pSelectedLegends = [];
 
     constructor(options: ChartOptions) {
         // Object.assign(this.options, options);
@@ -345,6 +353,32 @@ export class BasicChart implements OnInit, OnChanges {
         }, 4000);
     }
 
+
+    OnLegendMouseEnter(event, series, targetSi) {
+        this.pHoverActiveLegend = targetSi;
+    }
+    OnLegendMouseOver(event, series, targetSi) {
+        this.pHoverActiveLegend = targetSi;
+    }
+    OnLegendMouseLeave(event, series, targetSi) {
+        this.pHoverActiveLegend = null;
+    }
+
+    OnLegendSelected(series, targetSi) {
+        this.pIsLegendFiltered = true;
+
+        if (this.pSelectedLegends.indexOf(targetSi) !== -1) {
+            this.pSelectedLegends = this.pSelectedLegends.filter(obj => obj !== targetSi);
+        } else {
+            this.pSelectedLegends.push(targetSi);
+        }
+
+        if (this.pSelectedLegends.length === 0 || this.pSelectedLegends.length === this.options.series.length) {
+            this.pSelectedLegends = [];
+            this.pIsLegendFiltered = false;
+        }
+    }
+
     mergerDefaultOptions(val) {
         if (val.title) { this.poptions.title = val.title; }
         if (val.xaxis) {
@@ -397,6 +431,9 @@ export class BasicChart implements OnInit, OnChanges {
         }
         if (typeof val.dataLabels === 'object') {
             if (typeof val.dataLabels.show === 'boolean') { this.poptions.dataLabels.show = val.dataLabels.show; }
+        }
+        if (typeof val.legends === 'object') {
+            if (typeof val.legends.show === 'boolean') { this.poptions.legends.show = val.legends.show; }
         }
         if (typeof val.innerPaddingTop === 'number') { this.poptions.innerPaddingTop = val.innerPaddingTop; }
         if (typeof val.innerPaddingBottom === 'number') { this.poptions.innerPaddingBottom = val.innerPaddingBottom; }

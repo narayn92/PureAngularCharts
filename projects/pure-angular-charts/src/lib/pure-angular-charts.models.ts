@@ -55,6 +55,10 @@ export interface DataLabels {
     show?: boolean;
 }
 
+export interface Legends {
+    show?: boolean;
+}
+
 export interface ChartOptions {
     title?: string;
     xaxis: Xaxis;
@@ -62,6 +66,7 @@ export interface ChartOptions {
     series: Series[];
     bar: Bar;
     dataLabels?: DataLabels;
+    legends?: Legends;
     innerPaddingTop: number;
     innerPaddingBottom: number;
 }
