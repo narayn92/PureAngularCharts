@@ -5,15 +5,15 @@
         
         <g pac-axis [pXaxis]="pXaxis" [pYaxis]="pYaxis" [pxaxisLocation]="pxaxisLocation" [pyaxisLocation]="pyaxisLocation" [width]="width" [height]="height"></g>
         
-        <g *ngFor="let series of pData; let i = index">
+        <g *ngFor="let series of pData; let si = index" [style.opacity]="(pHoverActiveLegend == null || pHoverActiveLegend == si)?1.0:0.5">
             <g pac-bar *ngIf="series.series.type=='stacked-bar'" [options]="options" [series]="series" [pxaxisLocation]="pxaxisLocation" [pPerUnitWidth]="pPerUnitWidth" [pYaxis]="pYaxis" 
-            [showTotal]="i==pData.length-1"
+            [showTotal]="si==pData.length-1"
             (tmouseEnter)="OnMouseEnter($event)" (tmouseOver)="OnMouseOver($event)" (tmouseLeave)="OnMouseLeave($event)"></g>
         </g>
 
     </svg>
     <div style="text-align: center;height:30px">
-        <span *ngFor="let item of options.series" style="padding: 5px;">
+        <span *ngFor="let item of options.series; let si = index" style="padding: 5px;cursor: default;" (mouseenter)="OnLegendMouseEnter($event,item, si)" (mouseover)="OnLegendMouseOver($event,item, si)" (mouseleave)="OnLegendMouseLeave($event,item, si)" [style.opacity]="(pHoverActiveLegend == null || pHoverActiveLegend == si)?1.0:0.5">
             <span style="display:inline-block;width:10px;height:10px;" [style.background-color]="item.color"></span> <span style="padding-left: 5px;">{{item.name}}</span>
         </span>
     </div>

@@ -59,6 +59,9 @@ export class BasicChart implements OnInit, OnChanges {
     };
     hideTooltip;
 
+    pIsLegendHoverActive = false;
+    pHoverActiveLegend = null;
+
     constructor(options: ChartOptions) {
         // Object.assign(this.options, options);
         this.poptions = options;
@@ -343,6 +346,17 @@ export class BasicChart implements OnInit, OnChanges {
         this.hideTooltip = setTimeout(() => {
             ref.pDisplayTooltip = false;
         }, 4000);
+    }
+
+
+    OnLegendMouseEnter(event, series, targetSi) {
+        this.pHoverActiveLegend = targetSi;
+    }
+    OnLegendMouseOver(event, series, targetSi) {
+        this.pHoverActiveLegend = targetSi;
+    }
+    OnLegendMouseLeave(event, series, targetSi) {
+        this.pHoverActiveLegend = null;
     }
 
     mergerDefaultOptions(val) {

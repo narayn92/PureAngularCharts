@@ -23,7 +23,6 @@ export class DemoComponent implements OnInit, OnChanges {
   @ViewChild('SmoothLineChartRef', { static: true }) SmoothLineChartRef: TemplateRef<any>;
   @ViewChild('SmoothAreaChartRef', { static: true }) SmoothAreaChartRef: TemplateRef<any>;
   @ViewChild('MutiTypeChartRef', { static: true }) MutiTypeChartRef: TemplateRef<any>;
-  @ViewChild('GroupedBarChartRef', { static: true }) GroupedBarChartRef: TemplateRef<any>;
   @ViewChild('StackedBarChartRef', { static: true }) StackedBarChartRef: TemplateRef<any>;
 
   chartOptions;
@@ -80,19 +79,19 @@ export class DemoComponent implements OnInit, OnChanges {
   setChartOptions() {
     switch (this.chartType + '-' + this.axisType) {
       case 'simple-bar-chart-numeric':
-        this.Pagetitle = 'Simple Bar Chart';
+        this.Pagetitle = 'Bar Chart';
         this.chartOptions = this.sd.barChartOptions;
         this.chartData = this.sd.barChartData;
         this.templateType = this.BarChartRef;
         break;
       case 'simple-line-chart-numeric':
-        this.Pagetitle = 'Simple Line Chart';
+        this.Pagetitle = 'Line Chart';
         this.chartOptions = this.sd.lineChartOptions;
         this.chartData = this.sd.lineChartData;
         this.templateType = this.LineChartRef;
         break;
       case 'simple-area-chart-numeric':
-        this.Pagetitle = 'Simple Area Chart';
+        this.Pagetitle = 'Area Chart';
         this.chartOptions = this.sd.areaChartOptions;
         this.chartData = this.sd.areaChartData;
         this.templateType = this.AreaChartRef;
@@ -116,7 +115,7 @@ export class DemoComponent implements OnInit, OnChanges {
         this.templateType = this.MutiTypeChartRef;
         break;
       case 'simple-bar-chart-category':
-        this.Pagetitle = 'Simple Bar Chart';
+        this.Pagetitle = 'Bar Chart';
         this.chartOptions = this.sd.barChartOptionsCategory;
         this.chartData = this.sd.barChartDataCategory;
         this.templateType = this.BarChartRef;
@@ -157,13 +156,14 @@ export class DemoComponent implements OnInit, OnChanges {
       //   this.chartData = this.sd.barChartData;
       //   this.templateType = this.BarChartRef;
       //   break;
-      case 'grouped-bar-chart-category':
-        this.Pagetitle = 'Grouped Bar Chart';
-        this.chartOptions = this.sd.groupedBarChartOptionsCategory;
-        this.chartData = this.sd.groupedBarChartDataCategory;
-        this.templateType = this.GroupedBarChartRef;
-        break;
+      // case 'grouped-bar-chart-category':
+      //   this.Pagetitle = 'Grouped Bar Chart';
+      //   this.chartOptions = this.sd.groupedBarChartOptionsCategory;
+      //   this.chartData = this.sd.groupedBarChartDataCategory;
+      //   this.templateType = this.GroupedBarChartRef;
+      //   break;
       case 'stacked-bar-chart-category':
+        this.axisType = 'category';
         this.Pagetitle = 'Stacked Bar Chart';
         this.chartOptions = this.sd.stackedBarChartOptionsCategory;
         this.chartData = this.sd.stackedBarChartDataCategory;

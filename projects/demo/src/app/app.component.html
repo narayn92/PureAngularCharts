@@ -22,7 +22,7 @@
             <div class="sidebar-sticky">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['/home']" [routerLinkActive]="['active']">
+                        <a class="nav-link" [routerLink]="['/home']" [routerLinkActive]="['active']" (click)="showSideBar=false">
                             <i class="fa fa-home" aria-hidden="true"></i> All Charts
                         </a>
                     </li>
@@ -34,49 +34,43 @@
                 </h6> -->
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['/demo', 'simple-bar-chart']"
+                        <a class="nav-link" [routerLink]="['/demo', 'simple-bar-chart']" (click)="showSideBar=false"
                             [routerLinkActive]="['active']">
-                            <i class="fa fa-bar-chart barColor" aria-hidden="true"></i> Simple Bar Chart
+                            <i class="fa fa-bar-chart barColor" aria-hidden="true"></i> Bar Chart
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['/demo', 'simple-line-chart']"
+                        <a class="nav-link" [routerLink]="['/demo', 'simple-line-chart']" (click)="showSideBar=false"
                             [routerLinkActive]="['active']">
-                            <i class="fa fa-line-chart barColor" aria-hidden="true"></i> Simple Line Chart
+                            <i class="fa fa-line-chart barColor" aria-hidden="true"></i> Line Chart
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['/demo', 'simple-area-chart']"
+                        <a class="nav-link" [routerLink]="['/demo', 'simple-area-chart']" (click)="showSideBar=false"
                             [routerLinkActive]="['active']">
-                            <i class="fa fa-area-chart barColor" aria-hidden="true"></i> Simple Area Chart
+                            <i class="fa fa-area-chart barColor" aria-hidden="true"></i> Area Chart
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['/demo', 'smooth-line-chart']"
+                        <a class="nav-link" [routerLink]="['/demo', 'smooth-line-chart']" (click)="showSideBar=false"
                             [routerLinkActive]="['active']">
                             <i class="fa fa-line-chart barColor" aria-hidden="true"></i> Smooth Line Chart
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['/demo', 'smooth-area-chart']"
+                        <a class="nav-link" [routerLink]="['/demo', 'smooth-area-chart']" (click)="showSideBar=false"
                             [routerLinkActive]="['active']">
                             <i class="fa fa-area-chart barColor" aria-hidden="true"></i> Smooth Area Chart
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['/demo', 'grouped-bar-chart']"
-                            [routerLinkActive]="['active']">
-                            <i class="fa fa-bar-chart barColor" aria-hidden="true"></i> Grouped Bar Chart
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['/demo', 'stacked-bar-chart']"
+                        <a class="nav-link" [routerLink]="['/demo', 'stacked-bar-chart']" (click)="showSideBar=false"
                             [routerLinkActive]="['active']">
                             <i class="fa fa-bar-chart barColor" aria-hidden="true"></i> Stacked Bar Chart
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['/demo', 'multi-type-chart']"
+                        <a class="nav-link" [routerLink]="['/demo', 'multi-type-chart']" (click)="showSideBar=false"
                             [routerLinkActive]="['active']">
                             <span class="fa-stack barColor" style="width:18px;height:1em;line-height:1em">
                                 <i class="fa fa-area-chart fa-stack-1x" aria-hidden="true" style="opacity: 0.5;"></i>

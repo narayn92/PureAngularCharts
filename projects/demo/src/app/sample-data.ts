@@ -2,8 +2,9 @@ import { ChartOptions } from 'pure-angular-charts';
 
 export class SampleData {
     public barChartData = [
-        [{ x: -1, y: 25 }, { x: 1, y: 5 }, { x: 2, y: 20 }, { x: 3, y: 30 }, { x: 4, y: -40 }, { x: 5, y: 50 }],
-        // [{ x: -1, y: 20 }, { x: 1, y: 10 }, { x: 2, y: 15 }, { x: 3, y: 35 }, { x: 4, y: -35 }, { x: 5, y: 45 }]
+        [{ x: -1, y: 25 }, { x: 1, y: 35 }, { x: 2, y: -30 }, { x: 3, y: 40 }, { x: 4, y: 30 }, { x: 5, y: 45 }],
+        // [{ x: -1, y: 20 }, { x: 1, y: 28 }, { x: 2, y: 24 }, { x: 3, y: 32 }, { x: 4, y: 24 }, { x: 5, y: 36 }],
+        // [{ x: -1, y: 15 }, { x: 1, y: 21 }, { x: 2, y: 18 }, { x: 3, y: 24 }, { x: 4, y: 18 }, { x: 5, y: 27 }]
     ];
     barChartOptions: ChartOptions = {
         title: 'Simple Bar Chart - Numeric Axis',
@@ -50,7 +51,8 @@ export class SampleData {
         },
         series: [
             { name: 'Series1', color: '#619eff', type: 'bar' },
-            // { name: 'Series2', color: '#ff6161', type: 'line' }
+            // { name: 'Series2', color: '#ff6161', type: 'bar' },
+            // { name: 'Series3', color: '#66ae2c', type: 'bar' }
         ],
         bar: {
             width: 30
@@ -62,11 +64,12 @@ export class SampleData {
         innerPaddingBottom: 10
     };
     lineChartData = [
-        [{ x: -1, y: 25 }, { x: 1, y: 5 }, { x: 2, y: 20 }, { x: 3, y: 30 }, { x: 4, y: -40 }, { x: 5, y: 50 }],
-        // [{ x: -1, y: 20 }, { x: 1, y: 10 }, { x: 2, y: 15 }, { x: 3, y: 35 }, { x: 4, y: -35 }, { x: 5, y: 45 }]
+        [{ x: -1, y: 25 }, { x: 1, y: 35 }, { x: 2, y: 30 }, { x: 3, y: 40 }, { x: 4, y: 30 }, { x: 5, y: 45 }],
+        [{ x: -1, y: 20 }, { x: 1, y: 28 }, { x: 2, y: 24 }, { x: 3, y: 32 }, { x: 4, y: 24 }, { x: 5, y: 36 }],
+        [{ x: -1, y: 15 }, { x: 1, y: 21 }, { x: 2, y: 18 }, { x: 3, y: 24 }, { x: 4, y: 18 }, { x: 5, y: 27 }]
     ];
     lineChartOptions: ChartOptions = {
-        title: 'Simple Line Chart - Numeric Axis',
+        title: 'Line Chart - Numeric Axis',
         xaxis: {
             type: 'numeric',
             show: true,
@@ -110,7 +113,8 @@ export class SampleData {
         },
         series: [
             { name: 'Series1', color: '#619eff', type: 'line' },
-            // { name: 'Series2', color: '#ff6161', type: 'line' }
+            { name: 'Series2', color: '#ff6161', type: 'line' },
+            { name: 'Series3', color: '#66ae2c', type: 'line' }
         ],
         bar: {
             width: 30
@@ -122,8 +126,9 @@ export class SampleData {
         innerPaddingBottom: 10
     };
     smoothLineChartData = [
-        [{ x: -1, y: 25 }, { x: 1, y: 5 }, { x: 2, y: 7 }, { x: 3, y: 30 }, { x: 4, y: -40 }, { x: 5, y: 50 }],
-        // [{ x: -1, y: 20 }, { x: 1, y: 10 }, { x: 2, y: 15 }, { x: 3, y: 35 }, { x: 4, y: -35 }, { x: 5, y: 45 }]
+        [{ x: -1, y: 25 }, { x: 1, y: 35 }, { x: 2, y: 30 }, { x: 3, y: 40 }, { x: 4, y: 30 }, { x: 5, y: 45 }],
+        [{ x: -1, y: 20 }, { x: 1, y: 28 }, { x: 2, y: 24 }, { x: 3, y: 32 }, { x: 4, y: 24 }, { x: 5, y: 36 }],
+        [{ x: -1, y: 15 }, { x: 1, y: 21 }, { x: 2, y: 18 }, { x: 3, y: 24 }, { x: 4, y: 18 }, { x: 5, y: 27 }]
     ];
     smoothLineChartOptions: ChartOptions = {
         title: 'Smooth Line Chart - Numeric Axis',
@@ -170,7 +175,8 @@ export class SampleData {
         },
         series: [
             { name: 'Series1', color: '#619eff', type: 'smooth-line' },
-            // { name: 'Series2', color: '#ff6161', type: 'line' }
+            { name: 'Series2', color: '#ff6161', type: 'smooth-line' },
+            { name: 'Series3', color: '#66ae2c', type: 'smooth-line' },
         ],
         bar: {
             width: 30
@@ -183,11 +189,12 @@ export class SampleData {
     };
 
     areaChartData = [
-        [{ x: -1, y: 25 }, { x: 1, y: 5 }, { x: 2, y: 20 }, { x: 3, y: 30 }, { x: 4, y: -40 }, { x: 5, y: 50 }],
-        // [{ x: -1, y: 20 }, { x: 1, y: 10 }, { x: 2, y: 15 }, { x: 3, y: 35 }, { x: 4, y: -35 }, { x: 5, y: 45 }]
+        [{ x: -1, y: 25 }, { x: 1, y: 35 }, { x: 2, y: 30 }, { x: 3, y: 40 }, { x: 4, y: 30 }, { x: 5, y: 45 }],
+        [{ x: -1, y: 20 }, { x: 1, y: 28 }, { x: 2, y: 24 }, { x: 3, y: 32 }, { x: 4, y: 24 }, { x: 5, y: 36 }],
+        [{ x: -1, y: 15 }, { x: 1, y: 21 }, { x: 2, y: 18 }, { x: 3, y: 24 }, { x: 4, y: 18 }, { x: 5, y: 27 }]
     ];
     areaChartOptions: ChartOptions = {
-        title: 'Simple Area Chart - Numeric Axis',
+        title: 'Area Chart - Numeric Axis',
         xaxis: {
             type: 'numeric',
             show: true,
@@ -231,7 +238,8 @@ export class SampleData {
         },
         series: [
             { name: 'Series1', color: '#619eff', type: 'area' },
-            // { name: 'Series2', color: '#ff6161', type: 'line' }
+            { name: 'Series2', color: '#ff6161', type: 'area' },
+            { name: 'Series3', color: '#66ae2c', type: 'area' }
         ],
         bar: {
             width: 30
@@ -244,8 +252,9 @@ export class SampleData {
     };
 
     smoothAreaChartData = [
-        [{ x: -1, y: 25 }, { x: 1, y: 5 }, { x: 2, y: 20 }, { x: 3, y: 30 }, { x: 4, y: -40 }, { x: 5, y: 50 }],
-        // [{ x: -1, y: 20 }, { x: 1, y: 10 }, { x: 2, y: 15 }, { x: 3, y: 35 }, { x: 4, y: -35 }, { x: 5, y: 45 }]
+        [{ x: -1, y: 25 }, { x: 1, y: 35 }, { x: 2, y: 30 }, { x: 3, y: 40 }, { x: 4, y: 30 }, { x: 5, y: 45 }],
+        [{ x: -1, y: 20 }, { x: 1, y: 28 }, { x: 2, y: 24 }, { x: 3, y: 32 }, { x: 4, y: 24 }, { x: 5, y: 36 }],
+        [{ x: -1, y: 15 }, { x: 1, y: 21 }, { x: 2, y: 18 }, { x: 3, y: 24 }, { x: 4, y: 18 }, { x: 5, y: 27 }]
     ];
     smoothAreaChartOptions: ChartOptions = {
         title: 'Smooth Area Chart - Numeric Axis',
@@ -292,7 +301,8 @@ export class SampleData {
         },
         series: [
             { name: 'Series1', color: '#619eff', type: 'smooth-area' },
-            // { name: 'Series2', color: '#ff6161', type: 'line' }
+            { name: 'Series2', color: '#ff6161', type: 'smooth-area' },
+            { name: 'Series3', color: '#66ae2c', type: 'smooth-area' }
         ],
         bar: {
             width: 30
@@ -372,11 +382,8 @@ export class SampleData {
     };
 
     multiTypeChartDataCategory = [
-
-        // [{ x: 'Sun', y: 25 }, { x: 'Tue', y: 35 }, { x: 'Wed', y: 30 }, { x: 'Thu', y: 40 }, { x: 'Fri', y: 30 }, { x: 'Sat', y: 45 }],
         // tslint:disable-next-line:max-line-length
         [{ x: 'Sun', y: 25 }, { x: 'Mon', y: 40 }, { x: 'Tue', y: 35 }, { x: 'Wed', y: 30 }, { x: 'Thu', y: 40 }, { x: 'Fri', y: 30 }, { x: 'Sat', y: 45 }],
-        // [{ x: 'Mon', y: 10 }, { x: 'Tue', y: 14 }, { x: 'Wed', y: 12 }, { x: 'Thu', y: 16 }, { x: 'Fri', y: 12 }, { x: 'Sat', y: 18 }],
         [{ x: 'Mon', y: 20 }, { x: 'Tue', y: 28 }, { x: 'Wed', y: 24 }, { x: 'Thu', y: 32 }, { x: 'Fri', y: 24 }, { x: 'Sat', y: 36 }],
         [{ x: 'Mon', y: 15 }, { x: 'Tue', y: 21 }, { x: 'Wed', y: 18 }, { x: 'Thu', y: 24 }, { x: 'Fri', y: 18 }, { x: 'Sat', y: 27 }],
         [{ x: 'Mon', y: 10 }, { x: 'Tue', y: 14 }, { x: 'Wed', y: 12 }, { x: 'Thu', y: 16 }, { x: 'Fri', y: 12 }, { x: 'Sat', y: 18 }],
@@ -447,70 +454,73 @@ export class SampleData {
     };
 
 
-    barChartDataCategory = [
-        [{ x: 'Mon', y: 25 }, { x: 'Tue', y: 5 }, { x: 'Wed', y: 20 }, { x: 'Thu', y: 30 }, { x: 'Fri', y: -40 }, { x: 'Sat', y: 50 }],
-    ];
-    barChartOptionsCategory: ChartOptions = {
-        title: 'Simple Bar Chart - Category Axis',
-        xaxis: {
-            type: 'category',
-            show: true,
-            labels: [],
-            showLabels: true,
-            showAxisLine: true,
-            min: 0,
-            max: 6,
-            title: 'xaxis',
-            ticks: {
-                show: true,
-                count: 6,
-                length: 5
-            },
-            grid: {
-                show: true
-            },
-            axisHeight: 20,
-            minMax: 'auto'
-        },
-        yaxis: {
-            type: 'numeric',
-            show: true,
-            labels: [],
-            showLabels: true,
-            showAxisLine: true,
-            min: 0,
-            max: 0,
-            title: 'yaxis',
-            ticks: {
-                show: true,
-                count: 6,
-                length: 5
-            },
-            grid: {
-                show: true
-            },
-            axisWidth: 50,
-            paddingRight: 0,
-            minMax: 'auto'
-        },
-        series: [
-            { name: 'Series1', color: '#619eff', type: 'bar' },
-            // { name: 'Series2', color: '#ff6161', type: 'line' }
-        ],
-        bar: {
-            width: 30
-        },
-        dataLabels: {
-            show: true
-        },
-        innerPaddingTop: 20,
-        innerPaddingBottom: 10
-    };
+    // barChartDataCategory = [
+    //     [{ x: 'Mon', y: 25 }, { x: 'Tue', y: 5 }, { x: 'Wed', y: 20 }, { x: 'Thu', y: 30 }, { x: 'Fri', y: -40 }, { x: 'Sat', y: 50 }],
+    // ];
+    // barChartOptionsCategory: ChartOptions = {
+    //     title: 'Bar Chart - Category Axis',
+    //     xaxis: {
+    //         type: 'category',
+    //         show: true,
+    //         labels: [],
+    //         showLabels: true,
+    //         showAxisLine: true,
+    //         min: 0,
+    //         max: 6,
+    //         title: 'xaxis',
+    //         ticks: {
+    //             show: true,
+    //             count: 6,
+    //             length: 5
+    //         },
+    //         grid: {
+    //             show: true
+    //         },
+    //         axisHeight: 20,
+    //         minMax: 'auto'
+    //     },
+    //     yaxis: {
+    //         type: 'numeric',
+    //         show: true,
+    //         labels: [],
+    //         showLabels: true,
+    //         showAxisLine: true,
+    //         min: 0,
+    //         max: 0,
+    //         title: 'yaxis',
+    //         ticks: {
+    //             show: true,
+    //             count: 6,
+    //             length: 5
+    //         },
+    //         grid: {
+    //             show: true
+    //         },
+    //         axisWidth: 50,
+    //         paddingRight: 0,
+    //         minMax: 'auto'
+    //     },
+    //     series: [
+    //         { name: 'Series1', color: '#619eff', type: 'bar' },
+    //         // { name: 'Series2', color: '#ff6161', type: 'line' }
+    //     ],
+    //     bar: {
+    //         width: 30
+    //     },
+    //     dataLabels: {
+    //         show: true
+    //     },
+    //     innerPaddingTop: 20,
+    //     innerPaddingBottom: 10
+    // };
     lineChartDataCategory = [
-        [{ x: 'Mon', y: 25 }, { x: 'Tue', y: 5 }, { x: 'Wed', y: 20 }, { x: 'Thu', y: 30 }, { x: 'Fri', y: -40 }, { x: 'Sat', y: 50 }],
+        // tslint:disable-next-line:max-line-length
+        [{ x: 'Mon', y: 25 }, { x: 'Tue', y: 35 }, { x: 'Wed', y: 30 }, { x: 'Thu', y: 40 }, { x: 'Fri', y: 30 }, { x: 'Sat', y: 45 }],
+        [{ x: 'Mon', y: 20 }, { x: 'Tue', y: 28 }, { x: 'Wed', y: 24 }, { x: 'Thu', y: 32 }, { x: 'Fri', y: 24 }, { x: 'Sat', y: 36 }],
+        [{ x: 'Mon', y: 15 }, { x: 'Tue', y: 21 }, { x: 'Wed', y: 18 }, { x: 'Thu', y: 24 }, { x: 'Fri', y: 18 }, { x: 'Sat', y: 27 }],
     ];
     lineChartOptionsCategory: ChartOptions = {
-        title: 'Simple Line Chart - Category Axis',
+        title: 'Line Chart - Category Axis',
         xaxis: {
             type: 'category',
             show: true,
@@ -554,7 +564,8 @@ export class SampleData {
         },
         series: [
             { name: 'Series1', color: '#619eff', type: 'line' },
-            // { name: 'Series2', color: '#ff6161', type: 'line' }
+            { name: 'Series2', color: '#ff6161', type: 'line' },
+            { name: 'Series3', color: '#66ae2c', type: 'line' },
         ],
         bar: {
             width: 30
@@ -566,7 +577,9 @@ export class SampleData {
         innerPaddingBottom: 10
     };
     smoothLineChartDataCategory = [
-        [{ x: 'Mon', y: 25 }, { x: 'Tue', y: 5 }, { x: 'Wed', y: 7 }, { x: 'Thu', y: 30 }, { x: 'Fri', y: -40 }, { x: 'Sat', y: 50 }]
+        [{ x: 'Mon', y: 25 }, { x: 'Tue', y: 35 }, { x: 'Wed', y: 30 }, { x: 'Thu', y: 40 }, { x: 'Fri', y: 30 }, { x: 'Sat', y: 45 }],
+        [{ x: 'Mon', y: 20 }, { x: 'Tue', y: 28 }, { x: 'Wed', y: 24 }, { x: 'Thu', y: 32 }, { x: 'Fri', y: 24 }, { x: 'Sat', y: 36 }],
+        [{ x: 'Mon', y: 15 }, { x: 'Tue', y: 21 }, { x: 'Wed', y: 18 }, { x: 'Thu', y: 24 }, { x: 'Fri', y: 18 }, { x: 'Sat', y: 27 }],
     ];
     smoothLineChartOptionsCategory: ChartOptions = {
         title: 'Smooth Line Chart - Category Axis',
@@ -613,7 +626,8 @@ export class SampleData {
         },
         series: [
             { name: 'Series1', color: '#619eff', type: 'smooth-line' },
-            // { name: 'Series2', color: '#ff6161', type: 'line' }
+            { name: 'Series2', color: '#ff6161', type: 'smooth-line' },
+            { name: 'Series3', color: '#66ae2c', type: 'smooth-line' },
         ],
         bar: {
             width: 30
@@ -626,10 +640,12 @@ export class SampleData {
     };
 
     areaChartDataCategory = [
-        [{ x: 'Mon', y: 25 }, { x: 'Tue', y: 5 }, { x: 'Wed', y: 20 }, { x: 'Thu', y: 30 }, { x: 'Fri', y: -40 }, { x: 'Sat', y: 50 }]
+        [{ x: 'Mon', y: 25 }, { x: 'Tue', y: 35 }, { x: 'Wed', y: 30 }, { x: 'Thu', y: 40 }, { x: 'Fri', y: 30 }, { x: 'Sat', y: 45 }],
+        [{ x: 'Mon', y: 20 }, { x: 'Tue', y: 28 }, { x: 'Wed', y: 24 }, { x: 'Thu', y: 32 }, { x: 'Fri', y: 24 }, { x: 'Sat', y: 36 }],
+        [{ x: 'Mon', y: 15 }, { x: 'Tue', y: 21 }, { x: 'Wed', y: 18 }, { x: 'Thu', y: 24 }, { x: 'Fri', y: 18 }, { x: 'Sat', y: 27 }],
     ];
     areaChartOptionsCategory: ChartOptions = {
-        title: 'Simple Area Chart - Category Axis',
+        title: 'Area Chart - Category Axis',
         xaxis: {
             type: 'category',
             show: true,
@@ -673,7 +689,8 @@ export class SampleData {
         },
         series: [
             { name: 'Series1', color: '#619eff', type: 'area' },
-            // { name: 'Series2', color: '#ff6161', type: 'line' }
+            { name: 'Series2', color: '#ff6161', type: 'area' },
+            { name: 'Series3', color: '#66ae2c', type: 'area' }
         ],
         bar: {
             width: 30
@@ -686,7 +703,9 @@ export class SampleData {
     };
 
     smoothAreaChartDataCategory = [
-        [{ x: 'Mon', y: 25 }, { x: 'Tue', y: 5 }, { x: 'Wed', y: 20 }, { x: 'Thu', y: 30 }, { x: 'Fri', y: -40 }, { x: 'Sat', y: 50 }]
+        [{ x: 'Mon', y: 25 }, { x: 'Tue', y: 35 }, { x: 'Wed', y: 30 }, { x: 'Thu', y: 40 }, { x: 'Fri', y: 30 }, { x: 'Sat', y: 45 }],
+        [{ x: 'Mon', y: 20 }, { x: 'Tue', y: 28 }, { x: 'Wed', y: 24 }, { x: 'Thu', y: 32 }, { x: 'Fri', y: 24 }, { x: 'Sat', y: 36 }],
+        [{ x: 'Mon', y: 15 }, { x: 'Tue', y: 21 }, { x: 'Wed', y: 18 }, { x: 'Thu', y: 24 }, { x: 'Fri', y: 18 }, { x: 'Sat', y: 27 }],
     ];
     smoothAreaChartOptionsCategory: ChartOptions = {
         title: 'Smooth Area Chart - Category Axis',
@@ -733,7 +752,8 @@ export class SampleData {
         },
         series: [
             { name: 'Series1', color: '#619eff', type: 'smooth-area' },
-            // { name: 'Series2', color: '#ff6161', type: 'line' }
+            { name: 'Series2', color: '#ff6161', type: 'smooth-area' },
+            { name: 'Series3', color: '#66ae2c', type: 'smooth-area' }
         ],
         bar: {
             width: 30
@@ -745,13 +765,13 @@ export class SampleData {
         innerPaddingBottom: 10
     };
 
-    groupedBarChartDataCategory = [
+    barChartDataCategory = [
         [{ x: 'Mon', y: 25 }, { x: 'Tue', y: 5 }, { x: 'Wed', y: 20 }, { x: 'Thu', y: 30 }, { x: 'Fri', y: -40 }, { x: 'Sat', y: 50 }],
         [{ x: 'Mon', y: 20 }, { x: 'Tue', y: 10 }, { x: 'Wed', y: 15 }, { x: 'Thu', y: 25 }, { x: 'Fri', y: -30 }, { x: 'Sat', y: 30 }],
         [{ x: 'Mon', y: 20 }, { x: 'Tue', y: 10 }, { x: 'Wed', y: 15 }, { x: 'Thu', y: 25 }, { x: 'Fri', y: -30 }, { x: 'Sat', y: 30 }]
     ];
-    groupedBarChartOptionsCategory: ChartOptions = {
-        title: 'Grouped Bar Chart',
+    barChartOptionsCategory: ChartOptions = {
+        title: 'Bar Chart - Category Axis',
         xaxis: {
             type: 'category',
             show: true,

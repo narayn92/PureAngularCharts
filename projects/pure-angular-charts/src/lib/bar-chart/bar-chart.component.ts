@@ -56,7 +56,8 @@ export class BarChartComponent extends BasicChart implements OnInit {
         // { name: 'Series1' }
       ],
       bar: {
-        width: 30
+        width: 30,
+        spacing: 5
       },
       dataLabels: {
         show: true
