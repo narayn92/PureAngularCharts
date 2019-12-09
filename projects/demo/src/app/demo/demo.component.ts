@@ -16,6 +16,7 @@ export class DemoComponent implements OnInit, OnChanges {
   templateType;
 
   axisType = 'category';
+  showAxisType = true;
 
   @ViewChild('BarChartRef', { static: true }) BarChartRef: TemplateRef<any>;
   @ViewChild('LineChartRef', { static: true }) LineChartRef: TemplateRef<any>;
@@ -31,7 +32,8 @@ export class DemoComponent implements OnInit, OnChanges {
 
   showData = false;
 
-  @ViewChild(JsonEditorComponent, { static: true }) editor: JsonEditorComponent;
+  @ViewChild('JEOpt', { static: true }) OptEditor: JsonEditorComponent;
+  @ViewChild('JEData', { static: true }) Dataeditor: JsonEditorComponent;
   chartOptionsEditorOptions = new JsonEditorOptions();
   jeChartOptions;
   chartDataEditorOptions = new JsonEditorOptions();
@@ -78,6 +80,7 @@ export class DemoComponent implements OnInit, OnChanges {
     this.setChartOptions();
   }
   setChartOptions() {
+    this.showAxisType = true;
     switch (this.chartType + '-' + this.axisType) {
       case 'simple-bar-chart-numeric':
         this.Pagetitle = 'Bar Chart';
@@ -163,15 +166,19 @@ export class DemoComponent implements OnInit, OnChanges {
       //   this.chartData = this.sd.groupedBarChartDataCategory;
       //   this.templateType = this.GroupedBarChartRef;
       //   break;
+      case 'stacked-bar-chart-numeric':
       case 'stacked-bar-chart-category':
         this.axisType = 'category';
+        this.showAxisType = false;
         this.Pagetitle = 'Stacked Bar Chart';
         this.chartOptions = this.sd.stackedBarChartOptionsCategory;
         this.chartData = this.sd.stackedBarChartDataCategory;
         this.templateType = this.StackedBarChartRef;
         break;
+      case 'stacked-area-chart-numeric':
       case 'stacked-area-chart-category':
         this.axisType = 'category';
+        this.showAxisType = false;
         this.Pagetitle = 'Stacked Bar Chart';
         this.chartOptions = this.sd.stackedAreaChartOptionsCategory;
         this.chartData = this.sd.stackedAreaChartDataCategory;
@@ -186,7 +193,9 @@ export class DemoComponent implements OnInit, OnChanges {
   }
   OnOptionsChange(event) {
     // console.log('getData', event);
-    this.chartOptions = event;
+    if (event.series) {
+      this.chartOptions = event;
+    }
   }
 
   OnDataChange(event) {

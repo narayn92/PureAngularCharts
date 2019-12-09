@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2 flex-grow-1">{{Pagetitle}}</h1>
 
-    <div class="btn-group align-items-center" role="group">
+    <div *ngIf="showAxisType" class="btn-group align-items-center" role="group">
         <span> Axis Type &nbsp;</span>
         <button type="button" class="btn btn-secondary" [class.active]="axisType=='numeric'"
             (click)="setAxisType('numeric')">Numeric</button>
@@ -56,7 +56,7 @@
                     <i class="fa fa-pencil" aria-hidden="true"></i> Data</button>
             </div>
 
-            <json-editor [options]="chartOptionsEditorOptions" [data]="jeChartOptions"
+            <json-editor #JEOpt [options]="chartOptionsEditorOptions" [data]="jeChartOptions"
                 (change)="OnOptionsChange($event)"></json-editor>
         </div>
     </div>
@@ -67,7 +67,7 @@
                 <button class="btn btn-sm btn-primary" (click)="showData=false;">
                     <i class="fa fa-pencil" aria-hidden="true"></i> Options</button>
             </div>
-            <json-editor [options]="chartDataEditorOptions" [data]="jeChartData" (change)="OnDataChange($event)">
+            <json-editor #JEData [options]="chartDataEditorOptions" [data]="jeChartData" (change)="OnDataChange($event)">
             </json-editor>
         </div>
     </div>

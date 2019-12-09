@@ -474,66 +474,6 @@ export class SampleData {
         innerPaddingBottom: 10
     };
 
-
-    // barChartDataCategory = [
-    //     [{ x: 'Mon', y: 25 }, { x: 'Tue', y: 5 }, { x: 'Wed', y: 20 }, { x: 'Thu', y: 30 }, { x: 'Fri', y: -40 }, { x: 'Sat', y: 50 }],
-    // ];
-    // barChartOptionsCategory: ChartOptions = {
-    //     title: 'Bar Chart - Category Axis',
-    //     xaxis: {
-    //         type: 'category',
-    //         show: true,
-    //         labels: [],
-    //         showLabels: true,
-    //         showAxisLine: true,
-    //         min: 0,
-    //         max: 6,
-    //         title: 'xaxis',
-    //         ticks: {
-    //             show: true,
-    //             count: 6,
-    //             length: 5
-    //         },
-    //         grid: {
-    //             show: true
-    //         },
-    //         axisHeight: 20,
-    //         minMax: 'auto'
-    //     },
-    //     yaxis: {
-    //         type: 'numeric',
-    //         show: true,
-    //         labels: [],
-    //         showLabels: true,
-    //         showAxisLine: true,
-    //         min: 0,
-    //         max: 0,
-    //         title: 'yaxis',
-    //         ticks: {
-    //             show: true,
-    //             count: 6,
-    //             length: 5
-    //         },
-    //         grid: {
-    //             show: true
-    //         },
-    //         axisWidth: 50,
-    //         paddingRight: 0,
-    //         minMax: 'auto'
-    //     },
-    //     series: [
-    //         { name: 'Series1', color: '#619eff', type: 'bar' },
-    //         // { name: 'Series2', color: '#ff6161', type: 'line' }
-    //     ],
-    //     bar: {
-    //         width: 30
-    //     },
-    //     dataLabels: {
-    //         show: true
-    //     },
-    //     innerPaddingTop: 20,
-    //     innerPaddingBottom: 10
-    // };
     lineChartDataCategory = [
         // tslint:disable-next-line:max-line-length
         [{ x: 'Mon', y: 25 }, { x: 'Tue', y: 35 }, { x: 'Wed', y: 30 }, { x: 'Thu', y: 40 }, { x: 'Fri', y: 30 }, { x: 'Sat', y: 45 }],

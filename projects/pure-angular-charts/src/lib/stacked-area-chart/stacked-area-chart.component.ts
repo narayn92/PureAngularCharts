@@ -11,7 +11,7 @@ export class StackedAreaChartComponent extends BasicChart implements OnInit {
 
   constructor() {
     const defaultOptions: ChartOptions = {
-      title: 'PAC Chart',
+      title: '',
       xaxis: {
         type: 'numeric',
         show: true,
@@ -30,7 +30,7 @@ export class StackedAreaChartComponent extends BasicChart implements OnInit {
           show: true
         },
         minMax: 'auto',
-        axisHeight: 40
+        axisHeight: 20
       },
       yaxis: {
         type: 'numeric',
@@ -50,8 +50,8 @@ export class StackedAreaChartComponent extends BasicChart implements OnInit {
           show: true
         },
         minMax: 'auto',
-        axisWidth: 40,
-        paddingRight: 40
+        axisWidth: 50,
+        paddingRight: 0
       },
       series: [
         // { name: 'Series1' }
@@ -76,12 +76,27 @@ export class StackedAreaChartComponent extends BasicChart implements OnInit {
     return this.pData.slice().reverse();
   }
 
+
+
   ngOnInit() {
   }
 
   loadChart(changes: SimpleChanges) {
     console.log('loadChart - stacked', changes);
     let categories = [];
+
+    let autoDetectedAxisType = '';
+    if (this.data && this.data.length > 0 && this.data[0].length > 0) {
+      if (typeof this.data[0][0].x === 'number' || !isNaN(this.data[0][0].x)) {
+        autoDetectedAxisType = 'numeric';
+      } else if (typeof this.data[0][0].x === 'string') {
+        autoDetectedAxisType = 'category';
+      }
+    }
+    if (this.options.xaxis.type !== autoDetectedAxisType) {
+      this.options.xaxis.type = autoDetectedAxisType;
+    }
+
     if (changes.options || changes.data) {
 
       this.pXaxis = Object.assign({}, this.options.xaxis);
@@ -240,6 +255,55 @@ export class StackedAreaChartComponent extends BasicChart implements OnInit {
     console.log(this.height + '-' + this.pXaxis.axisHeight + '-' + this.pPerUnitHeight);
     console.log(this.pXaxis.labels);
     console.log(this.pData);
+
+    this.pData.forEach((series, si) => {
+      let res = {
+        path: '',
+        reversePath: ''
+      };
+      if (si === 0) {
+        res = series.data.reduce((total, currentValue, currentIndex, arr) => {
+          // path
+          if (currentIndex === 0) {
+            total.path = `M${currentValue.px} ${this.pxaxisLocation} L${currentValue.px} ${currentValue.py}`;
+          } else if (currentIndex === arr.length - 1) {
+            total.path += `L${currentValue.px} ${currentValue.py} L${currentValue.px} ${this.pxaxisLocation}`;
+          } else {
+            total.path += `L${currentValue.px} ${currentValue.py}`;
+          }
+
+          // reverse path
+          total.reversePath = `L${currentValue.px} ${currentValue.py}` + total.reversePath;
+          return total;
+
+        }, res);
+      } else {
+
+        res = series.data.reduce((total, currentValue, currentIndex, arr) => {
+          // path
+          if (currentIndex === 0) {
+            total.path = `M${currentValue.px} ${currentValue.py} L${currentValue.px} ${currentValue.py}`;
+          } else if (currentIndex === arr.length - 1) {
+            // tslint:disable-next-line:max-line-length
+            total.path = `${total.path} L${currentValue.px} ${currentValue.py} ${this.pData[si - 1].reversePath} L${series.data[0].px} ${series.data[0].py}`;
+          } else {
+            total.path += `L${currentValue.px} ${currentValue.py}`;
+          }
+
+          // reverse path
+          total.reversePath = `L${currentValue.px} ${currentValue.py}` + total.reversePath;
+          return total;
+
+        }, res);
+
+      }
+      this.pData[si].path = res.path;
+      this.pData[si].reversePath = res.reversePath;
+      // return path + prevSeriesPath;
+    });
+
+    // console.log(this.pData);
+
   }
 
 }
