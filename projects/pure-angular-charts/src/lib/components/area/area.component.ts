@@ -25,7 +25,7 @@ export class AreaComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.plinePath = this.getSvgPath(this.series.data);
+    this.plinePath = (this.series && this.series.path) ? this.series.path : this.getSvgPath(this.series.data);
   }
 
   getSvgPath(data) {
