@@ -1,43 +1,43 @@
 export interface Ticks {
-    show: boolean;
-    count: number;
-    length: number;
+    show?: boolean;
+    count?: number;
+    length?: number;
 }
 
 export interface Grid {
-    show: boolean;
+    show?: boolean;
 }
 
 export interface Xaxis {
-    type: string;
-    show: boolean;
+    type?: string;
+    show?: boolean;
     labels?: string[];
     showLabels?: boolean;
     showAxisLine?: boolean;
     min?: number;
     max?: number;
-    title: string;
-    ticks: Ticks;
-    grid: Grid;
-    axisHeight: number;
-    minMax: string;
+    title?: string;
+    ticks?: Ticks;
+    grid?: Grid;
+    axisHeight?: number;
+    minMax?: string;
 }
 
 
 export interface Yaxis {
-    type: string;
-    show: boolean;
+    type?: string;
+    show?: boolean;
     labels?: string[];
     showLabels?: boolean;
     showAxisLine?: boolean;
     min?: number;
     max?: number;
-    title: string;
-    ticks: Ticks;
-    grid: Grid;
-    axisWidth: number;
-    paddingRight: number;
-    minMax: string;
+    title?: string;
+    ticks?: Ticks;
+    grid?: Grid;
+    axisWidth?: number;
+    paddingRight?: number;
+    minMax?: string;
 }
 
 export interface Series {
@@ -61,14 +61,14 @@ export interface Legends {
 
 export interface ChartOptions {
     title?: string;
-    xaxis: Xaxis;
-    yaxis: Yaxis;
+    xaxis?: Xaxis;
+    yaxis?: Yaxis;
     series: Series[];
-    bar: Bar;
+    bar?: Bar;
     dataLabels?: DataLabels;
     legends?: Legends;
-    innerPaddingTop: number;
-    innerPaddingBottom: number;
+    innerPaddingTop?: number;
+    innerPaddingBottom?: number;
 }
 
 

@@ -11,7 +11,7 @@ export class StackedBarChartComponent extends BasicChart implements OnInit {
 
   constructor() {
     const defaultOptions: ChartOptions = {
-      title: 'PAC Chart',
+      title: '',
       xaxis: {
         type: 'numeric',
         show: true,
@@ -30,7 +30,7 @@ export class StackedBarChartComponent extends BasicChart implements OnInit {
           show: true
         },
         minMax: 'auto',
-        axisHeight: 40
+        axisHeight: 20
       },
       yaxis: {
         type: 'numeric',
@@ -50,8 +50,8 @@ export class StackedBarChartComponent extends BasicChart implements OnInit {
           show: true
         },
         minMax: 'auto',
-        axisWidth: 40,
-        paddingRight: 40
+        axisWidth: 50,
+        paddingRight: 0
       },
       series: [
         // { name: 'Series1' }
@@ -78,6 +78,19 @@ export class StackedBarChartComponent extends BasicChart implements OnInit {
   loadChart(changes: SimpleChanges) {
     console.log('loadChart - stacked', changes);
     let categories = [];
+
+    let autoDetectedAxisType = '';
+    if (this.data && this.data.length > 0 && this.data[0].length > 0) {
+      if (typeof this.data[0][0].x === 'number' || !isNaN(this.data[0][0].x)) {
+        autoDetectedAxisType = 'numeric';
+      } else if (typeof this.data[0][0].x === 'string') {
+        autoDetectedAxisType = 'category';
+      }
+    }
+    if (this.options.xaxis.type !== autoDetectedAxisType) {
+      this.options.xaxis.type = autoDetectedAxisType;
+    }
+
     if (changes.options || changes.data) {
 
       this.pXaxis = Object.assign({}, this.options.xaxis);

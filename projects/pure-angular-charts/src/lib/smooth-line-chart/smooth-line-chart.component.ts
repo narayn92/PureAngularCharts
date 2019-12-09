@@ -10,7 +10,7 @@ import { BasicChart } from '../basic-chart';
 export class SmoothLineChartComponent extends BasicChart implements OnInit {
   constructor() {
     const defaultOptions: ChartOptions = {
-      title: 'PAC Chart',
+      title: '',
       xaxis: {
         type: 'numeric',
         show: true,
@@ -29,7 +29,7 @@ export class SmoothLineChartComponent extends BasicChart implements OnInit {
           show: true
         },
         minMax: 'auto',
-        axisHeight: 40,
+        axisHeight: 20,
       },
       yaxis: {
         type: 'numeric',
@@ -49,8 +49,8 @@ export class SmoothLineChartComponent extends BasicChart implements OnInit {
           show: true
         },
         minMax: 'auto',
-        axisWidth: 40,
-        paddingRight: 40
+        axisWidth: 50,
+        paddingRight: 0
       },
       series: [
         // { name: 'Series1' }
