@@ -306,9 +306,9 @@ export class BasicChart implements OnInit, OnChanges {
         // const hasGroupedBar = (barSeriesCount > 1) ? true : false;
 
         if (barSeriesCount > 0) {
+            const spaceAvailable = this.pPerUnitWidth * 0.8;
             if (this.pXaxis.type === 'category') {
                 const microUnit = this.options.bar.width + this.options.bar.spacing;
-                const spaceAvailable = this.pPerUnitWidth * 0.8;
                 if (microUnit * barSeriesCount > spaceAvailable) {
                     // tslint:disable-next-line:max-line-length
                     this.pActualBarSpacing = (this.options.bar.width * 0.2 < this.options.bar.spacing) ? this.options.bar.width * 0.2 : this.options.bar.spacing;
@@ -317,7 +317,6 @@ export class BasicChart implements OnInit, OnChanges {
                     this.pActualBarWidth = (this.options.bar.width > spaceAvailable) ? spaceAvailable : this.options.bar.width;
                 }
             } else if (this.pXaxis.type === 'numeric') {
-                const spaceAvailable = this.pPerUnitWidth * 0.8;
                 this.pActualBarWidth = (this.options.bar.width > spaceAvailable) ? spaceAvailable : this.options.bar.width;
             }
         }
@@ -343,13 +342,13 @@ export class BasicChart implements OnInit, OnChanges {
                         distanceFromYAxis = (((this.pXaxis.min < 0) ? item.x : (item.x - this.pXaxis.min)) / this.pPerUnitX) * this.pPerUnitWidth;
                     } else if (this.pXaxis.type === 'category') {
                         // tslint:disable-next-line:max-line-length
-                        // if (this.options.series[si].type === 'bar' && hasGroupedBar) {
-                        const microUnit = this.pActualBarWidth + this.pActualBarSpacing;
-                        const offset = (this.pPerUnitWidth - (microUnit * barSeriesCount)) / 2;
-                        distanceFromYAxis = (indx * this.pPerUnitWidth) + offset + ((barSeriesCounter * microUnit)) - (microUnit / 2);
-                        // } else {
-                        //     distanceFromYAxis = indx * this.pPerUnitWidth + (this.pPerUnitWidth / 2);
-                        // }
+                        if (this.options.series[si].type === 'bar') { // && hasGroupedBar
+                            const microUnit = this.pActualBarWidth + this.pActualBarSpacing;
+                            const offset = (this.pPerUnitWidth - (microUnit * barSeriesCount)) / 2;
+                            distanceFromYAxis = (indx * this.pPerUnitWidth) + offset + ((barSeriesCounter * microUnit)) - (microUnit / 2);
+                        } else {
+                            distanceFromYAxis = indx * this.pPerUnitWidth + (this.pPerUnitWidth / 2);
+                        }
                     }
                     return {
                         x: item.x,
