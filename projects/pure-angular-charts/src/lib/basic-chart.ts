@@ -49,6 +49,9 @@ export class BasicChart implements OnInit, OnChanges {
     pPerUnitX;
     pPerUnitY;
 
+    pActualBarWidth;
+    pActualBarSpacing;
+
     pDisplayTooltip = false;
     ptootltip = {
         series: {
@@ -103,6 +106,9 @@ export class BasicChart implements OnInit, OnChanges {
         }
 
         if (changes.options || changes.data) {
+
+            this.pActualBarWidth = this.options.bar.width;
+            this.pActualBarSpacing = this.options.bar.spacing;
 
             this.pXaxis = Object.assign({}, this.options.xaxis);
             this.pYaxis = Object.assign({}, this.options.yaxis);
@@ -244,18 +250,18 @@ export class BasicChart implements OnInit, OnChanges {
             const xlabels = [];
             if (this.pXaxis.type === 'numeric') {
                 // tslint:disable-next-line:max-line-length
-                this.pPerUnitWidth = (this.width - this.pYaxis.axisWidth - this.pYaxis.paddingRight - this.options.bar.width) / this.pXaxis.ticks.count;
+                this.pPerUnitWidth = (this.width - this.pYaxis.axisWidth - this.pYaxis.paddingRight - this.pActualBarWidth) / this.pXaxis.ticks.count;
                 for (let i = 0; i <= this.pXaxis.ticks.count; i++) {
                     xlabels.push({
                         text: (this.pXaxis.min + (i * this.pPerUnitX)).toFixed(2),
-                        px: this.pYaxis.axisWidth + (i * this.pPerUnitWidth) + (this.options.bar.width / 2),
+                        px: this.pYaxis.axisWidth + (i * this.pPerUnitWidth) + (this.pActualBarWidth / 2),
                         py: this.height
                     });
                 }
                 this.pXaxis.labels = xlabels;
 
                 // tslint:disable-next-line:max-line-length
-                this.pyaxisLocation = this.pYaxis.axisWidth + (this.options.bar.width / 2) - ((this.pXaxis.min < 0) ? ((this.pXaxis.min / this.pPerUnitX) * this.pPerUnitWidth) : 0);
+                this.pyaxisLocation = this.pYaxis.axisWidth + (this.pActualBarWidth / 2) - ((this.pXaxis.min < 0) ? ((this.pXaxis.min / this.pPerUnitX) * this.pPerUnitWidth) : 0);
             } else if (this.pXaxis.type === 'category') {
                 this.pPerUnitWidth = (this.width - this.pYaxis.axisWidth - this.pYaxis.paddingRight) / this.pXaxis.ticks.count;
                 for (let i = 0; i < this.pXaxis.ticks.count; i++) {
@@ -297,8 +303,23 @@ export class BasicChart implements OnInit, OnChanges {
                 barSeriesCount++;
             }
         });
-        const hasGroupedBar = (barSeriesCount > 1) ? true : false;
+        // const hasGroupedBar = (barSeriesCount > 1) ? true : false;
 
+        if (barSeriesCount > 0) {
+            const spaceAvailable = this.pPerUnitWidth * 0.8;
+            if (this.pXaxis.type === 'category') {
+                const microUnit = this.options.bar.width + this.options.bar.spacing;
+                if (microUnit * barSeriesCount > spaceAvailable) {
+                    // tslint:disable-next-line:max-line-length
+                    this.pActualBarSpacing = (this.options.bar.width * 0.2 < this.options.bar.spacing) ? this.options.bar.width * 0.2 : this.options.bar.spacing;
+                    this.pActualBarWidth = (spaceAvailable - (this.pActualBarSpacing * barSeriesCount)) / barSeriesCount;
+                } else {
+                    this.pActualBarWidth = (this.options.bar.width > spaceAvailable) ? spaceAvailable : this.options.bar.width;
+                }
+            } else if (this.pXaxis.type === 'numeric') {
+                this.pActualBarWidth = (this.options.bar.width > spaceAvailable) ? spaceAvailable : this.options.bar.width;
+            }
+        }
         let barSeriesCounter = 0;
         this.pData = this.data.map((series, si) => {
             if (this.pXaxis.type === 'numeric') {
@@ -321,8 +342,8 @@ export class BasicChart implements OnInit, OnChanges {
                         distanceFromYAxis = (((this.pXaxis.min < 0) ? item.x : (item.x - this.pXaxis.min)) / this.pPerUnitX) * this.pPerUnitWidth;
                     } else if (this.pXaxis.type === 'category') {
                         // tslint:disable-next-line:max-line-length
-                        if (this.options.series[si].type === 'bar' && hasGroupedBar) {
-                            const microUnit = this.options.bar.width + this.options.bar.spacing;
+                        if (this.options.series[si].type === 'bar') { // && hasGroupedBar
+                            const microUnit = this.pActualBarWidth + this.pActualBarSpacing;
                             const offset = (this.pPerUnitWidth - (microUnit * barSeriesCount)) / 2;
                             distanceFromYAxis = (indx * this.pPerUnitWidth) + offset + ((barSeriesCounter * microUnit)) - (microUnit / 2);
                         } else {

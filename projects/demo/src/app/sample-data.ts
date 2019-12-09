@@ -792,8 +792,8 @@ export class SampleData {
             { name: 'Series3', color: '#66ae2c', type: 'bar' },
         ],
         bar: {
-            width: 15
-            // ,spacing: 5
+            width: 30,
+            spacing: 2
         },
         dataLabels: {
             show: true

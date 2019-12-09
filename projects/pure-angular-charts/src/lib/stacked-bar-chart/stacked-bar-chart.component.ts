@@ -60,7 +60,7 @@ export class StackedBarChartComponent extends BasicChart implements OnInit {
         width: 30,
         spacing: 5
       },
-     dataLabels: {
+      dataLabels: {
         show: true
       },
       legends: {
@@ -92,6 +92,9 @@ export class StackedBarChartComponent extends BasicChart implements OnInit {
     }
 
     if (changes.options || changes.data) {
+
+      this.pActualBarWidth = this.options.bar.width;
+      this.pActualBarSpacing = this.options.bar.spacing;
 
       this.pXaxis = Object.assign({}, this.options.xaxis);
       this.pYaxis = Object.assign({}, this.options.yaxis);
@@ -222,6 +225,10 @@ export class StackedBarChartComponent extends BasicChart implements OnInit {
       }
     });
     const hasStackedBar = (stackedBarSeriesCount > 1) ? true : false;
+    if (stackedBarSeriesCount > 0) {
+      const spaceAvailable = this.pPerUnitWidth * 0.8;
+      this.pActualBarWidth = (this.options.bar.width > spaceAvailable) ? spaceAvailable : this.options.bar.width;
+    }
 
     this.pData = [];
     this.data.forEach((series, si) => {

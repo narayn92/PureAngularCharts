@@ -10,9 +10,9 @@ export class BarComponent implements OnInit {
   @Input() series;
   @Input() options;
   @Input() pxaxisLocation;
-  @Input() pPerUnitWidth;
   @Input() pYaxis;
   @Input() showTotal = false;
+  @Input() pActualBarWidth = 0;
 
   // @Output() tooltipEvents = new EventEmitter();
   @Output() tmouseEnter = new EventEmitter();
