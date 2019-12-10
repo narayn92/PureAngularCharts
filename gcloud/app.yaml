@@ -5,13 +5,16 @@ threadsafe: yes
 handlers:
 
   - url: /
-    static_files: docs/index.html
-    upload: docs/index.html
+    static_files: demo/index.html
+    upload: demo/index.html
+  - url: /favicon\.ico
+    static_files: demo/favicon.ico
+    upload: demo/favicon\.ico
   - url: /(.*)
-    static_files: docs/\1
-    upload: docs/(.*)
+    static_files: demo/\1
+    upload: demo/(.*)
   - url: /
-    static_dir: docs
+    static_dir: demo
 
 skip_files:
   - e2e/

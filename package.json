@@ -11,9 +11,17 @@
     "start:lib": "ng build PureAngularCharts --watch",
     "start:demo": "ng serve demo --vendorSourceMap",
     "build:lib": "ng build PureAngularCharts",
-    "build:demo": "npm run build:lib && ng build demo --prod --output-path=docs --base-href=\"\"",
-    "postinstall": "npm run build:lib && ng build demo --aot --prod",
-    "build:demo:azure": "npm run build:lib && ng build demo --prod --output-path=azure/dist --base-href=\"\""
+    "copy:dist:docs": "rimraf docs/* && cp -r dist/demo/* docs",
+    "copy:dist:azure": "rimraf azure/demo && cp -r dist/demo azure",
+    "copy:dist:gcloud": "rimraf gcloud/demo && cp -r dist/demo gcloud",
+    "build:demo": "npm run build:lib && ng build demo --prod --base-href=\"\" && npm run copy:dist:docs",
+    "build:azure": "npm run build:demo && npm run copy:dist:azure",
+    "build:gcloud": "npm run build:demo && npm run copy:dist:gcloud",
+    "build:all": "npm run build:demo && npm run copy:dist:azure &&  npm run copy:dist:gcloud",
+    "deploy:fb": "firebase deploy",
+    "deploy:gc": "cd gcloud && gcloud app deploy",
+    "deploy:all": "npm run deploy:fb && npm run deploy:gc",
+    "postinstall": "npm run build:lib && ng build demo --aot --prod"
   },
   "private": true,
   "dependencies": {
