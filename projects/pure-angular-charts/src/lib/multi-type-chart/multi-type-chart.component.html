@@ -5,18 +5,20 @@
         
         <g pac-axis [pXaxis]="pXaxis" [pYaxis]="pYaxis" [pxaxisLocation]="pxaxisLocation" [pyaxisLocation]="pyaxisLocation" [width]="width" [height]="height"></g>
         
-        <g *ngFor="let series of pData; let si = index" [style.opacity]="(pIsLegendFiltered)? ((pSelectedLegends.indexOf(si)!=-1)?1:0) : ((pHoverActiveLegend == null || pHoverActiveLegend == si)?1.0:0.5)">
-            <g pac-bar *ngIf="series.series.type=='bar'" [options]="options" [series]="series" [pxaxisLocation]="pxaxisLocation" [pYaxis]="pYaxis" [pActualBarWidth]="pActualBarWidth"
-            (tmouseEnter)="OnMouseEnter($event)" (tmouseOver)="OnMouseOver($event)" (tmouseLeave)="OnMouseLeave($event)"></g>
-            <g pac-line *ngIf="series.series.type=='line'" [options]="options" [series]="series" [pxaxisLocation]="pxaxisLocation" [pYaxis]="pYaxis"
-            (tmouseEnter)="OnMouseEnter($event)" (tmouseLeave)="OnMouseLeave($event)"></g>
-            <g pac-area *ngIf="series.series.type=='area'" [options]="options" [series]="series" [pxaxisLocation]="pxaxisLocation" [pYaxis]="pYaxis"
-            (tmouseEnter)="OnMouseEnter($event)" (tmouseLeave)="OnMouseLeave($event)"></g>
-            <g pac-smooth-line *ngIf="series.series.type=='smooth-line'" [options]="options" [series]="series" [pxaxisLocation]="pxaxisLocation" [pYaxis]="pYaxis"
-            (tmouseEnter)="OnMouseEnter($event)" (tmouseLeave)="OnMouseLeave($event)"></g>
-            <g pac-smooth-area *ngIf="series.series.type=='smooth-area'" [options]="options" [series]="series" [pxaxisLocation]="pxaxisLocation" [pYaxis]="pYaxis"
-            (tmouseEnter)="OnMouseEnter($event)" (tmouseLeave)="OnMouseLeave($event)"></g>
-        </g>
+        <ng-container *ngFor="let series of pData; let si = index">
+            <g *ngIf="series" [style.opacity]="(pIsLegendFiltered)? ((pSelectedLegends.indexOf(si)!=-1)?1:0) : ((pHoverActiveLegend == null || pHoverActiveLegend == si)?1.0:0.5)">
+                <g pac-bar *ngIf="series.series.type=='bar'" [options]="options" [series]="series" [pxaxisLocation]="pxaxisLocation" [pYaxis]="pYaxis" [pActualBarWidth]="pActualBarWidth"
+                (tmouseEnter)="OnMouseEnter($event)" (tmouseOver)="OnMouseOver($event)" (tmouseLeave)="OnMouseLeave($event)"></g>
+                <g pac-line *ngIf="series.series.type=='line'" [options]="options" [series]="series" [pxaxisLocation]="pxaxisLocation" [pYaxis]="pYaxis"
+                (tmouseEnter)="OnMouseEnter($event)" (tmouseLeave)="OnMouseLeave($event)"></g>
+                <g pac-area *ngIf="series.series.type=='area'" [options]="options" [series]="series" [pxaxisLocation]="pxaxisLocation" [pYaxis]="pYaxis"
+                (tmouseEnter)="OnMouseEnter($event)" (tmouseLeave)="OnMouseLeave($event)"></g>
+                <g pac-smooth-line *ngIf="series.series.type=='smooth-line'" [options]="options" [series]="series" [pxaxisLocation]="pxaxisLocation" [pYaxis]="pYaxis"
+                (tmouseEnter)="OnMouseEnter($event)" (tmouseLeave)="OnMouseLeave($event)"></g>
+                <g pac-smooth-area *ngIf="series.series.type=='smooth-area'" [options]="options" [series]="series" [pxaxisLocation]="pxaxisLocation" [pYaxis]="pYaxis"
+                (tmouseEnter)="OnMouseEnter($event)" (tmouseLeave)="OnMouseLeave($event)"></g>
+            </g>
+        </ng-container>
 
     </svg>
     <div *ngIf="options.legends.show" style="text-align: center;height:30px">

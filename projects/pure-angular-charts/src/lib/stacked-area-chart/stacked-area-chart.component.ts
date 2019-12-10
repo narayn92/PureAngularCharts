@@ -146,6 +146,8 @@ export class StackedAreaChartComponent extends BasicChart implements OnInit {
           const cMax = (cd.reduce((prev, current) => {
             return (prev.y > current.y) ? prev : current;
           }, '')).y;
+
+          this.options.series[i].max = cMax;
           return pd + cMax;
         }, 0);
       }
@@ -164,10 +166,12 @@ export class StackedAreaChartComponent extends BasicChart implements OnInit {
               if (pd < 0) {
                 cMin = pd;
               }
+              this.options.series[i].min = cMin;
             } else {
               cMin = (cd.reduce((prev, current) => {
                 return (prev.y < current.y) ? prev : current;
               }, '')).y;
+              this.options.series[i].min = cMin;
               cMin = (cMin < 0) ? cMin : 0;
               cMin += pd;
             }
@@ -183,74 +187,83 @@ export class StackedAreaChartComponent extends BasicChart implements OnInit {
     }
 
     if (changes.width || changes.height || changes.options || changes.data) {
+      this.calculateLabels();
+    }
+  }
 
-      const xlabels = [];
-      if (this.pXaxis.type === 'category') {
-        this.pPerUnitWidth = (this.width - this.pYaxis.axisWidth - this.pYaxis.paddingRight) / this.pXaxis.ticks.count;
-        for (let i = 0; i < this.pXaxis.ticks.count; i++) {
-          xlabels.push({
-            text: this.data[0][i].x,
-            px: this.pYaxis.axisWidth + (i * this.pPerUnitWidth) + (this.pPerUnitWidth / 2),
-            py: this.height
-          });
-        }
-        this.pXaxis.labels = xlabels;
-
-        this.pyaxisLocation = this.pYaxis.axisWidth;
-      }
-      // tslint:disable-next-line:max-line-length
-      this.pPerUnitHeight = (this.height - this.options.innerPaddingTop - this.pXaxis.axisHeight - this.options.innerPaddingBottom) / this.pYaxis.ticks.count;
-
-      const ylabels = [];
-      for (let i = 0; i <= this.pYaxis.ticks.count; i++) {
-        ylabels.push({
-          text: (this.pYaxis.min + (i * this.pPerUnitY)).toFixed(2),
-          px: 0,
-          // tslint:disable-next-line:max-line-length
-          py: this.height - (i * this.pPerUnitHeight) - this.pXaxis.axisHeight - this.options.innerPaddingBottom // + this.pXaxis.innerPaddingTop,
+  calculateLabels() {
+    const xlabels = [];
+    if (this.pXaxis.type === 'category') {
+      this.pPerUnitWidth = (this.width - this.pYaxis.axisWidth - this.pYaxis.paddingRight) / this.pXaxis.ticks.count;
+      for (let i = 0; i < this.pXaxis.ticks.count; i++) {
+        xlabels.push({
+          text: this.data[0][i].x,
+          px: this.pYaxis.axisWidth + (i * this.pPerUnitWidth) + (this.pPerUnitWidth / 2),
+          py: this.height
         });
       }
-      this.pYaxis.labels = ylabels;
-      // tslint:disable-next-line:max-line-length
-      this.pxaxisLocation = this.height - this.pXaxis.axisHeight - this.options.innerPaddingBottom + ((this.pYaxis.min <= 0) ? ((this.pYaxis.min / this.pPerUnitY) * this.pPerUnitHeight) : 0);
+      this.pXaxis.labels = xlabels;
 
-      this.plotDataPoints();
+      this.pyaxisLocation = this.pYaxis.axisWidth;
     }
+    // tslint:disable-next-line:max-line-length
+    this.pPerUnitHeight = (this.height - this.options.innerPaddingTop - this.pXaxis.axisHeight - this.options.innerPaddingBottom) / this.pYaxis.ticks.count;
+
+    const ylabels = [];
+    for (let i = 0; i <= this.pYaxis.ticks.count; i++) {
+      ylabels.push({
+        text: (this.pYaxis.min + (i * this.pPerUnitY)).toFixed(2),
+        px: 0,
+        // tslint:disable-next-line:max-line-length
+        py: this.height - (i * this.pPerUnitHeight) - this.pXaxis.axisHeight - this.options.innerPaddingBottom // + this.pXaxis.innerPaddingTop,
+      });
+    }
+    this.pYaxis.labels = ylabels;
+    // tslint:disable-next-line:max-line-length
+    this.pxaxisLocation = this.height - this.pXaxis.axisHeight - this.options.innerPaddingBottom + ((this.pYaxis.min <= 0) ? ((this.pYaxis.min / this.pPerUnitY) * this.pPerUnitHeight) : 0);
+
+    this.plotDataPoints();
   }
 
   plotDataPoints() {
     console.log('plotDataPoints');
 
-    let stackedBarSeriesCount = 0;
-    this.options.series.forEach((item, indx) => {
-      if (item.type === 'stacked-bar') {
-        stackedBarSeriesCount++;
+    let stackedAreaSeriesCount = 0;
+    this.options.series.forEach((item, si) => {
+      if (item.type === 'stacked-area') {
+        if (!this.pIsLegendFiltered || (this.pIsLegendFiltered && this.pSelectedLegends.indexOf(si) !== -1)) {
+          stackedAreaSeriesCount++;
+        }
       }
     });
-    const hasStackedBar = (stackedBarSeriesCount > 1) ? true : false;
+    const hasStackedArea = (stackedAreaSeriesCount > 1) ? true : false;
 
     this.pData = [];
     this.data.forEach((series, si) => {
-      const sData = {
-        series: this.options.series[si],
-        data: series.map((item, indx) => {
-          // tslint:disable-next-line:max-line-length
-          // tslint: disable - next - line: max - line - length
-          const distanceFromXAxis = (((this.pYaxis.min < 0) ? item.y : (item.y - this.pYaxis.min)) / this.pPerUnitY) * this.pPerUnitHeight;
-          const distanceFromYAxis = indx * this.pPerUnitWidth + (this.pPerUnitWidth / 2);
-
-          return {
-            x: item.x,
-            y: item.y,
-            total: (si > 0) ? (item.y + this.pData[si - 1].data[indx].total) : item.y,
-            height: Math.abs(distanceFromXAxis),
-            px: this.pyaxisLocation + distanceFromYAxis,
+      if (!this.pIsLegendFiltered || (this.pIsLegendFiltered && this.pSelectedLegends.indexOf(si) !== -1)) {
+        const sData = {
+          seriesIndex: si,
+          series: this.options.series[si],
+          data: series.map((item, indx) => {
             // tslint:disable-next-line:max-line-length
-            py: (si > 0) ? this.pData[si - 1].data[indx].py - distanceFromXAxis : this.pxaxisLocation - distanceFromXAxis// + this.pXaxis.innerPaddingTop
-          };
-        })
-      };
-      this.pData.push(sData);
+            const distanceFromXAxis = (((this.pYaxis.min < 0) ? item.y : (item.y - this.pYaxis.min)) / this.pPerUnitY) * this.pPerUnitHeight;
+            const distanceFromYAxis = indx * this.pPerUnitWidth + (this.pPerUnitWidth / 2);
+
+            return {
+              x: item.x,
+              y: item.y,
+              total: (this.pData.length > 0) ? (item.y + this.pData[this.pData.length - 1].data[indx].total) : item.y,
+              height: Math.abs(distanceFromXAxis),
+              px: this.pyaxisLocation + distanceFromYAxis,
+              // tslint:disable-next-line:max-line-length
+              py: (this.pData.length > 0) ? this.pData[this.pData.length - 1].data[indx].py - distanceFromXAxis : this.pxaxisLocation - distanceFromXAxis// + this.pXaxis.innerPaddingTop
+            };
+          })
+        };
+        this.pData.push(sData);
+      } else {
+        // this.pData.push(null);
+      }
     });
     console.log(this.height + '-' + this.pXaxis.axisHeight + '-' + this.pPerUnitHeight);
     console.log(this.pXaxis.labels);
@@ -306,4 +319,25 @@ export class StackedAreaChartComponent extends BasicChart implements OnInit {
 
   }
 
+
+  resetMinMax() {
+
+    this.pYaxis.max = this.options.series.reduce((pd, cd, si) => {
+      if (!this.pIsLegendFiltered || this.pSelectedLegends.indexOf(si) !== -1) {
+        return pd + cd.max;
+      } else {
+        return pd;
+      }
+    }, 0);
+
+    this.pYaxis.min = this.options.series.reduce((pd, cd, si) => {
+      if (!this.pIsLegendFiltered || this.pSelectedLegends.indexOf(si) !== -1) {
+        return pd + ((cd.min < 0) ? cd.min : 0);
+      } else {
+        return pd;
+      }
+    }, 0);
+
+    this.pPerUnitY = (this.pYaxis.max - this.pYaxis.min) / this.pYaxis.ticks.count;
+  }
 }

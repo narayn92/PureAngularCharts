@@ -179,7 +179,7 @@ export class DemoComponent implements OnInit, OnChanges {
       case 'stacked-area-chart-category':
         this.axisType = 'category';
         this.showAxisType = false;
-        this.Pagetitle = 'Stacked Bar Chart';
+        this.Pagetitle = 'Stacked Area Chart';
         this.chartOptions = this.sd.stackedAreaChartOptionsCategory;
         this.chartData = this.sd.stackedAreaChartDataCategory;
         this.templateType = this.StackedAreaChartRef;
