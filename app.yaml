@@ -1,0 +1,25 @@
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+
+  - url: /
+    static_files: docs/index.html
+    upload: docs/index.html
+  - url: /(.*)
+    static_files: docs/\1
+    upload: docs/(.*)
+  - url: /
+    static_dir: docs
+
+skip_files:
+  - e2e/
+  - dist/
+  - node_modules/
+  - projects/
+  - ^(.*/)?\..*$
+  - ^(.*/)?.*\.json$
+  - ^(.*/)?.*\.md$
+  - ^(.*/)?.*\.yaml$
+  - ^LICENSE
