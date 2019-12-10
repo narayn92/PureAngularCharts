@@ -12,7 +12,8 @@
     "start:demo": "ng serve demo --vendorSourceMap",
     "build:lib": "ng build PureAngularCharts",
     "build:demo": "npm run build:lib && ng build demo --prod --output-path=docs --base-href=\"\"",
-    "postinstall": "npm run build:lib && ng build demo --aot --prod"
+    "postinstall": "npm run build:lib && ng build demo --aot --prod",
+    "build:demo:azure": "npm run build:lib && ng build demo --prod --output-path=azure/dist --base-href=\"\""
   },
   "private": true,
   "dependencies": {
