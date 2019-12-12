@@ -1,7 +1,7 @@
 <svg:path [attr.d]="plinePath" fill="none" style="stroke-width: 2;" [style.stroke]="series.series.color"></svg:path>
 <ng-container *ngFor="let point of series.data">    
     <svg:g *ngIf="math.round(point.px-(options.bar.width/2))>=pYaxis.axisWidth">
-        <svg:text *ngIf="options.dataLabels.show" [attr.x]="point.px" [attr.y]="(point.py<=pxaxisLocation)?point.py-8:point.py+15" [style.fill]="series.series.color" text-anchor="middle">{{point.y}}</text>
+        <svg:text *ngIf="options.dataLabels.show" [attr.x]="point.px" [attr.y]="(point.py<=pxaxisLocation)?point.py-8:point.py+15" [ngStyle]="options.dataLabels.style" [style.fill]="(options.dataLabels.style.fill=='auto')? series.series.color: options.dataLabels.style.fill" text-anchor="middle">{{point.y}}</text>
 
         <svg:circle [attr.cx]="point.px" [attr.cy]="point.py" r="5" [style.fill]="series.series.color" style="stroke: #000; stroke-width: 1;"
             (mouseenter)="OnMouseEnter($event, point, series.series)" (mouseleave)="OnMouseLeave($event)"></circle>

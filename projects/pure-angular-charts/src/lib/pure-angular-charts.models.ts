@@ -1,19 +1,65 @@
+export interface Chart {
+    // border?: string;
+    background?: string;
+    // boxShadow?: string  
+    padding?: Padding
+}
+
+export interface Padding{
+    paddingTop?: number
+    paddingRight?: number
+    paddingBottom?: number
+    paddingLeft?: number
+}
+
+export interface Title {
+    text?: string;
+    height?: number;
+    style?: TextStyle
+}
+
+export interface TextStyle{
+    textAlign?: string;
+    color?: string;
+    fontSize?: string;
+    fontFamily?: string
+    background?: string
+}
+export interface SvgTextStyle{
+    fill?: string;
+    fontSize?: string;
+    fontFamily?: string
+}
+
+export interface SvgLineStyle{
+    stroke?: string;
+    strokeWidth?: number;
+    strokeDasharray?: string;
+}
 export interface Ticks {
     show?: boolean;
     count?: number;
     length?: number;
+    style?: SvgLineStyle
 }
 
 export interface Grid {
     show?: boolean;
+    style?: SvgLineStyle
+}
+
+export interface AxisLine {
+    show?: boolean;
+    style?: SvgLineStyle
 }
 
 export interface Xaxis {
     type?: string;
     show?: boolean;
     labels?: string[];
+    labelStyle?: SvgTextStyle;
     showLabels?: boolean;
-    showAxisLine?: boolean;
+    axisLine?: AxisLine;
     min?: number;
     max?: number;
     title?: string;
@@ -28,8 +74,9 @@ export interface Yaxis {
     type?: string;
     show?: boolean;
     labels?: string[];
+    labelStyle?: SvgTextStyle;
     showLabels?: boolean;
-    showAxisLine?: boolean;
+    axisLine?: AxisLine;
     min?: number;
     max?: number;
     title?: string;
@@ -53,14 +100,31 @@ export interface Bar {
 
 export interface DataLabels {
     show?: boolean;
+    style?: SvgTextStyle;
 }
 
 export interface Legends {
     show?: boolean;
+    height?: number;
+    style?: TextStyle
+}
+
+export interface ToolTipStyle{
+    textAlign?: string;
+    color?: string;
+    fontSize?: string;
+    fontFamily?: string
+    background?: string
+    minWidth?: string;
+}
+export interface ToolTip {
+    show?: boolean;
+    style?: ToolTipStyle
 }
 
 export interface ChartOptions {
-    title?: string;
+    chart?: Chart
+    title?: Title;
     xaxis?: Xaxis;
     yaxis?: Yaxis;
     series: Series[];
@@ -69,6 +133,7 @@ export interface ChartOptions {
     legends?: Legends;
     innerPaddingTop?: number;
     innerPaddingBottom?: number;
+    tooltip?: ToolTip
 }
 
 

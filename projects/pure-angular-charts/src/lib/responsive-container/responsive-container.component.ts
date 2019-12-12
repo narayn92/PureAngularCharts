@@ -69,8 +69,8 @@ export class ResponsiveContainerComponent implements OnInit, AfterViewInit {
       const borderY = parseFloat(cs.borderTopWidth) + parseFloat(cs.borderBottomWidth);
 
       this.chartDimention = {
-        width: element.offsetWidth - paddingX - borderX - 12,
-        height: element.offsetHeight - paddingY - borderY - 72
+        width: element.offsetWidth - paddingX - borderX,
+        height: element.offsetHeight - paddingY - borderY
         // data: this.data,
         // options: this.options
       };

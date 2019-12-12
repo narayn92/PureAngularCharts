@@ -1,5 +1,5 @@
 <svg:g *ngFor="let ylabel of pYaxis.labels">
-    <svg:line *ngIf="pYaxis.grid.show" [attr.x1]="ylabel.px + pYaxis.axisWidth" [attr.y1]="ylabel.py" [attr.x2]="width - pYaxis.paddingRight" [attr.y2]="ylabel.py" style="stroke:#e6e6e6;stroke-width:1;stroke-dasharray:10 5" />
-    <svg:line *ngIf="pYaxis.ticks.show" [attr.x1]="ylabel.px + pYaxis.axisWidth" [attr.y1]="ylabel.py" [attr.x2]="ylabel.px + pYaxis.axisWidth - pYaxis.ticks.length" [attr.y2]="ylabel.py" style="stroke:#000;stroke-width:1" />
-    <svg:text *ngIf="pYaxis.showLabels" [attr.x]="ylabel.px + pYaxis.axisWidth - pYaxis.ticks.length - 5" [attr.y]="ylabel.py" fill="#000" dominant-baseline="middle" text-anchor="end">{{ylabel.text}}</text>
+    <svg:line *ngIf="pYaxis.grid.show" [attr.x1]="ylabel.px + pYaxis.axisWidth" [attr.y1]="ylabel.py" [attr.x2]="width - pYaxis.paddingRight" [attr.y2]="ylabel.py" [ngStyle]="pYaxis.grid.style" />
+    <svg:line *ngIf="pYaxis.ticks.show" [attr.x1]="ylabel.px + pYaxis.axisWidth" [attr.y1]="ylabel.py" [attr.x2]="ylabel.px + pYaxis.axisWidth - pYaxis.ticks.length" [attr.y2]="ylabel.py" [ngStyle]="pYaxis.ticks.style" />
+    <svg:text *ngIf="pYaxis.showLabels" [attr.x]="ylabel.px + pYaxis.axisWidth - pYaxis.ticks.length - 5" [attr.y]="ylabel.py" [ngStyle]="pYaxis.labelStyle" dominant-baseline="middle" text-anchor="end">{{ylabel.text}}</text>
 </g>

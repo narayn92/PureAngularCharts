@@ -1,6 +1,10 @@
-
-<div style="padding: 5px;background-color: #ffffff;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);border:solid 1px #ababab;position: relative;" [style.width.px]="width+12">
-    <div *ngIf="options.title" style="text-align:center;color:#333;font-size:16px;height:30px">{{options.title}}</div>
+<div style="padding: 5px;position: relative;" [ngStyle]="options.chart" 
+[style.paddingTop.px]="options.chart.padding.paddingTop" 
+[style.paddingRight.px]="options.chart.padding.paddingRight" 
+[style.paddingBottom.px]="options.chart.padding.paddingBottom" 
+[style.paddingLeft.px]="options.chart.padding.paddingLeft" 
+[style.width.px]="_width">
+    <div *ngIf="options.title.text" [ngStyle]="options.title.style" [style.height.px]="options.title.height">{{options.title.text}}</div>
     <svg [attr.width]="width" [attr.height]="height">
         
         <g pac-axis [pXaxis]="pXaxis" [pYaxis]="pYaxis" [pxaxisLocation]="pxaxisLocation" [pyaxisLocation]="pyaxisLocation" [width]="width" [height]="height"></g>
@@ -12,18 +16,25 @@
         </ng-container>
 
     </svg>
-    <div *ngIf="options.legends.show" style="text-align: center;height:30px">
+    <div *ngIf="options.legends.show" [ngStyle]="options.legends.style" [style.height.px]="options.legends.height">
         <span *ngFor="let item of options.series; let si = index" style="padding: 5px;cursor: default;" (click)="OnLegendSelected(item, si)" (mouseenter)="OnLegendMouseEnter($event,item, si)" (mouseover)="OnLegendMouseOver($event,item, si)" (mouseleave)="OnLegendMouseLeave($event,item, si)" [style.opacity]="(pIsLegendFiltered)? ((pSelectedLegends.indexOf(si)!=-1)?1:0.5) : ((pHoverActiveLegend == null || pHoverActiveLegend == si)?1.0:0.5)">
-            <span style="display:inline-block;width:10px;height:10px;" [style.background-color]="item.color"></span> <span style="padding-left: 5px;">{{item.name}}</span>
+            <span style="display:inline-block;width:10px;height:10px;" [style.background-color]="item.color"></span> <span style="padding-left: 5px;" [ngStyle]="options.legends.style">{{item.name}}</span>
         </span>
     </div>
-    <div class="p-tooltip-container" [style.top.px]="ptootltip.py" [style.left.px]="ptootltip.px" [style.opacity]="(pDisplayTooltip)?1:0">
+    <div class="pac-tooltip-container" [ngStyle]="options.tooltip.style" [style.top.px]="ptootltip.py" [style.left.px]="ptootltip.px" *ngIf="pDisplayTooltip"> 
+        <!-- [style.opacity]="(pDisplayTooltip)?1:0" -->
         <div>
             <span style="display:inline-block;width:10px;height:10px;" [style.background-color]="ptootltip.series.color"></span> <span style="padding-left: 5px;">{{ptootltip.series.name}}</span>
         </div>
-            <div>X : {{ptootltip.point.x}}</div>
-        <div>Y : {{ptootltip.point.y}}</div>
+        <div>{{(ptootltip.xTitle)?ptootltip.xTitle:'X'}}: {{ptootltip.point.x}}</div>
+        <div>{{(ptootltip.yTitle)?ptootltip.yTitle:'Y'}} : {{ptootltip.point.y}}</div>
     </div>
 </div>
+
+
+
+
+
+
 
 

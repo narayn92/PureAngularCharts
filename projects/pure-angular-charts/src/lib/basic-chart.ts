@@ -3,21 +3,29 @@ import { Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 
 export class BasicChart implements OnInit, OnChanges {
 
-    @Input() width = 600;
+    _width = 600;
+
+    @Input()
+    set width(val) {
+        this._width = val;
+    }
+    get width() {
+        return this._width - this.options.chart.padding.paddingLeft - this.options.chart.padding.paddingTop;
+    }
     @Input() data = [
         // [{ x: 0, y: 0 }, { x: 1, y: 1 }, { x: 2, y: 2 }, { x: 3, y: 3 }, { x: 4, y: 4 }, { x: 5, y: 5 }]
     ];
     private pheight = 400;
     get height() {
-        let titleHeight = 0;
-        const legendHeight = 0;
-        if (!this.options.title) {
-            titleHeight = 30;
+        let titleHeight = this.options.title.height;
+        const legendHeight = this.options.legends.height;
+        if (!this.options.title.text) {
+            titleHeight = 0;
         }
         if (!this.options.legends.show) {
-            titleHeight = 30;
+            titleHeight = 0;
         }
-        return this.pheight + titleHeight + legendHeight;
+        return this.pheight - titleHeight - legendHeight - this.options.chart.padding.paddingTop - this.options.chart.padding.paddingBottom;
     }
     @Input()
     set height(val: any) {
@@ -61,6 +69,8 @@ export class BasicChart implements OnInit, OnChanges {
             x: 0,
             y: 0
         },
+        xTitle: '',
+        yTitle: '',
         px: 0,
         py: 0
     };
@@ -378,6 +388,8 @@ export class BasicChart implements OnInit, OnChanges {
         // console.log('OnMouseEnter', event.event, event.point);
         this.ptootltip.series = event.series;
         this.ptootltip.point = event.point;
+        this.ptootltip.xTitle = this.pXaxis.title;
+        this.ptootltip.yTitle = this.pYaxis.title;
         this.ptootltip.px = event.event.offsetX + 20;
         this.ptootltip.py = event.event.offsetY + 20;
 
@@ -455,7 +467,28 @@ export class BasicChart implements OnInit, OnChanges {
         let poptions: ChartOptions = {
             series: []
         };
-        poptions.title = (val.title) ? val.title : this.pdefaultOptions.title;
+        poptions.chart = {};
+        if (val.chart) {
+            poptions.chart.background = (val.chart.background) ? val.chart.background : this.pdefaultOptions.chart.background;
+            poptions.chart.padding = Object.assign({}, this.pdefaultOptions.chart.padding);
+            if (typeof val.chart.padding === 'object') { Object.assign(poptions.chart.padding, val.chart.padding); }
+        } else {
+            poptions.chart.background = this.pdefaultOptions.chart.background;
+            poptions.chart.padding = Object.assign({}, this.pdefaultOptions.chart.padding);
+        }
+
+        poptions.title = {};
+        if (val.title) {
+            poptions.title.text = (val.title.text) ? val.title.text : this.pdefaultOptions.title.text;
+            poptions.title.height = (typeof val.title.height === 'number') ? val.title.height : this.pdefaultOptions.title.height;
+            poptions.title.style = Object.assign({}, this.pdefaultOptions.title.style);
+            if (typeof val.title.style === 'object') { Object.assign(poptions.title.style, val.title.style); }
+        } else {
+            poptions.title.text = this.pdefaultOptions.title.text;
+            poptions.title.height = this.pdefaultOptions.title.height;
+            poptions.title.style = Object.assign({}, this.pdefaultOptions.title.style);
+        }
+
         poptions.xaxis = {};
         if (val.xaxis) {
             poptions.xaxis.type = (val.xaxis.type) ? val.xaxis.type : this.pdefaultOptions.xaxis.type;
@@ -463,8 +496,22 @@ export class BasicChart implements OnInit, OnChanges {
             poptions.xaxis.labels = (val.xaxis.labels) ? val.xaxis.labels : this.pdefaultOptions.xaxis.labels;
             // tslint:disable-next-line:max-line-length
             poptions.xaxis.showLabels = (typeof val.xaxis.showLabels === 'boolean') ? val.xaxis.showLabels : this.pdefaultOptions.xaxis.showLabels;
+            poptions.xaxis.labelStyle = Object.assign({}, this.pdefaultOptions.xaxis.labelStyle)
+            if (typeof val.xaxis.labelStyle === 'object') { Object.assign(poptions.xaxis.labelStyle, val.xaxis.labelStyle) };
             // tslint:disable-next-line:max-line-length
-            poptions.xaxis.showAxisLine = (typeof val.xaxis.showAxisLine === 'boolean') ? val.xaxis.showAxisLine : this.pdefaultOptions.xaxis.showAxisLine;
+
+            poptions.xaxis.axisLine = {};
+            if (val.xaxis.axisLine) {
+                // tslint:disable-next-line:max-line-length
+                poptions.xaxis.axisLine.show = (typeof val.xaxis.axisLine.show === 'boolean') ? val.xaxis.axisLine.show : this.pdefaultOptions.xaxis.axisLine.show;
+                poptions.xaxis.axisLine.style = Object.assign({}, this.pdefaultOptions.xaxis.axisLine.style)
+                if (typeof val.xaxis.axisLine.style === 'object') { Object.assign(poptions.xaxis.axisLine.style, val.xaxis.axisLine.style) };
+
+            } else {
+                poptions.xaxis.axisLine.show = this.pdefaultOptions.xaxis.axisLine.show;
+                poptions.xaxis.axisLine.style = Object.assign({}, this.pdefaultOptions.xaxis.axisLine.style)
+            }
+
             poptions.xaxis.min = (typeof val.xaxis.min === 'number') ? val.xaxis.min : this.pdefaultOptions.xaxis.min;
             poptions.xaxis.max = (typeof val.xaxis.max === 'number') ? val.xaxis.max : this.pdefaultOptions.xaxis.max;
             poptions.xaxis.title = (val.xaxis.title) ? val.xaxis.title : this.pdefaultOptions.xaxis.title;
@@ -476,15 +523,25 @@ export class BasicChart implements OnInit, OnChanges {
                 poptions.xaxis.ticks.count = (typeof val.xaxis.ticks.count === 'number') ? val.xaxis.ticks.count : this.pdefaultOptions.xaxis.ticks.count;
                 // tslint:disable-next-line:max-line-length
                 poptions.xaxis.ticks.length = (typeof val.xaxis.ticks.length === 'number') ? val.xaxis.ticks.length : this.pdefaultOptions.xaxis.ticks.length;
+
+                poptions.xaxis.ticks.style = Object.assign({}, this.pdefaultOptions.xaxis.ticks.style)
+                if (typeof val.xaxis.ticks.style === 'object') { Object.assign(poptions.xaxis.ticks.style, val.xaxis.ticks.style) };
             } else {
-                poptions.xaxis.ticks = Object.assign({}, this.pdefaultOptions.xaxis.ticks);
+                poptions.xaxis.ticks.show = this.pdefaultOptions.xaxis.show;
+                poptions.xaxis.ticks.count = this.pdefaultOptions.xaxis.count;
+                poptions.xaxis.ticks.length = this.pdefaultOptions.xaxis.length;
+                poptions.xaxis.ticks.style = Object.assign({}, this.pdefaultOptions.xaxis.ticks.style)
             }
+            poptions.xaxis.grid = {};
             if (val.xaxis.grid) {
-                poptions.xaxis.grid = {};
                 // tslint:disable-next-line:max-line-length
                 poptions.xaxis.grid.show = (typeof val.xaxis.grid.show === 'boolean') ? val.xaxis.grid.show : this.pdefaultOptions.xaxis.grid.show;
+                poptions.xaxis.grid.style = Object.assign({}, this.pdefaultOptions.xaxis.grid.style)
+                if (typeof val.xaxis.grid.style === 'object') { Object.assign(poptions.xaxis.grid.style, val.xaxis.grid.style) };
+
             } else {
-                poptions.xaxis.grid = Object.assign({}, this.pdefaultOptions.xaxis.grid);
+                poptions.xaxis.grid.show = this.pdefaultOptions.xaxis.grid.show;
+                poptions.xaxis.grid.style = Object.assign({}, this.pdefaultOptions.xaxis.grid.style)
             }
             // tslint:disable-next-line:max-line-length
             poptions.xaxis.axisHeight = (typeof val.xaxis.axisHeight === 'number') ? val.xaxis.axisHeight : this.pdefaultOptions.xaxis.axisHeight;
@@ -494,12 +551,21 @@ export class BasicChart implements OnInit, OnChanges {
             poptions.xaxis.show = this.pdefaultOptions.xaxis.show;
             poptions.xaxis.labels = this.pdefaultOptions.xaxis.labels;
             poptions.xaxis.showLabels = this.pdefaultOptions.xaxis.showLabels;
-            poptions.xaxis.showAxisLine = this.pdefaultOptions.xaxis.showAxisLine;
+            poptions.xaxis.labelStyle = Object.assign({}, this.pdefaultOptions.xaxis.labelStyle);
+            poptions.xaxis.axisLine = {};
+            poptions.xaxis.axisLine.show = this.pdefaultOptions.xaxis.axisLine.show;
+            poptions.xaxis.axisLine.style = Object.assign({}, this.pdefaultOptions.xaxis.axisLine.style)
             poptions.xaxis.min = this.pdefaultOptions.xaxis.min;
             poptions.xaxis.max = this.pdefaultOptions.xaxis.max;
             poptions.xaxis.title = this.pdefaultOptions.xaxis.title;
-            poptions.xaxis.ticks = Object.assign({}, this.pdefaultOptions.xaxis.ticks);
-            poptions.xaxis.grid = Object.assign({}, this.pdefaultOptions.xaxis.grid);
+            poptions.xaxis.ticks = {};
+            poptions.xaxis.ticks.show = this.pdefaultOptions.xaxis.show;
+            poptions.xaxis.ticks.count = this.pdefaultOptions.xaxis.count;
+            poptions.xaxis.ticks.length = this.pdefaultOptions.xaxis.length;
+            poptions.xaxis.ticks.style = Object.assign({}, this.pdefaultOptions.xaxis.ticks.style)
+            poptions.xaxis.grid = {};
+            poptions.xaxis.grid.show = this.pdefaultOptions.xaxis.grid.show;
+            poptions.xaxis.grid.style = Object.assign({}, this.pdefaultOptions.xaxis.grid.style)
             poptions.xaxis.axisHeight = this.pdefaultOptions.xaxis.axisHeight;
             poptions.xaxis.minMax = this.pdefaultOptions.xaxis.minMax;
         }
@@ -510,8 +576,23 @@ export class BasicChart implements OnInit, OnChanges {
             poptions.yaxis.labels = (val.yaxis.labels) ? val.yaxis.labels : this.pdefaultOptions.yaxis.labels;
             // tslint:disable-next-line:max-line-length
             poptions.yaxis.showLabels = (typeof val.yaxis.showLabels === 'boolean') ? val.yaxis.showLabels : this.pdefaultOptions.yaxis.showLabels;
-            // tslint:disable-next-line:max-line-length
-            poptions.yaxis.showAxisLine = (typeof val.yaxis.showAxisLine === 'boolean') ? val.yaxis.showAxisLine : this.pdefaultOptions.yaxis.showAxisLine;
+
+            poptions.yaxis.labelStyle = Object.assign({}, this.pdefaultOptions.yaxis.labelStyle)
+            if (typeof val.yaxis.labelStyle === 'object') { Object.assign(poptions.yaxis.labelStyle, val.yaxis.labelStyle) };
+
+
+            poptions.yaxis.axisLine = {};
+            if (val.yaxis.axisLine) {
+                // tslint:disable-next-line:max-line-length
+                poptions.yaxis.axisLine.show = (typeof val.yaxis.axisLine.show === 'boolean') ? val.yaxis.axisLine.show : this.pdefaultOptions.yaxis.axisLine.show;
+                poptions.yaxis.axisLine.style = Object.assign({}, this.pdefaultOptions.yaxis.axisLine.style)
+                if (typeof val.yaxis.axisLine.style === 'object') { Object.assign(poptions.yaxis.axisLine.style, val.yaxis.axisLine.style) };
+
+            } else {
+                poptions.yaxis.axisLine.show = this.pdefaultOptions.yaxis.axisLine.show;
+                poptions.yaxis.axisLine.style = Object.assign({}, this.pdefaultOptions.yaxis.axisLine.style)
+            }
+
             poptions.yaxis.min = (typeof val.yaxis.min === 'number') ? val.yaxis.min : this.pdefaultOptions.yaxis.min;
             poptions.yaxis.max = (typeof val.yaxis.max === 'number') ? val.yaxis.max : this.pdefaultOptions.yaxis.max;
             poptions.yaxis.title = (val.yaxis.title) ? val.yaxis.title : this.pdefaultOptions.yaxis.title;
@@ -523,15 +604,25 @@ export class BasicChart implements OnInit, OnChanges {
                 poptions.yaxis.ticks.count = (typeof val.yaxis.ticks.count === 'number') ? val.yaxis.ticks.count : this.pdefaultOptions.yaxis.ticks.count;
                 // tslint:disable-next-line:max-line-length
                 poptions.yaxis.ticks.length = (typeof val.yaxis.ticks.length === 'number') ? val.yaxis.ticks.length : this.pdefaultOptions.yaxis.ticks.length;
+
+                poptions.yaxis.ticks.style = Object.assign({}, this.pdefaultOptions.yaxis.ticks.style)
+                if (typeof val.yaxis.ticks.style === 'object') { Object.assign(poptions.yaxis.ticks.style, val.yaxis.ticks.style) };
             } else {
-                poptions.yaxis.ticks = Object.assign({}, this.pdefaultOptions.yaxis.ticks);
+                poptions.yaxis.ticks.show = this.pdefaultOptions.yaxis.show;
+                poptions.yaxis.ticks.count = this.pdefaultOptions.yaxis.count;
+                poptions.yaxis.ticks.length = this.pdefaultOptions.yaxis.length;
+                poptions.yaxis.ticks.style = Object.assign({}, this.pdefaultOptions.yaxis.ticks.style)
             }
+            poptions.yaxis.grid = {};
             if (typeof val.xaxis.grid === 'object') {
-                poptions.yaxis.grid = {};
                 // tslint:disable-next-line:max-line-length
                 poptions.yaxis.grid.show = (typeof val.yaxis.grid.show === 'boolean') ? val.yaxis.grid.show : this.pdefaultOptions.yaxis.grid.show;
+
+                poptions.yaxis.grid.style = Object.assign({}, this.pdefaultOptions.yaxis.grid.style)
+                if (typeof val.yaxis.grid.style === 'object') { Object.assign(poptions.yaxis.grid.style, val.yaxis.grid.style) };
             } else {
-                poptions.yaxis.grid = Object.assign({}, this.pdefaultOptions.yaxis.grid);
+                poptions.yaxis.grid.show = this.pdefaultOptions.yaxis.grid.show;
+                poptions.yaxis.grid.style = Object.assign({}, this.pdefaultOptions.yaxis.grid.style)
             }
             // tslint:disable-next-line:max-line-length
             poptions.yaxis.axisWidth = (typeof val.yaxis.axisWidth === 'number') ? val.yaxis.axisWidth : this.pdefaultOptions.yaxis.axisWidth;
@@ -543,12 +634,21 @@ export class BasicChart implements OnInit, OnChanges {
             poptions.yaxis.show = this.pdefaultOptions.yaxis.show;
             poptions.yaxis.labels = this.pdefaultOptions.yaxis.labels;
             poptions.yaxis.showLabels = this.pdefaultOptions.yaxis.showLabels;
-            poptions.yaxis.showAxisLine = this.pdefaultOptions.yaxis.showAxisLine;
+            poptions.yaxis.labelStyle = Object.assign({}, this.pdefaultOptions.yaxis.labelStyle);
+            poptions.yaxis.axisLine = {};
+            poptions.yaxis.axisLine.show = this.pdefaultOptions.yaxis.axisLine.show;
+            poptions.yaxis.axisLine.style = Object.assign({}, this.pdefaultOptions.yaxis.axisLine.style)
             poptions.yaxis.min = this.pdefaultOptions.yaxis.min;
             poptions.yaxis.max = this.pdefaultOptions.yaxis.max;
             poptions.yaxis.title = this.pdefaultOptions.yaxis.title;
-            poptions.yaxis.ticks = Object.assign({}, this.pdefaultOptions.yaxis.ticks);
-            poptions.yaxis.grid = Object.assign({}, this.pdefaultOptions.yaxis.grid);
+            poptions.yaxis.ticks = {};
+            poptions.yaxis.ticks.show = this.pdefaultOptions.yaxis.show;
+            poptions.yaxis.ticks.count = this.pdefaultOptions.yaxis.count;
+            poptions.yaxis.ticks.length = this.pdefaultOptions.yaxis.length;
+            poptions.yaxis.ticks.style = Object.assign({}, this.pdefaultOptions.yaxis.ticks.style)
+            poptions.yaxis.grid = {};
+            poptions.yaxis.grid.show = this.pdefaultOptions.yaxis.grid.show;
+            poptions.yaxis.grid.style = Object.assign({}, this.pdefaultOptions.yaxis.grid.style)
             poptions.yaxis.axisWidth = this.pdefaultOptions.yaxis.axisWidth;
             poptions.yaxis.paddingRight = this.pdefaultOptions.yaxis.paddingRight;
             poptions.yaxis.minMax = this.pdefaultOptions.yaxis.minMax;
@@ -563,24 +663,46 @@ export class BasicChart implements OnInit, OnChanges {
         } else {
             poptions.bar = Object.assign({}, this.pdefaultOptions.bar);
         }
+        poptions.dataLabels = {};
         if (typeof val.dataLabels === 'object') {
-            poptions.dataLabels = {};
             // tslint:disable-next-line:max-line-length
             poptions.dataLabels.show = (typeof val.dataLabels.show === 'boolean') ? val.dataLabels.show : this.pdefaultOptions.dataLabels.show;
+            poptions.dataLabels.style = Object.assign({}, this.pdefaultOptions.dataLabels.style)
+            if (typeof val.dataLabels.style === 'object') { Object.assign(poptions.dataLabels.style, val.dataLabels.style) }
         } else {
-            poptions.dataLabels = Object.assign({}, this.pdefaultOptions.dataLabels);
+            poptions.dataLabels.show = this.pdefaultOptions.dataLabels.show;
+            poptions.dataLabels.style = Object.assign({}, this.pdefaultOptions.dataLabels.style)
         }
+        poptions.legends = {};
         if (typeof val.legends === 'object') {
-            poptions.legends = {};
             // tslint:disable-next-line:max-line-length
             poptions.legends.show = (typeof val.legends.show === 'boolean') ? val.legends.show : this.pdefaultOptions.legends.show;
+            poptions.legends.height = (typeof val.legends.height === 'number') ? val.legends.height : this.pdefaultOptions.legends.height;
+            poptions.legends.style = Object.assign({}, this.pdefaultOptions.legends.style);
+            if (typeof val.legends.style === 'object') { Object.assign(poptions.legends.style, val.legends.style); }
         } else {
-            poptions.legends = Object.assign({}, this.pdefaultOptions.legends);
+            poptions.legends.show = this.pdefaultOptions.legends.show;
+            poptions.legends.height = this.pdefaultOptions.legends.height;
+            poptions.legends.style = Object.assign({}, this.pdefaultOptions.legends.style);
+
         }
         poptions.innerPaddingTop = (typeof val.innerPaddingTop === 'number') ? val.innerPaddingTop : this.pdefaultOptions.innerPaddingTop;
         // tslint:disable-next-line:max-line-length
         poptions.innerPaddingBottom = (typeof val.innerPaddingBottom === 'number') ? val.innerPaddingBottom : this.pdefaultOptions.innerPaddingBottom;
 
+        poptions.tooltip = {};
+        if (typeof val.tooltip === 'object') {
+            // tslint:disable-next-line:max-line-length
+            poptions.tooltip.show = (typeof val.tooltip.show === 'boolean') ? val.tooltip.show : this.pdefaultOptions.tooltip.show;
+            // poptions.tooltip.minWidth = (typeof val.tooltip.minWidth === 'number') ? val.tooltip.minWidth : this.pdefaultOptions.tooltip.minWidth;
+            poptions.tooltip.style = Object.assign({}, this.pdefaultOptions.tooltip.style);
+            if (typeof val.tooltip.style === 'object') { Object.assign(poptions.tooltip.style, val.tooltip.style); }
+        } else {
+            poptions.tooltip.show = this.pdefaultOptions.tooltip.show;
+            // poptions.tooltip.minWidth = this.pdefaultOptions.tooltip.minWidth;
+            poptions.tooltip.style = Object.assign({}, this.pdefaultOptions.tooltip.style);
+
+        }
         this.poptions = poptions;
 
         // if (val.title) { this.options.title = val.title; }
