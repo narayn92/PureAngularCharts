@@ -21,7 +21,7 @@
             <span style="display:inline-block;width:10px;height:10px;" [style.background-color]="item.color"></span> <span style="padding-left: 5px;">{{item.name}}</span>
         </span>
     </div>
-    <div class="pac-tooltip-container" [ngStyle]="options.tooltip.style" [style.top.px]="ptootltip.py" [style.left.px]="ptootltip.px" *ngIf="pDisplayTooltip"> 
+    <div class="pac-tooltip-container" [ngStyle]="options.tooltip.style" [style.top.px]="ptootltip.py" [style.left.px]="ptootltip.px" *ngIf="options.tooltip.show && pDisplayTooltip"> 
         <!-- [style.opacity]="(pDisplayTooltip)?1:0" -->
         <div>
             <span style="display:inline-block;width:10px;height:10px;" [style.background-color]="ptootltip.series.color"></span> <span style="padding-left: 5px;">{{ptootltip.series.name}}</span>

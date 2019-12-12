@@ -1,5 +1,6 @@
 import { Xaxis, Yaxis, ChartOptions } from './pure-angular-charts.models';
 import { Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Defaults } from './defaults';
 
 export class BasicChart implements OnInit, OnChanges {
 
@@ -35,7 +36,6 @@ export class BasicChart implements OnInit, OnChanges {
     }
 
     private poptions;
-    private pdefaultOptions;
 
     get options() {
         return this.poptions;
@@ -81,9 +81,7 @@ export class BasicChart implements OnInit, OnChanges {
     pIsLegendFiltered = false;
     pSelectedLegends = [];
 
-    constructor(options: ChartOptions) {
-        // Object.assign(this.options, options);
-        this.pdefaultOptions = options;
+    constructor() {
     }
 
     ngOnInit() {
@@ -462,307 +460,115 @@ export class BasicChart implements OnInit, OnChanges {
         this.pPerUnitY = (this.pYaxis.max - this.pYaxis.min) / this.pYaxis.ticks.count;
     }
 
+    getDefaultOptions() {
+        return Defaults.getdefaultOptions();
+    }
+
     mergerDefaultOptions(val) {
-        // tslint:disable-next-line:prefer-const
-        let poptions: ChartOptions = {
-            series: []
-        };
-        poptions.chart = {};
+        let poptions = this.getDefaultOptions();
+
         if (val.chart) {
-            poptions.chart.background = (val.chart.background) ? val.chart.background : this.pdefaultOptions.chart.background;
-            poptions.chart.padding = Object.assign({}, this.pdefaultOptions.chart.padding);
+            if (val.chart.background) { poptions.chart.background = val.chart.background };
             if (typeof val.chart.padding === 'object') { Object.assign(poptions.chart.padding, val.chart.padding); }
-        } else {
-            poptions.chart.background = this.pdefaultOptions.chart.background;
-            poptions.chart.padding = Object.assign({}, this.pdefaultOptions.chart.padding);
         }
 
-        poptions.title = {};
         if (val.title) {
-            poptions.title.text = (val.title.text) ? val.title.text : this.pdefaultOptions.title.text;
-            poptions.title.height = (typeof val.title.height === 'number') ? val.title.height : this.pdefaultOptions.title.height;
-            poptions.title.style = Object.assign({}, this.pdefaultOptions.title.style);
+            if (val.title.text) { poptions.title.text = val.title.text };
+            if (typeof val.title.height === 'number') { poptions.title.height = val.title.height }
             if (typeof val.title.style === 'object') { Object.assign(poptions.title.style, val.title.style); }
-        } else {
-            poptions.title.text = this.pdefaultOptions.title.text;
-            poptions.title.height = this.pdefaultOptions.title.height;
-            poptions.title.style = Object.assign({}, this.pdefaultOptions.title.style);
         }
 
-        poptions.xaxis = {};
         if (val.xaxis) {
-            poptions.xaxis.type = (val.xaxis.type) ? val.xaxis.type : this.pdefaultOptions.xaxis.type;
-            poptions.xaxis.show = (typeof val.xaxis.show === 'boolean') ? val.xaxis.show : this.pdefaultOptions.xaxis.show;
-            poptions.xaxis.labels = (val.xaxis.labels) ? val.xaxis.labels : this.pdefaultOptions.xaxis.labels;
-            // tslint:disable-next-line:max-line-length
-            poptions.xaxis.showLabels = (typeof val.xaxis.showLabels === 'boolean') ? val.xaxis.showLabels : this.pdefaultOptions.xaxis.showLabels;
-            poptions.xaxis.labelStyle = Object.assign({}, this.pdefaultOptions.xaxis.labelStyle)
-            if (typeof val.xaxis.labelStyle === 'object') { Object.assign(poptions.xaxis.labelStyle, val.xaxis.labelStyle) };
-            // tslint:disable-next-line:max-line-length
+            if (val.xaxis.type) { poptions.xaxis.type = val.xaxis.type };
+            if (typeof val.xaxis.show === 'boolean') { poptions.xaxis.show = val.xaxis.show; }
+            if (val.xaxis.labels) { poptions.xaxis.labels = val.xaxis.labels };
+            if (typeof val.xaxis.showLabels === 'boolean') { poptions.xaxis.showLabels = val.xaxis.showLabels; }
+            if (typeof val.xaxis.labelStyle === 'object') { Object.assign(poptions.xaxis.labelStyle, val.xaxis.labelStyle); }
 
-            poptions.xaxis.axisLine = {};
             if (val.xaxis.axisLine) {
-                // tslint:disable-next-line:max-line-length
-                poptions.xaxis.axisLine.show = (typeof val.xaxis.axisLine.show === 'boolean') ? val.xaxis.axisLine.show : this.pdefaultOptions.xaxis.axisLine.show;
-                poptions.xaxis.axisLine.style = Object.assign({}, this.pdefaultOptions.xaxis.axisLine.style)
-                if (typeof val.xaxis.axisLine.style === 'object') { Object.assign(poptions.xaxis.axisLine.style, val.xaxis.axisLine.style) };
-
-            } else {
-                poptions.xaxis.axisLine.show = this.pdefaultOptions.xaxis.axisLine.show;
-                poptions.xaxis.axisLine.style = Object.assign({}, this.pdefaultOptions.xaxis.axisLine.style)
+                if (typeof val.xaxis.axisLine.show === 'boolean') { poptions.xaxis.axisLine.show = val.xaxis.axisLine.show; }
+                if (typeof val.xaxis.axisLine.style === 'object') { Object.assign(poptions.xaxis.axisLine.style, val.xaxis.axisLine.style); }
             }
 
-            poptions.xaxis.min = (typeof val.xaxis.min === 'number') ? val.xaxis.min : this.pdefaultOptions.xaxis.min;
-            poptions.xaxis.max = (typeof val.xaxis.max === 'number') ? val.xaxis.max : this.pdefaultOptions.xaxis.max;
-            poptions.xaxis.title = (val.xaxis.title) ? val.xaxis.title : this.pdefaultOptions.xaxis.title;
+            if (typeof val.xaxis.min === 'number') { poptions.xaxis.min = val.xaxis.min }
+            if (typeof val.xaxis.max === 'number') { poptions.xaxis.min = val.xaxis.max }
+            if (val.xaxis.title) { poptions.xaxis.title = val.xaxis.title };
+
             if (val.xaxis.ticks) {
-                poptions.xaxis.ticks = {};
-                // tslint:disable-next-line:max-line-length
-                poptions.xaxis.ticks.show = (typeof val.xaxis.ticks.show === 'boolean') ? val.xaxis.ticks.show : this.pdefaultOptions.xaxis.ticks.show;
-                // tslint:disable-next-line:max-line-length
-                poptions.xaxis.ticks.count = (typeof val.xaxis.ticks.count === 'number') ? val.xaxis.ticks.count : this.pdefaultOptions.xaxis.ticks.count;
-                // tslint:disable-next-line:max-line-length
-                poptions.xaxis.ticks.length = (typeof val.xaxis.ticks.length === 'number') ? val.xaxis.ticks.length : this.pdefaultOptions.xaxis.ticks.length;
-
-                poptions.xaxis.ticks.style = Object.assign({}, this.pdefaultOptions.xaxis.ticks.style)
-                if (typeof val.xaxis.ticks.style === 'object') { Object.assign(poptions.xaxis.ticks.style, val.xaxis.ticks.style) };
-            } else {
-                poptions.xaxis.ticks.show = this.pdefaultOptions.xaxis.show;
-                poptions.xaxis.ticks.count = this.pdefaultOptions.xaxis.count;
-                poptions.xaxis.ticks.length = this.pdefaultOptions.xaxis.length;
-                poptions.xaxis.ticks.style = Object.assign({}, this.pdefaultOptions.xaxis.ticks.style)
+                if (typeof val.xaxis.ticks.show === 'boolean') { poptions.xaxis.ticks.show = val.xaxis.ticks.show; }
+                if (typeof val.xaxis.ticks.count === 'number') { poptions.xaxis.ticks.count = val.xaxis.ticks.count; }
+                if (typeof val.xaxis.ticks.length === 'number') { poptions.xaxis.ticks.length = val.xaxis.ticks.length; }
+                if (typeof val.xaxis.ticks.style === 'object') { Object.assign(poptions.xaxis.ticks.style, val.xaxis.ticks.style); }
             }
-            poptions.xaxis.grid = {};
+
             if (val.xaxis.grid) {
-                // tslint:disable-next-line:max-line-length
-                poptions.xaxis.grid.show = (typeof val.xaxis.grid.show === 'boolean') ? val.xaxis.grid.show : this.pdefaultOptions.xaxis.grid.show;
-                poptions.xaxis.grid.style = Object.assign({}, this.pdefaultOptions.xaxis.grid.style)
-                if (typeof val.xaxis.grid.style === 'object') { Object.assign(poptions.xaxis.grid.style, val.xaxis.grid.style) };
-
-            } else {
-                poptions.xaxis.grid.show = this.pdefaultOptions.xaxis.grid.show;
-                poptions.xaxis.grid.style = Object.assign({}, this.pdefaultOptions.xaxis.grid.style)
+                if (typeof val.xaxis.grid.show === 'boolean') { poptions.xaxis.grid.show = val.xaxis.grid.show; }
+                if (typeof val.xaxis.grid.style === 'object') { Object.assign(poptions.xaxis.grid.style, val.xaxis.grid.style); }
             }
-            // tslint:disable-next-line:max-line-length
-            poptions.xaxis.axisHeight = (typeof val.xaxis.axisHeight === 'number') ? val.xaxis.axisHeight : this.pdefaultOptions.xaxis.axisHeight;
-            poptions.xaxis.minMax = (val.xaxis.minMax) ? val.xaxis.minMax : this.pdefaultOptions.xaxis.minMax;
-        } else {
-            poptions.xaxis.type = this.pdefaultOptions.xaxis.type;
-            poptions.xaxis.show = this.pdefaultOptions.xaxis.show;
-            poptions.xaxis.labels = this.pdefaultOptions.xaxis.labels;
-            poptions.xaxis.showLabels = this.pdefaultOptions.xaxis.showLabels;
-            poptions.xaxis.labelStyle = Object.assign({}, this.pdefaultOptions.xaxis.labelStyle);
-            poptions.xaxis.axisLine = {};
-            poptions.xaxis.axisLine.show = this.pdefaultOptions.xaxis.axisLine.show;
-            poptions.xaxis.axisLine.style = Object.assign({}, this.pdefaultOptions.xaxis.axisLine.style)
-            poptions.xaxis.min = this.pdefaultOptions.xaxis.min;
-            poptions.xaxis.max = this.pdefaultOptions.xaxis.max;
-            poptions.xaxis.title = this.pdefaultOptions.xaxis.title;
-            poptions.xaxis.ticks = {};
-            poptions.xaxis.ticks.show = this.pdefaultOptions.xaxis.show;
-            poptions.xaxis.ticks.count = this.pdefaultOptions.xaxis.count;
-            poptions.xaxis.ticks.length = this.pdefaultOptions.xaxis.length;
-            poptions.xaxis.ticks.style = Object.assign({}, this.pdefaultOptions.xaxis.ticks.style)
-            poptions.xaxis.grid = {};
-            poptions.xaxis.grid.show = this.pdefaultOptions.xaxis.grid.show;
-            poptions.xaxis.grid.style = Object.assign({}, this.pdefaultOptions.xaxis.grid.style)
-            poptions.xaxis.axisHeight = this.pdefaultOptions.xaxis.axisHeight;
-            poptions.xaxis.minMax = this.pdefaultOptions.xaxis.minMax;
+
+            if (typeof val.xaxis.axisHeight === 'number') { poptions.xaxis.axisHeight = val.xaxis.axisHeight }
+            if (val.xaxis.minMax) { poptions.xaxis.minMax = val.xaxis.minMax };
         }
-        poptions.yaxis = {};
+
+        
         if (val.yaxis) {
-            poptions.yaxis.type = (val.yaxis.type) ? val.yaxis.type : this.pdefaultOptions.yaxis.type;
-            poptions.yaxis.show = (typeof val.yaxis.show === 'boolean') ? val.yaxis.show : this.pdefaultOptions.yaxis.show;
-            poptions.yaxis.labels = (val.yaxis.labels) ? val.yaxis.labels : this.pdefaultOptions.yaxis.labels;
-            // tslint:disable-next-line:max-line-length
-            poptions.yaxis.showLabels = (typeof val.yaxis.showLabels === 'boolean') ? val.yaxis.showLabels : this.pdefaultOptions.yaxis.showLabels;
+            if (val.yaxis.type) { poptions.yaxis.type = val.yaxis.type };
+            if (typeof val.yaxis.show === 'boolean') { poptions.yaxis.show = val.yaxis.show; }
+            if (val.yaxis.labels) { poptions.yaxis.labels = val.yaxis.labels };
+            if (typeof val.yaxis.showLabels === 'boolean') { poptions.yaxis.showLabels = val.yaxis.showLabels; }
+            if (typeof val.yaxis.labelStyle === 'object') { Object.assign(poptions.yaxis.labelStyle, val.yaxis.labelStyle); }
 
-            poptions.yaxis.labelStyle = Object.assign({}, this.pdefaultOptions.yaxis.labelStyle)
-            if (typeof val.yaxis.labelStyle === 'object') { Object.assign(poptions.yaxis.labelStyle, val.yaxis.labelStyle) };
-
-
-            poptions.yaxis.axisLine = {};
             if (val.yaxis.axisLine) {
-                // tslint:disable-next-line:max-line-length
-                poptions.yaxis.axisLine.show = (typeof val.yaxis.axisLine.show === 'boolean') ? val.yaxis.axisLine.show : this.pdefaultOptions.yaxis.axisLine.show;
-                poptions.yaxis.axisLine.style = Object.assign({}, this.pdefaultOptions.yaxis.axisLine.style)
-                if (typeof val.yaxis.axisLine.style === 'object') { Object.assign(poptions.yaxis.axisLine.style, val.yaxis.axisLine.style) };
-
-            } else {
-                poptions.yaxis.axisLine.show = this.pdefaultOptions.yaxis.axisLine.show;
-                poptions.yaxis.axisLine.style = Object.assign({}, this.pdefaultOptions.yaxis.axisLine.style)
+                if (typeof val.yaxis.axisLine.show === 'boolean') { poptions.yaxis.axisLine.show = val.yaxis.axisLine.show; }
+                if (typeof val.yaxis.axisLine.style === 'object') { Object.assign(poptions.yaxis.axisLine.style, val.yaxis.axisLine.style); }
             }
 
-            poptions.yaxis.min = (typeof val.yaxis.min === 'number') ? val.yaxis.min : this.pdefaultOptions.yaxis.min;
-            poptions.yaxis.max = (typeof val.yaxis.max === 'number') ? val.yaxis.max : this.pdefaultOptions.yaxis.max;
-            poptions.yaxis.title = (val.yaxis.title) ? val.yaxis.title : this.pdefaultOptions.yaxis.title;
-            if (typeof val.xaxis.ticks === 'object') {
-                poptions.yaxis.ticks = {};
-                // tslint:disable-next-line:max-line-length
-                poptions.yaxis.ticks.show = (typeof val.yaxis.ticks.show === 'boolean') ? val.yaxis.ticks.show : this.pdefaultOptions.yaxis.ticks.show;
-                // tslint:disable-next-line:max-line-length
-                poptions.yaxis.ticks.count = (typeof val.yaxis.ticks.count === 'number') ? val.yaxis.ticks.count : this.pdefaultOptions.yaxis.ticks.count;
-                // tslint:disable-next-line:max-line-length
-                poptions.yaxis.ticks.length = (typeof val.yaxis.ticks.length === 'number') ? val.yaxis.ticks.length : this.pdefaultOptions.yaxis.ticks.length;
+            if (typeof val.yaxis.min === 'number') { poptions.yaxis.min = val.yaxis.min }
+            if (typeof val.yaxis.max === 'number') { poptions.yaxis.min = val.yaxis.max }
+            if (val.yaxis.title) { poptions.yaxis.title = val.yaxis.title };
 
-                poptions.yaxis.ticks.style = Object.assign({}, this.pdefaultOptions.yaxis.ticks.style)
-                if (typeof val.yaxis.ticks.style === 'object') { Object.assign(poptions.yaxis.ticks.style, val.yaxis.ticks.style) };
-            } else {
-                poptions.yaxis.ticks.show = this.pdefaultOptions.yaxis.show;
-                poptions.yaxis.ticks.count = this.pdefaultOptions.yaxis.count;
-                poptions.yaxis.ticks.length = this.pdefaultOptions.yaxis.length;
-                poptions.yaxis.ticks.style = Object.assign({}, this.pdefaultOptions.yaxis.ticks.style)
+            if (val.yaxis.ticks) {
+                if (typeof val.yaxis.ticks.show === 'boolean') { poptions.yaxis.ticks.show = val.yaxis.ticks.show; }
+                if (typeof val.yaxis.ticks.count === 'number') { poptions.yaxis.ticks.count = val.yaxis.ticks.count; }
+                if (typeof val.yaxis.ticks.length === 'number') { poptions.yaxis.ticks.length = val.yaxis.ticks.length; }
+                if (typeof val.yaxis.ticks.style === 'object') { Object.assign(poptions.yaxis.ticks.style, val.yaxis.ticks.style); }
             }
-            poptions.yaxis.grid = {};
-            if (typeof val.xaxis.grid === 'object') {
-                // tslint:disable-next-line:max-line-length
-                poptions.yaxis.grid.show = (typeof val.yaxis.grid.show === 'boolean') ? val.yaxis.grid.show : this.pdefaultOptions.yaxis.grid.show;
 
-                poptions.yaxis.grid.style = Object.assign({}, this.pdefaultOptions.yaxis.grid.style)
-                if (typeof val.yaxis.grid.style === 'object') { Object.assign(poptions.yaxis.grid.style, val.yaxis.grid.style) };
-            } else {
-                poptions.yaxis.grid.show = this.pdefaultOptions.yaxis.grid.show;
-                poptions.yaxis.grid.style = Object.assign({}, this.pdefaultOptions.yaxis.grid.style)
+            if (val.yaxis.grid) {
+                if (typeof val.yaxis.grid.show === 'boolean') { poptions.yaxis.grid.show = val.yaxis.grid.show; }
+                if (typeof val.yaxis.grid.style === 'object') { Object.assign(poptions.yaxis.grid.style, val.yaxis.grid.style); }
             }
-            // tslint:disable-next-line:max-line-length
-            poptions.yaxis.axisWidth = (typeof val.yaxis.axisWidth === 'number') ? val.yaxis.axisWidth : this.pdefaultOptions.yaxis.axisWidth;
-            // tslint:disable-next-line:max-line-length
-            poptions.yaxis.paddingRight = (typeof val.yaxis.paddingRight === 'number') ? val.yaxis.paddingRight : this.pdefaultOptions.yaxis.paddingRight;
-            poptions.yaxis.minMax = (val.yaxis.minMax) ? val.yaxis.minMax : this.pdefaultOptions.yaxis.minMax;
-        } else {
-            poptions.yaxis.type = this.pdefaultOptions.yaxis.type;
-            poptions.yaxis.show = this.pdefaultOptions.yaxis.show;
-            poptions.yaxis.labels = this.pdefaultOptions.yaxis.labels;
-            poptions.yaxis.showLabels = this.pdefaultOptions.yaxis.showLabels;
-            poptions.yaxis.labelStyle = Object.assign({}, this.pdefaultOptions.yaxis.labelStyle);
-            poptions.yaxis.axisLine = {};
-            poptions.yaxis.axisLine.show = this.pdefaultOptions.yaxis.axisLine.show;
-            poptions.yaxis.axisLine.style = Object.assign({}, this.pdefaultOptions.yaxis.axisLine.style)
-            poptions.yaxis.min = this.pdefaultOptions.yaxis.min;
-            poptions.yaxis.max = this.pdefaultOptions.yaxis.max;
-            poptions.yaxis.title = this.pdefaultOptions.yaxis.title;
-            poptions.yaxis.ticks = {};
-            poptions.yaxis.ticks.show = this.pdefaultOptions.yaxis.show;
-            poptions.yaxis.ticks.count = this.pdefaultOptions.yaxis.count;
-            poptions.yaxis.ticks.length = this.pdefaultOptions.yaxis.length;
-            poptions.yaxis.ticks.style = Object.assign({}, this.pdefaultOptions.yaxis.ticks.style)
-            poptions.yaxis.grid = {};
-            poptions.yaxis.grid.show = this.pdefaultOptions.yaxis.grid.show;
-            poptions.yaxis.grid.style = Object.assign({}, this.pdefaultOptions.yaxis.grid.style)
-            poptions.yaxis.axisWidth = this.pdefaultOptions.yaxis.axisWidth;
-            poptions.yaxis.paddingRight = this.pdefaultOptions.yaxis.paddingRight;
-            poptions.yaxis.minMax = this.pdefaultOptions.yaxis.minMax;
+
+            if (typeof val.yaxis.axisWidth === 'number') { poptions.yaxis.axisWidth = val.yaxis.axisWidth }
+            if (typeof val.yaxis.paddingRight === 'number') { poptions.yaxis.paddingRight = val.yaxis.paddingRight }
+            if (val.yaxis.minMax) { poptions.yaxis.minMax = val.yaxis.minMax };
         }
-        if (typeof val.series === 'object') {
-            poptions.series = val.series;
+        if (typeof val.series === 'object') { poptions.series = val.series; }
+        if (typeof val.bar === 'object') { Object.assign(poptions.bar, val.bar) }
+            
+        if (val.dataLabels) {
+            if (typeof val.dataLabels.show === 'boolean') { poptions.dataLabels.show = val.dataLabels.show; }
+            if (typeof val.dataLabels.style === 'object') { Object.assign(poptions.dataLabels.style, val.dataLabels.style); }
         }
-        if (typeof val.bar === 'object') {
-            poptions.bar = {};
-            poptions.bar.width = (typeof val.bar.width === 'number') ? val.bar.width : this.pdefaultOptions.bar.width;
-            poptions.bar.spacing = (typeof val.bar.spacing === 'number') ? val.bar.spacing : this.pdefaultOptions.bar.spacing;
-        } else {
-            poptions.bar = Object.assign({}, this.pdefaultOptions.bar);
-        }
-        poptions.dataLabels = {};
-        if (typeof val.dataLabels === 'object') {
-            // tslint:disable-next-line:max-line-length
-            poptions.dataLabels.show = (typeof val.dataLabels.show === 'boolean') ? val.dataLabels.show : this.pdefaultOptions.dataLabels.show;
-            poptions.dataLabels.style = Object.assign({}, this.pdefaultOptions.dataLabels.style)
-            if (typeof val.dataLabels.style === 'object') { Object.assign(poptions.dataLabels.style, val.dataLabels.style) }
-        } else {
-            poptions.dataLabels.show = this.pdefaultOptions.dataLabels.show;
-            poptions.dataLabels.style = Object.assign({}, this.pdefaultOptions.dataLabels.style)
-        }
-        poptions.legends = {};
-        if (typeof val.legends === 'object') {
-            // tslint:disable-next-line:max-line-length
-            poptions.legends.show = (typeof val.legends.show === 'boolean') ? val.legends.show : this.pdefaultOptions.legends.show;
-            poptions.legends.height = (typeof val.legends.height === 'number') ? val.legends.height : this.pdefaultOptions.legends.height;
-            poptions.legends.style = Object.assign({}, this.pdefaultOptions.legends.style);
+
+        if (val.legends) {
+            if (typeof val.legends.show === 'boolean') { poptions.legends.show = val.legends.show; }
+            if (typeof val.legends.height === 'number') { poptions.legends.height = val.legends.height; }
             if (typeof val.legends.style === 'object') { Object.assign(poptions.legends.style, val.legends.style); }
-        } else {
-            poptions.legends.show = this.pdefaultOptions.legends.show;
-            poptions.legends.height = this.pdefaultOptions.legends.height;
-            poptions.legends.style = Object.assign({}, this.pdefaultOptions.legends.style);
-
         }
-        poptions.innerPaddingTop = (typeof val.innerPaddingTop === 'number') ? val.innerPaddingTop : this.pdefaultOptions.innerPaddingTop;
-        // tslint:disable-next-line:max-line-length
-        poptions.innerPaddingBottom = (typeof val.innerPaddingBottom === 'number') ? val.innerPaddingBottom : this.pdefaultOptions.innerPaddingBottom;
 
-        poptions.tooltip = {};
-        if (typeof val.tooltip === 'object') {
-            // tslint:disable-next-line:max-line-length
-            poptions.tooltip.show = (typeof val.tooltip.show === 'boolean') ? val.tooltip.show : this.pdefaultOptions.tooltip.show;
-            // poptions.tooltip.minWidth = (typeof val.tooltip.minWidth === 'number') ? val.tooltip.minWidth : this.pdefaultOptions.tooltip.minWidth;
-            poptions.tooltip.style = Object.assign({}, this.pdefaultOptions.tooltip.style);
+        if (typeof val.innerPaddingTop === 'number') { poptions.innerPaddingTop = val.innerPaddingTop; }
+        if (typeof val.innerPaddingBottom === 'number') { poptions.innerPaddingBottom = val.innerPaddingBottom; }
+    
+        if (val.tooltip) {
+            if (typeof val.tooltip.show === 'boolean') { poptions.tooltip.show = val.tooltip.show; }
             if (typeof val.tooltip.style === 'object') { Object.assign(poptions.tooltip.style, val.tooltip.style); }
-        } else {
-            poptions.tooltip.show = this.pdefaultOptions.tooltip.show;
-            // poptions.tooltip.minWidth = this.pdefaultOptions.tooltip.minWidth;
-            poptions.tooltip.style = Object.assign({}, this.pdefaultOptions.tooltip.style);
-
         }
+
         this.poptions = poptions;
 
-        // if (val.title) { this.options.title = val.title; }
-        // if (val.xaxis) {
-        //     if (val.xaxis.type) { this.poptions.xaxis.type = val.xaxis.type; }
-        //     if (typeof val.xaxis.show === 'boolean') { this.poptions.xaxis.show = val.xaxis.show; }
-        //     if (val.xaxis.labels) { this.poptions.xaxis.labels = val.xaxis.labels; }
-        //     if (typeof val.xaxis.showLabels === 'boolean') { this.poptions.xaxis.showLabels = val.xaxis.showLabels; }
-        //     if (typeof val.xaxis.showAxisLine === 'boolean') { this.poptions.xaxis.showAxisLine = val.xaxis.showAxisLine; }
-        //     if (typeof val.xaxis.min === 'number') { this.poptions.xaxis.min = val.xaxis.min; }
-        //     if (typeof val.xaxis.max === 'number') { this.poptions.xaxis.max = val.xaxis.max; }
-        //     if (val.xaxis.title) { this.poptions.xaxis.title = val.xaxis.title; }
-        //     if (typeof val.xaxis.ticks === 'object') {
-        //         if (typeof val.xaxis.ticks.show === 'boolean') { this.poptions.xaxis.ticks.show = val.xaxis.ticks.show; }
-        //         if (typeof val.xaxis.ticks.count === 'number') { this.poptions.xaxis.ticks.count = val.xaxis.ticks.count; }
-        //         if (typeof val.xaxis.ticks.length === 'number') { this.poptions.xaxis.ticks.length = val.xaxis.ticks.length; }
-        //     }
-        //     if (typeof val.xaxis.grid === 'object') {
-        //         if (typeof val.xaxis.grid.show === 'boolean') { this.poptions.xaxis.grid.show = val.xaxis.grid.show; }
-        //     }
-        //     if (typeof val.xaxis.axisHeight === 'number') { this.poptions.xaxis.axisHeight = val.xaxis.axisHeight; }
-        //     if (val.xaxis.minMax) { this.poptions.xaxis.minMax = val.xaxis.minMax; }
-        // }
-        // if (val.yaxis) {
-        //     if (val.yaxis.type) { this.poptions.yaxis.type = val.yaxis.type; }
-        //     if (typeof val.yaxis.show === 'boolean') { this.poptions.yaxis.show = val.yaxis.show; }
-        //     if (val.yaxis.labels) { this.poptions.yaxis.labels = val.yaxis.labels; }
-        //     if (typeof val.yaxis.showLabels === 'boolean') { this.poptions.yaxis.showLabels = val.yaxis.showLabels; }
-        //     if (typeof val.yaxis.showAxisLine === 'boolean') { this.poptions.yaxis.showAxisLine = val.yaxis.showAxisLine; }
-        //     if (typeof val.yaxis.min === 'number') { this.poptions.yaxis.min = val.yaxis.min; }
-        //     if (typeof val.yaxis.max === 'number') { this.poptions.yaxis.max = val.yaxis.max; }
-        //     if (val.yaxis.title) { this.poptions.yaxis.title = val.yaxis.title; }
-        //     if (typeof val.yaxis.ticks === 'object') {
-        //         if (typeof val.yaxis.ticks.show === 'boolean') { this.poptions.yaxis.ticks.show = val.yaxis.ticks.show; }
-        //         if (typeof val.yaxis.ticks.count === 'number') { this.poptions.yaxis.ticks.count = val.yaxis.ticks.count; }
-        //         if (typeof val.yaxis.ticks.length === 'number') { this.poptions.yaxis.ticks.length = val.yaxis.ticks.length; }
-        //     }
-        //     if (typeof val.yaxis.grid === 'object') {
-        //         if (typeof val.yaxis.grid.show === 'boolean') { this.poptions.yaxis.grid.show = val.yaxis.grid.show; }
-        //     }
-        //     if (typeof val.yaxis.axisWidth === 'number') { this.poptions.yaxis.axisWidth = val.yaxis.axisWidth; }
-        //     if (typeof val.yaxis.paddingRight === 'number') { this.poptions.yaxis.paddingRight = val.yaxis.paddingRight; }
-        //     if (val.yaxis.minMax) { this.poptions.yaxis.minMax = val.yaxis.minMax; }
-        // }
-        // if (typeof val.series === 'object') {
-        //     this.poptions.series = val.series;
-        // }
-        // if (typeof val.bar === 'object') {
-        //     if (typeof val.bar.width === 'number') { this.poptions.bar.width = val.bar.width; }
-        //     if (typeof val.bar.spacing === 'number') { this.poptions.bar.spacing = val.bar.spacing; }
-        // }
-        // if (typeof val.dataLabels === 'object') {
-        //     if (typeof val.dataLabels.show === 'boolean') { this.poptions.dataLabels.show = val.dataLabels.show; }
-        // }
-        // if (typeof val.legends === 'object') {
-        //     if (typeof val.legends.show === 'boolean') { this.poptions.legends.show = val.legends.show; }
-        // }
-        // if (typeof val.innerPaddingTop === 'number') { this.poptions.innerPaddingTop = val.innerPaddingTop; }
-        // if (typeof val.innerPaddingBottom === 'number') { this.poptions.innerPaddingBottom = val.innerPaddingBottom; }
     }
+
 
 
 

@@ -11,8 +11,7 @@ import { Defaults } from '../defaults';
 export class StackedBarChartComponent extends BasicChart implements OnInit {
 
   constructor() {
-    const defaultOptions: ChartOptions = Defaults.getdefaultOptions();
-    super(defaultOptions);
+    super();
   }
 
   ngOnInit() {

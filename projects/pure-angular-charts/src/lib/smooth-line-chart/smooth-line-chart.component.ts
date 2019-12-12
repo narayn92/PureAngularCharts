@@ -10,7 +10,6 @@ import { Defaults } from '../defaults';
 })
 export class SmoothLineChartComponent extends BasicChart implements OnInit {
   constructor() {
-    const defaultOptions: ChartOptions = Defaults.getdefaultOptions();
-    super(defaultOptions);
+    super();
   }
 }

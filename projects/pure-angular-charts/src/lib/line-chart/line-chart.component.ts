@@ -10,7 +10,6 @@ import { Defaults } from '../defaults';
 })
 export class LineChartComponent extends BasicChart implements OnInit {
   constructor() {
-    const defaultOptions: ChartOptions = Defaults.getdefaultOptions();
-    super(defaultOptions);
+    super();
   }
 }

@@ -10,8 +10,7 @@ import { Defaults } from '../defaults';
 })
 export class SmoothAreaChartComponent extends BasicChart implements OnInit {
   constructor() {
-    const defaultOptions: ChartOptions = Defaults.getdefaultOptions();
-    super(defaultOptions);
+    super();
   }
 }
 

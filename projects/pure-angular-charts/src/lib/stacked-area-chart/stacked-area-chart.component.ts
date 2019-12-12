@@ -11,15 +11,12 @@ import { Defaults } from '../defaults';
 export class StackedAreaChartComponent extends BasicChart implements OnInit {
 
   constructor() {
-    const defaultOptions: ChartOptions = Defaults.getdefaultOptions();
-    super(defaultOptions);
+    super();
   }
 
   get stackData() {
     return this.pData.slice().reverse();
   }
-
-
 
   ngOnInit() {
   }
