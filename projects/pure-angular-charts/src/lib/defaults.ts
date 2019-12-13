@@ -35,6 +35,11 @@ export class Defaults {
                     fontSize: '12px',
                     fontFamily: 'Verdana'
                 },
+                labelFormat: {
+                    type: '',
+                    options: '',
+                    scale: ''
+                },
                 axisLine: {
                     show: true,
                     style: {
@@ -44,7 +49,7 @@ export class Defaults {
                 },
                 min: 0,
                 max: 0,
-                title: 'xaxis',
+                title: 'X-Axis',
                 ticks: {
                     show: true,
                     count: 6,
@@ -75,6 +80,11 @@ export class Defaults {
                     fontSize: '12px',
                     fontFamily: 'Verdana'
                 },
+                labelFormat: {
+                    type: '',
+                    options: '',
+                    scale: ''
+                },
                 axisLine: {
                     show: true,
                     style: {
@@ -84,7 +94,7 @@ export class Defaults {
                 },
                 min: 0,
                 max: 0,
-                title: 'yaxis',
+                title: 'Y-Axis',
                 ticks: {
                     show: true,
                     count: 6,

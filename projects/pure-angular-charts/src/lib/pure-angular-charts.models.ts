@@ -1,37 +1,37 @@
 export interface Chart {
     // border?: string;
     background?: string;
-    // boxShadow?: string  
-    padding?: Padding
+    // boxShadow?: string
+    padding?: Padding;
 }
 
-export interface Padding{
-    paddingTop?: number
-    paddingRight?: number
-    paddingBottom?: number
-    paddingLeft?: number
+export interface Padding {
+    paddingTop?: number;
+    paddingRight?: number;
+    paddingBottom?: number;
+    paddingLeft?: number;
 }
 
 export interface Title {
     text?: string;
     height?: number;
-    style?: TextStyle
+    style?: TextStyle;
 }
 
-export interface TextStyle{
+export interface TextStyle {
     textAlign?: string;
     color?: string;
     fontSize?: string;
-    fontFamily?: string
-    background?: string
+    fontFamily?: string;
+    background?: string;
 }
-export interface SvgTextStyle{
+export interface SvgTextStyle {
     fill?: string;
     fontSize?: string;
-    fontFamily?: string
+    fontFamily?: string;
 }
 
-export interface SvgLineStyle{
+export interface SvgLineStyle {
     stroke?: string;
     strokeWidth?: number;
     strokeDasharray?: string;
@@ -40,17 +40,23 @@ export interface Ticks {
     show?: boolean;
     count?: number;
     length?: number;
-    style?: SvgLineStyle
+    style?: SvgLineStyle;
 }
 
 export interface Grid {
     show?: boolean;
-    style?: SvgLineStyle
+    style?: SvgLineStyle;
 }
 
 export interface AxisLine {
     show?: boolean;
-    style?: SvgLineStyle
+    style?: SvgLineStyle;
+}
+
+export interface LabelFormat {
+    type?: string;
+    options?: string;
+    scale?: string;
 }
 
 export interface Xaxis {
@@ -58,6 +64,7 @@ export interface Xaxis {
     show?: boolean;
     labels?: string[];
     labelStyle?: SvgTextStyle;
+    labelFormat?: LabelFormat;
     showLabels?: boolean;
     axisLine?: AxisLine;
     min?: number;
@@ -75,6 +82,7 @@ export interface Yaxis {
     show?: boolean;
     labels?: string[];
     labelStyle?: SvgTextStyle;
+    labelFormat?: LabelFormat;
     showLabels?: boolean;
     axisLine?: AxisLine;
     min?: number;
@@ -106,24 +114,24 @@ export interface DataLabels {
 export interface Legends {
     show?: boolean;
     height?: number;
-    style?: TextStyle
+    style?: TextStyle;
 }
 
-export interface ToolTipStyle{
+export interface ToolTipStyle {
     textAlign?: string;
     color?: string;
     fontSize?: string;
-    fontFamily?: string
-    background?: string
+    fontFamily?: string;
+    background?: string;
     minWidth?: string;
 }
 export interface ToolTip {
     show?: boolean;
-    style?: ToolTipStyle
+    style?: ToolTipStyle;
 }
 
 export interface ChartOptions {
-    chart?: Chart
+    chart?: Chart;
     title?: Title;
     xaxis?: Xaxis;
     yaxis?: Yaxis;

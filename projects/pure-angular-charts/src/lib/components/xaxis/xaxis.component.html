@@ -2,5 +2,13 @@
         <!-- <circle [attr.cx]="xlabel.px" [attr.cy]="xlabel.py" r="5" stroke="black" stroke-width="3" fill="red" /> -->
     <svg:line *ngIf="pXaxis.grid.show" [attr.x1]="xlabel.px" [attr.y1]="xlabel.py - pXaxis.axisHeight" [attr.x2]="xlabel.px" [attr.y2]="0" [ngStyle]="pXaxis.grid.style" />
     <svg:line *ngIf="pXaxis.ticks.show" [attr.x1]="xlabel.px" [attr.y1]="xlabel.py - pXaxis.axisHeight" [attr.x2]="xlabel.px" [attr.y2]="xlabel.py - pXaxis.axisHeight + pXaxis.ticks.length" [ngStyle]="pXaxis.ticks.style" />
-    <svg:text *ngIf="pXaxis.showLabels" [attr.x]="xlabel.px" [attr.y]="xlabel.py - pXaxis.axisHeight + pXaxis.ticks.length + 5" [ngStyle]="pXaxis.labelStyle" dominant-baseline="hanging" text-anchor="middle">{{xlabel.text}}</text>
+   
+    <svg:text *ngIf="pXaxis.showLabels" [attr.x]="xlabel.px" [attr.y]="xlabel.py - pXaxis.axisHeight + pXaxis.ticks.length + 5" [ngStyle]="pXaxis.labelStyle" dominant-baseline="hanging" text-anchor="middle">
+        <ng-template [ngTemplateOutlet]="defaultLabel"></ng-template>
+    </text>
+
+    <ng-template #defaultLabel>
+        <ng-container *ngIf="!pXaxis.labelFormat.type">{{xlabel.text}}{{pXaxis.labelFormat.scale}}</ng-container>
+        <ng-container *ngIf="pXaxis.type=='numeric' || pXaxis.labelFormat.type==='number'">{{xlabel.text | number : pXaxis.labelFormat.options}}{{pXaxis.labelFormat.scale}}</ng-container>
+    </ng-template>
 </g>

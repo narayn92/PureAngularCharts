@@ -26,8 +26,17 @@
         <div>
             <span style="display:inline-block;width:10px;height:10px;" [style.background-color]="ptootltip.series.color"></span> <span style="padding-left: 5px;">{{ptootltip.series.name}}</span>
         </div>
-        <div>{{(ptootltip.xTitle)?ptootltip.xTitle:'X'}}: {{ptootltip.point.x}}</div>
-        <div>{{(ptootltip.yTitle)?ptootltip.yTitle:'Y'}} : {{ptootltip.point.y}}</div>
+        <div>{{(ptootltip.xTitle)?ptootltip.xTitle:'X'}} : <ng-template [ngTemplateOutlet]="defaultXLabel"></ng-template></div>
+        <div>{{(ptootltip.yTitle)?ptootltip.yTitle:'Y'}} : <ng-template [ngTemplateOutlet]="defaultYLabel"></ng-template></div>
+
+        <ng-template #defaultXLabel>
+            <ng-container *ngIf="!pXaxis.labelFormat.type">{{ptootltip.point.x}}{{pXaxis.labelFormat.scale}}</ng-container>
+            <ng-container *ngIf="pXaxis.type=='numeric' || pXaxis.labelFormat.type==='number'">{{ptootltip.point.x | number : pXaxis.labelFormat.options}}{{pXaxis.labelFormat.scale}}</ng-container>
+        </ng-template>
+        <ng-template #defaultYLabel>
+            <ng-container *ngIf="!pYaxis.labelFormat.type">{{ptootltip.point.y}}{{pYaxis.labelFormat.scale}}</ng-container>
+            <ng-container *ngIf="pYaxis.type=='numeric' || pYaxis.labelFormat.type==='number'">{{ptootltip.point.y | number : pYaxis.labelFormat.options}}{{pYaxis.labelFormat.scale}}</ng-container>
+        </ng-template>
     </div>
 </div>
 

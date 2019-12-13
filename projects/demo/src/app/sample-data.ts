@@ -90,7 +90,7 @@ export class SampleData {
         [{ x: 'Mon', y: 20 }, { x: 'Tue', y: 10 }, { x: 'Wed', y: 15 }, { x: 'Thu', y: 25 }, { x: 'Fri', y: -30 }, { x: 'Sat', y: 30 }],
         [{ x: 'Mon', y: 20 }, { x: 'Tue', y: 10 }, { x: 'Wed', y: 15 }, { x: 'Thu', y: 25 }, { x: 'Fri', y: -30 }, { x: 'Sat', y: 30 }]
     ];
-    barChartOptionsCategory
+    barChartOptionsCategory: ChartOptions;
 
 
     stackedBarChartDataCategory = [
@@ -111,47 +111,47 @@ export class SampleData {
     constructor() {
 
         this.barChartOptions = this.getDefaultOptions();
-        this.barChartOptions.title.text = 'Bar Chart - Numeric Axis'
+        this.barChartOptions.title.text = 'Bar Chart - Numeric Axis';
         this.barChartOptions.series = [
             { name: 'Series1', color: '#619eff', type: 'bar' },
             // { name: 'Series2', color: '#ff6161', type: 'bar' },
             // { name: 'Series3', color: '#66ae2c', type: 'bar' }
-        ]
+        ];
 
         this.lineChartOptions = this.getDefaultOptions();
-        this.lineChartOptions.title.text = 'Line Chart - Numeric Axis'
+        this.lineChartOptions.title.text = 'Line Chart - Numeric Axis';
         this.lineChartOptions.series = [
             { name: 'Series1', color: '#619eff', type: 'line' },
             { name: 'Series2', color: '#ff6161', type: 'line' },
             { name: 'Series3', color: '#66ae2c', type: 'line' }
-        ]
+        ];
 
         this.smoothLineChartOptions = this.getDefaultOptions();
-        this.smoothLineChartOptions.title.text = 'Smooth Line Chart - Numeric Axis'
+        this.smoothLineChartOptions.title.text = 'Smooth Line Chart - Numeric Axis';
         this.smoothLineChartOptions.series = [
             { name: 'Series1', color: '#619eff', type: 'smooth-line' },
             { name: 'Series2', color: '#ff6161', type: 'smooth-line' },
             { name: 'Series3', color: '#66ae2c', type: 'smooth-line' }
-        ]
+        ];
 
         this.areaChartOptions = this.getDefaultOptions();
-        this.areaChartOptions.title.text = 'Area Chart - Numeric Axis'
+        this.areaChartOptions.title.text = 'Area Chart - Numeric Axis';
         this.areaChartOptions.series = [
             { name: 'Series1', color: '#619eff', type: 'area' },
             { name: 'Series2', color: '#ff6161', type: 'area' },
             { name: 'Series3', color: '#66ae2c', type: 'area' }
-        ]
+        ];
 
         this.smoothAreaChartOptions = this.getDefaultOptions();
-        this.smoothAreaChartOptions.title.text = 'Smooth Area Chart - Numeric Axis'
+        this.smoothAreaChartOptions.title.text = 'Smooth Area Chart - Numeric Axis';
         this.smoothAreaChartOptions.series = [
             { name: 'Series1', color: '#619eff', type: 'smooth-area' },
             { name: 'Series2', color: '#ff6161', type: 'smooth-area' },
             { name: 'Series3', color: '#66ae2c', type: 'smooth-area' }
-        ]
+        ];
 
         this.multiTypeChartOptions = this.getDefaultOptions();
-        this.multiTypeChartOptions.title.text = 'Multi Type Chart - Numeric Axis'
+        this.multiTypeChartOptions.title.text = 'Multi Type Chart - Numeric Axis';
         this.multiTypeChartOptions.series = [
             { name: 'Series1', color: '#bb78ff', type: 'bar' },
             { name: 'Series2', color: '#fff766', type: 'line' },
@@ -161,7 +161,7 @@ export class SampleData {
         ];
 
         this.multiTypeChartOptionsCategory = this.getDefaultOptions();
-        this.multiTypeChartOptionsCategory.title.text = 'Multi Type Chart - Category Axis'
+        this.multiTypeChartOptionsCategory.title.text = 'Multi Type Chart - Category Axis';
         this.multiTypeChartOptionsCategory.xaxis.type = 'category';
         this.multiTypeChartOptionsCategory.xaxis.labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
         this.multiTypeChartOptionsCategory.series = [
@@ -175,78 +175,88 @@ export class SampleData {
         ];
 
         this.lineChartOptionsCategory = this.getDefaultOptions();
-        this.lineChartOptionsCategory.title.text = 'Line Chart - Category Axis'
+        this.lineChartOptionsCategory.title.text = 'Line Chart - Category Axis';
         this.lineChartOptionsCategory.xaxis.type = 'category';
         // options.xaxis.labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
         this.lineChartOptionsCategory.series = [
             { name: 'Series1', color: '#619eff', type: 'line' },
             { name: 'Series2', color: '#ff6161', type: 'line' },
             { name: 'Series3', color: '#66ae2c', type: 'line' }
-        ]
+        ];
 
         this.smoothLineChartOptionsCategory = this.getDefaultOptions();
-        this.smoothLineChartOptionsCategory.title.text = 'Smooth Line Chart - Category Axis'
+        this.smoothLineChartOptionsCategory.title.text = 'Smooth Line Chart - Category Axis';
         this.smoothLineChartOptionsCategory.xaxis.type = 'category';
         // options.xaxis.labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
         this.smoothLineChartOptionsCategory.series = [
             { name: 'Series1', color: '#619eff', type: 'smooth-line' },
             { name: 'Series2', color: '#ff6161', type: 'smooth-line' },
             { name: 'Series3', color: '#66ae2c', type: 'smooth-line' }
-        ]
+        ];
 
 
         this.areaChartOptionsCategory = this.getDefaultOptions();
-        this.areaChartOptionsCategory.title.text = 'Area Chart - Category Axis'
+        this.areaChartOptionsCategory.title.text = 'Area Chart - Category Axis';
         this.areaChartOptionsCategory.xaxis.type = 'category';
         // options.xaxis.labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
         this.areaChartOptionsCategory.series = [
             { name: 'Series1', color: '#619eff', type: 'area' },
             { name: 'Series2', color: '#ff6161', type: 'area' },
             { name: 'Series3', color: '#66ae2c', type: 'area' }
-        ]
+        ];
 
 
         this.smoothAreaChartOptionsCategory = this.getDefaultOptions();
-        this.smoothAreaChartOptionsCategory.title.text = 'Smooth Area Chart - Category Axis'
+        this.smoothAreaChartOptionsCategory.title.text = 'Smooth Area Chart - Category Axis';
         this.smoothAreaChartOptionsCategory.xaxis.type = 'category';
         // options.xaxis.labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
         this.smoothAreaChartOptionsCategory.series = [
             { name: 'Series1', color: '#619eff', type: 'smooth-area' },
             { name: 'Series2', color: '#ff6161', type: 'smooth-area' },
             { name: 'Series3', color: '#66ae2c', type: 'smooth-area' }
-        ]
+        ];
 
         this.barChartOptionsCategory = this.getDefaultOptions();
-        this.barChartOptionsCategory.title.text = 'Bar Chart - Category Axis'
+        this.barChartOptionsCategory.title.text = 'Bar Chart - Category Axis';
         this.barChartOptionsCategory.xaxis.type = 'category';
-        // options.xaxis.labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        this.barChartOptionsCategory.xaxis.labels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
+
+        this.barChartOptionsCategory.yaxis.labelFormat.type = 'number';
+        this.barChartOptionsCategory.yaxis.labelFormat.options = '1.0-2';
+        this.barChartOptionsCategory.yaxis.labelFormat.scale = '%';
+ 
         this.barChartOptionsCategory.series = [
             { name: 'Series1', color: '#619eff', type: 'bar' },
             { name: 'Series2', color: '#ff6161', type: 'bar' },
             { name: 'Series3', color: '#66ae2c', type: 'bar' }
-        ]
+        ];
 
 
         this.stackedBarChartOptionsCategory = this.getDefaultOptions();
-        this.stackedBarChartOptionsCategory.title.text = 'Stacked Bar Chart'
+        this.stackedBarChartOptionsCategory.title.text = 'Stacked Bar Chart';
         this.stackedBarChartOptionsCategory.xaxis.type = 'category';
         // options.xaxis.labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
         this.stackedBarChartOptionsCategory.series = [
             { name: 'Series1', color: '#619eff', type: 'stacked-bar' },
             { name: 'Series2', color: '#ff6161', type: 'stacked-bar' },
             { name: 'Series3', color: '#66ae2c', type: 'stacked-bar' }
-        ]
+        ];
 
 
         this.stackedAreaChartOptionsCategory = this.getDefaultOptions();
-        this.stackedAreaChartOptionsCategory.title.text = 'Stacked Area Chart'
+        this.stackedAreaChartOptionsCategory.title.text = 'Stacked Area Chart';
         this.stackedAreaChartOptionsCategory.xaxis.type = 'category';
+
+        this.stackedAreaChartOptionsCategory.yaxis.labelFormat.type = 'number';
+        this.stackedAreaChartOptionsCategory.yaxis.labelFormat.options = '1.0-2';
+        this.stackedAreaChartOptionsCategory.yaxis.labelFormat.scale = 'v';
+
         // options.xaxis.labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
         this.stackedAreaChartOptionsCategory.series = [
             { name: 'Series1', color: '#619eff', type: 'stacked-area' },
             { name: 'Series2', color: '#ff6161', type: 'stacked-area' },
             { name: 'Series3', color: '#66ae2c', type: 'stacked-area' }
-        ]
+        ];
 
     }
     public getDefaultOptions(): ChartOptions {
@@ -283,6 +293,11 @@ export class SampleData {
                     fontSize: '12px',
                     fontFamily: 'Verdana'
                 },
+                labelFormat: {
+                    type: '',
+                    options: '',
+                    scale: ''
+                },
                 axisLine: {
                     show: true,
                     style: {
@@ -292,7 +307,7 @@ export class SampleData {
                 },
                 min: 0,
                 max: 0,
-                title: 'xaxis',
+                title: 'X-Axis',
                 ticks: {
                     show: true,
                     count: 6,
@@ -323,6 +338,11 @@ export class SampleData {
                     fontSize: '12px',
                     fontFamily: 'Verdana'
                 },
+                labelFormat: {
+                    type: 'number',
+                    options: '',
+                    scale: ''
+                },
                 axisLine: {
                     show: true,
                     style: {
@@ -332,7 +352,7 @@ export class SampleData {
                 },
                 min: 0,
                 max: 0,
-                title: 'yaxis',
+                title: 'Y-Axis',
                 ticks: {
                     show: true,
                     count: 6,

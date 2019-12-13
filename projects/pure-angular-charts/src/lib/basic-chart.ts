@@ -468,31 +468,34 @@ export class BasicChart implements OnInit, OnChanges {
         let poptions = this.getDefaultOptions();
 
         if (val.chart) {
-            if (val.chart.background) { poptions.chart.background = val.chart.background };
+            if (val.chart.background) { poptions.chart.background = val.chart.background; }
             if (typeof val.chart.padding === 'object') { Object.assign(poptions.chart.padding, val.chart.padding); }
         }
 
         if (val.title) {
-            if (val.title.text) { poptions.title.text = val.title.text };
-            if (typeof val.title.height === 'number') { poptions.title.height = val.title.height }
+            if (val.title.text) { poptions.title.text = val.title.text; }
+            if (typeof val.title.height === 'number') { poptions.title.height = val.title.height; }
             if (typeof val.title.style === 'object') { Object.assign(poptions.title.style, val.title.style); }
         }
 
         if (val.xaxis) {
-            if (val.xaxis.type) { poptions.xaxis.type = val.xaxis.type };
+            if (val.xaxis.type) { poptions.xaxis.type = val.xaxis.type; }
             if (typeof val.xaxis.show === 'boolean') { poptions.xaxis.show = val.xaxis.show; }
-            if (val.xaxis.labels) { poptions.xaxis.labels = val.xaxis.labels };
+            if (val.xaxis.labels) { poptions.xaxis.labels = val.xaxis.labels; }
             if (typeof val.xaxis.showLabels === 'boolean') { poptions.xaxis.showLabels = val.xaxis.showLabels; }
             if (typeof val.xaxis.labelStyle === 'object') { Object.assign(poptions.xaxis.labelStyle, val.xaxis.labelStyle); }
 
+            if (typeof val.xaxis.labelFormat === 'object') { Object.assign(poptions.xaxis.labelFormat, val.xaxis.labelFormat); }
+
             if (val.xaxis.axisLine) {
                 if (typeof val.xaxis.axisLine.show === 'boolean') { poptions.xaxis.axisLine.show = val.xaxis.axisLine.show; }
+                // tslint:disable-next-line:max-line-length
                 if (typeof val.xaxis.axisLine.style === 'object') { Object.assign(poptions.xaxis.axisLine.style, val.xaxis.axisLine.style); }
             }
 
-            if (typeof val.xaxis.min === 'number') { poptions.xaxis.min = val.xaxis.min }
-            if (typeof val.xaxis.max === 'number') { poptions.xaxis.min = val.xaxis.max }
-            if (val.xaxis.title) { poptions.xaxis.title = val.xaxis.title };
+            if (typeof val.xaxis.min === 'number') { poptions.xaxis.min = val.xaxis.min; }
+            if (typeof val.xaxis.max === 'number') { poptions.xaxis.min = val.xaxis.max; }
+            if (val.xaxis.title) { poptions.xaxis.title = val.xaxis.title; }
 
             if (val.xaxis.ticks) {
                 if (typeof val.xaxis.ticks.show === 'boolean') { poptions.xaxis.ticks.show = val.xaxis.ticks.show; }
@@ -506,26 +509,28 @@ export class BasicChart implements OnInit, OnChanges {
                 if (typeof val.xaxis.grid.style === 'object') { Object.assign(poptions.xaxis.grid.style, val.xaxis.grid.style); }
             }
 
-            if (typeof val.xaxis.axisHeight === 'number') { poptions.xaxis.axisHeight = val.xaxis.axisHeight }
-            if (val.xaxis.minMax) { poptions.xaxis.minMax = val.xaxis.minMax };
+            if (typeof val.xaxis.axisHeight === 'number') { poptions.xaxis.axisHeight = val.xaxis.axisHeight; }
+            if (val.xaxis.minMax) { poptions.xaxis.minMax = val.xaxis.minMax; }
         }
 
-        
+
         if (val.yaxis) {
-            if (val.yaxis.type) { poptions.yaxis.type = val.yaxis.type };
+            if (val.yaxis.type) { poptions.yaxis.type = val.yaxis.type; }
             if (typeof val.yaxis.show === 'boolean') { poptions.yaxis.show = val.yaxis.show; }
-            if (val.yaxis.labels) { poptions.yaxis.labels = val.yaxis.labels };
+            if (val.yaxis.labels) { poptions.yaxis.labels = val.yaxis.labels; }
             if (typeof val.yaxis.showLabels === 'boolean') { poptions.yaxis.showLabels = val.yaxis.showLabels; }
             if (typeof val.yaxis.labelStyle === 'object') { Object.assign(poptions.yaxis.labelStyle, val.yaxis.labelStyle); }
+            if (typeof val.yaxis.labelFormat === 'object') { Object.assign(poptions.yaxis.labelFormat, val.yaxis.labelFormat); }
 
             if (val.yaxis.axisLine) {
                 if (typeof val.yaxis.axisLine.show === 'boolean') { poptions.yaxis.axisLine.show = val.yaxis.axisLine.show; }
+                // tslint:disable-next-line:max-line-length
                 if (typeof val.yaxis.axisLine.style === 'object') { Object.assign(poptions.yaxis.axisLine.style, val.yaxis.axisLine.style); }
             }
 
-            if (typeof val.yaxis.min === 'number') { poptions.yaxis.min = val.yaxis.min }
-            if (typeof val.yaxis.max === 'number') { poptions.yaxis.min = val.yaxis.max }
-            if (val.yaxis.title) { poptions.yaxis.title = val.yaxis.title };
+            if (typeof val.yaxis.min === 'number') { poptions.yaxis.min = val.yaxis.min; }
+            if (typeof val.yaxis.max === 'number') { poptions.yaxis.min = val.yaxis.max; }
+            if (val.yaxis.title) { poptions.yaxis.title = val.yaxis.title; }
 
             if (val.yaxis.ticks) {
                 if (typeof val.yaxis.ticks.show === 'boolean') { poptions.yaxis.ticks.show = val.yaxis.ticks.show; }
@@ -539,13 +544,13 @@ export class BasicChart implements OnInit, OnChanges {
                 if (typeof val.yaxis.grid.style === 'object') { Object.assign(poptions.yaxis.grid.style, val.yaxis.grid.style); }
             }
 
-            if (typeof val.yaxis.axisWidth === 'number') { poptions.yaxis.axisWidth = val.yaxis.axisWidth }
-            if (typeof val.yaxis.paddingRight === 'number') { poptions.yaxis.paddingRight = val.yaxis.paddingRight }
-            if (val.yaxis.minMax) { poptions.yaxis.minMax = val.yaxis.minMax };
+            if (typeof val.yaxis.axisWidth === 'number') { poptions.yaxis.axisWidth = val.yaxis.axisWidth; }
+            if (typeof val.yaxis.paddingRight === 'number') { poptions.yaxis.paddingRight = val.yaxis.paddingRight; }
+            if (val.yaxis.minMax) { poptions.yaxis.minMax = val.yaxis.minMax; }
         }
         if (typeof val.series === 'object') { poptions.series = val.series; }
-        if (typeof val.bar === 'object') { Object.assign(poptions.bar, val.bar) }
-            
+        if (typeof val.bar === 'object') { Object.assign(poptions.bar, val.bar); }
+
         if (val.dataLabels) {
             if (typeof val.dataLabels.show === 'boolean') { poptions.dataLabels.show = val.dataLabels.show; }
             if (typeof val.dataLabels.style === 'object') { Object.assign(poptions.dataLabels.style, val.dataLabels.style); }
@@ -559,7 +564,7 @@ export class BasicChart implements OnInit, OnChanges {
 
         if (typeof val.innerPaddingTop === 'number') { poptions.innerPaddingTop = val.innerPaddingTop; }
         if (typeof val.innerPaddingBottom === 'number') { poptions.innerPaddingBottom = val.innerPaddingBottom; }
-    
+
         if (val.tooltip) {
             if (typeof val.tooltip.show === 'boolean') { poptions.tooltip.show = val.tooltip.show; }
             if (typeof val.tooltip.style === 'object') { Object.assign(poptions.tooltip.style, val.tooltip.style); }

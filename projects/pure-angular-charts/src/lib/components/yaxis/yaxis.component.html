@@ -1,5 +1,11 @@
 <svg:g *ngFor="let ylabel of pYaxis.labels">
     <svg:line *ngIf="pYaxis.grid.show" [attr.x1]="ylabel.px + pYaxis.axisWidth" [attr.y1]="ylabel.py" [attr.x2]="width - pYaxis.paddingRight" [attr.y2]="ylabel.py" [ngStyle]="pYaxis.grid.style" />
     <svg:line *ngIf="pYaxis.ticks.show" [attr.x1]="ylabel.px + pYaxis.axisWidth" [attr.y1]="ylabel.py" [attr.x2]="ylabel.px + pYaxis.axisWidth - pYaxis.ticks.length" [attr.y2]="ylabel.py" [ngStyle]="pYaxis.ticks.style" />
-    <svg:text *ngIf="pYaxis.showLabels" [attr.x]="ylabel.px + pYaxis.axisWidth - pYaxis.ticks.length - 5" [attr.y]="ylabel.py" [ngStyle]="pYaxis.labelStyle" dominant-baseline="middle" text-anchor="end">{{ylabel.text}}</text>
+    <svg:text *ngIf="pYaxis.showLabels" [attr.x]="ylabel.px + pYaxis.axisWidth - pYaxis.ticks.length - 5" [attr.y]="ylabel.py" [ngStyle]="pYaxis.labelStyle" dominant-baseline="middle" text-anchor="end">
+        <ng-template [ngTemplateOutlet]="defaultLabel"></ng-template>
+    </text>
+    <ng-template #defaultLabel>
+        <ng-container *ngIf="pYaxis.type!='numeric' && !pYaxis.labelFormat.type">{{ylabel.text}}</ng-container>
+        <ng-container *ngIf="pYaxis.type=='numeric' || pYaxis.labelFormat.type==='number'">{{ylabel.text | number : pYaxis.labelFormat.options}}{{ pYaxis.labelFormat.scale}}</ng-container>
+    </ng-template>
 </g>

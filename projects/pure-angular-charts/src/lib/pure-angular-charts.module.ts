@@ -10,6 +10,7 @@ import { SmoothAreaChartModule } from './modules/smooth-area-chart/smooth-area-c
 import { ResponsiveContainerModule } from './modules/responsive-container/responsive-container.module';
 import { StackedBarChartModule } from './modules/stacked-bar-chart/stacked-bar-chart.module';
 import { StackedAreaChartModule } from './modules/stacked-area-chart/stacked-area-chart.module';
+import { PacCommonModule } from './modules/pac-common/pac-common.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { StackedAreaChartModule } from './modules/stacked-area-chart/stacked-are
     SmoothAreaChartModule,
     MultiTypeChartModule,
     StackedBarChartModule,
-    StackedAreaChartModule
+    StackedAreaChartModule,
+    PacCommonModule
   ]
 })
 export class PureAngularChartsModule { }
