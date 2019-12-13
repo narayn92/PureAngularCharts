@@ -164,6 +164,7 @@ export class SampleData {
         this.multiTypeChartOptionsCategory.title.text = 'Multi Type Chart - Category Axis';
         this.multiTypeChartOptionsCategory.xaxis.type = 'category';
         this.multiTypeChartOptionsCategory.xaxis.labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        this.multiTypeChartOptionsCategory.yaxis.labelFormat.options = '1.1';
         this.multiTypeChartOptionsCategory.series = [
             // { name: 'Series1', color: '#ff6161', type: 'bar' },
             { name: 'Series1', color: '#bb78ff', type: 'bar' },
@@ -177,6 +178,10 @@ export class SampleData {
         this.lineChartOptionsCategory = this.getDefaultOptions();
         this.lineChartOptionsCategory.title.text = 'Line Chart - Category Axis';
         this.lineChartOptionsCategory.xaxis.type = 'category';
+
+        this.lineChartOptionsCategory.yaxis.labelFormat.type = 'number';
+        this.lineChartOptionsCategory.yaxis.labelFormat.options = '1.0-2';
+        this.lineChartOptionsCategory.yaxis.labelFormat.scale = 'lb';
         // options.xaxis.labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
         this.lineChartOptionsCategory.series = [
             { name: 'Series1', color: '#619eff', type: 'line' },
@@ -187,6 +192,11 @@ export class SampleData {
         this.smoothLineChartOptionsCategory = this.getDefaultOptions();
         this.smoothLineChartOptionsCategory.title.text = 'Smooth Line Chart - Category Axis';
         this.smoothLineChartOptionsCategory.xaxis.type = 'category';
+
+        this.smoothLineChartOptionsCategory.yaxis.labelFormat.type = 'number';
+        this.smoothLineChartOptionsCategory.yaxis.labelFormat.options = '1.0-2';
+        this.smoothLineChartOptionsCategory.yaxis.labelFormat.scale = '$';
+
         // options.xaxis.labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
         this.smoothLineChartOptionsCategory.series = [
             { name: 'Series1', color: '#619eff', type: 'smooth-line' },
@@ -198,6 +208,10 @@ export class SampleData {
         this.areaChartOptionsCategory = this.getDefaultOptions();
         this.areaChartOptionsCategory.title.text = 'Area Chart - Category Axis';
         this.areaChartOptionsCategory.xaxis.type = 'category';
+
+        this.areaChartOptionsCategory.yaxis.labelFormat.type = 'number';
+        this.areaChartOptionsCategory.yaxis.labelFormat.options = '1.0-2';
+        this.areaChartOptionsCategory.yaxis.labelFormat.scale = 'A';
         // options.xaxis.labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
         this.areaChartOptionsCategory.series = [
             { name: 'Series1', color: '#619eff', type: 'area' },
@@ -209,6 +223,10 @@ export class SampleData {
         this.smoothAreaChartOptionsCategory = this.getDefaultOptions();
         this.smoothAreaChartOptionsCategory.title.text = 'Smooth Area Chart - Category Axis';
         this.smoothAreaChartOptionsCategory.xaxis.type = 'category';
+
+        this.smoothAreaChartOptionsCategory.yaxis.labelFormat.type = 'number';
+        this.smoothAreaChartOptionsCategory.yaxis.labelFormat.options = '1.0-2';
+        this.smoothAreaChartOptionsCategory.yaxis.labelFormat.scale = 'km';
         // options.xaxis.labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
         this.smoothAreaChartOptionsCategory.series = [
             { name: 'Series1', color: '#619eff', type: 'smooth-area' },
@@ -224,7 +242,8 @@ export class SampleData {
         this.barChartOptionsCategory.yaxis.labelFormat.type = 'number';
         this.barChartOptionsCategory.yaxis.labelFormat.options = '1.0-2';
         this.barChartOptionsCategory.yaxis.labelFormat.scale = '%';
- 
+        this.barChartOptionsCategory.yaxis.labelFormat.options = '1.0-0';
+
         this.barChartOptionsCategory.series = [
             { name: 'Series1', color: '#619eff', type: 'bar' },
             { name: 'Series2', color: '#ff6161', type: 'bar' },
@@ -235,6 +254,15 @@ export class SampleData {
         this.stackedBarChartOptionsCategory = this.getDefaultOptions();
         this.stackedBarChartOptionsCategory.title.text = 'Stacked Bar Chart';
         this.stackedBarChartOptionsCategory.xaxis.type = 'category';
+
+        this.stackedBarChartOptionsCategory.yaxis.labelFormat.type = 'number';
+        this.stackedBarChartOptionsCategory.yaxis.labelFormat.options = '1.0-2';
+        this.stackedBarChartOptionsCategory.yaxis.labelFormat.scale = 'v';
+        this.stackedBarChartOptionsCategory.yaxis.axisWidth =  60;
+        this.stackedBarChartOptionsCategory.innerPaddingBottom = 25;
+        this.stackedBarChartOptionsCategory.yaxis.labelFormat.options = '1.0-0';
+
+
         // options.xaxis.labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
         this.stackedBarChartOptionsCategory.series = [
             { name: 'Series1', color: '#619eff', type: 'stacked-bar' },
@@ -249,7 +277,7 @@ export class SampleData {
 
         this.stackedAreaChartOptionsCategory.yaxis.labelFormat.type = 'number';
         this.stackedAreaChartOptionsCategory.yaxis.labelFormat.options = '1.0-2';
-        this.stackedAreaChartOptionsCategory.yaxis.labelFormat.scale = 'v';
+        this.stackedAreaChartOptionsCategory.yaxis.labelFormat.scale = 'kg';
 
         // options.xaxis.labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
         this.stackedAreaChartOptionsCategory.series = [

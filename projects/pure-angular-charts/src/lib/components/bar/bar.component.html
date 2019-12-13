@@ -15,7 +15,7 @@
 
          <!-- total label for stacked bar  -->
         <svg:text *ngIf="series.series.type=='stacked-bar' && showTotal && options.dataLabels.show" [attr.x]="point.px" [attr.y]="(point.py<=pxaxisLocation)?point.py-8:point.py+18" [ngStyle]="options.dataLabels.style" text-anchor="middle">
-            <ng-template [ngTemplateOutlet]="defaultLabel" [ngTemplateOutletContext]="{point:point}"></ng-template>
+            <ng-template [ngTemplateOutlet]="defaultLabel" [ngTemplateOutletContext]="{point:point, isTotal: true}"></ng-template>
         </text>
 
         <svg:circle *ngIf="series.series.type!='stacked-bar' && options.dataLabels.show" [attr.cx]="point.px" [attr.cy]="point.py" r="5" [style.fill]="series.series.color" style="stroke: #000; stroke-width: 1;"
@@ -23,7 +23,7 @@
     </g>
 </ng-container>
 
-<ng-template #defaultLabel let-point="point">
-    <ng-container *ngIf="!pYaxis.labelFormat.type">{{point.y}}{{pYaxis.labelFormat.scale}}</ng-container>
-    <ng-container *ngIf="pYaxis.type=='numeric' || pYaxis.labelFormat.type==='number'">{{point.y | number : pYaxis.labelFormat.options}}{{pYaxis.labelFormat.scale}}</ng-container>
+<ng-template #defaultLabel let-point="point" let-istotal="isTotal">
+    <ng-container *ngIf="!pYaxis.labelFormat.type">{{(istotal)?point.total:point.y}}{{pYaxis.labelFormat.scale}}</ng-container>
+    <ng-container *ngIf="pYaxis.type=='numeric' || pYaxis.labelFormat.type==='number'">{{((istotal)?point.total:point.y) | number : pYaxis.labelFormat.options}}{{pYaxis.labelFormat.scale}}</ng-container>
 </ng-template>
