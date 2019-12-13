@@ -36,6 +36,18 @@ export interface SvgLineStyle {
     strokeWidth?: number;
     strokeDasharray?: string;
 }
+
+export interface SvgBarStyle {
+    stroke?: string;
+    strokeWidth?: number;
+    strokeDasharray?: string;
+}
+
+export interface SvgAreaStyle {
+    stroke?: string;
+    strokeWidth?: number;
+    strokeDasharray?: string;
+}
 export interface Ticks {
     show?: boolean;
     count?: number;
@@ -99,6 +111,9 @@ export interface Series {
     name: string;
     color: string;
     type: string;
+    lineStyle?: SvgLineStyle;
+    barStyle?: SvgBarStyle;
+    areaStyle?: SvgAreaStyle;
 }
 
 export interface Bar {

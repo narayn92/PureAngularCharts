@@ -1,4 +1,5 @@
-import { ChartOptions } from './pure-angular-charts.models';
+import { ChartOptions, SvgBarStyle, SvgAreaStyle } from './pure-angular-charts.models';
+import { SvgLineStyle } from 'pure-angular-charts/public-api';
 
 export class Defaults {
     public static getdefaultOptions(): ChartOptions {
@@ -152,6 +153,28 @@ export class Defaults {
                     minWidth: '200px'
                 }
             }
+        };
+    }
+
+    public static getdefaultAreaStyle(): SvgAreaStyle {
+        return {
+            strokeWidth: 1,
+            strokeDasharray: '',
+            stroke: ''
+        };
+    }
+    public static getdefaultLineStyle(): SvgLineStyle {
+        return {
+            strokeWidth: 2,
+            strokeDasharray: '',
+            stroke: ''
+        };
+    }
+    public static getdefaultBarStyle(): SvgBarStyle {
+        return {
+            strokeWidth: 1,
+            strokeDasharray: '',
+            stroke: ''
         };
     }
 }

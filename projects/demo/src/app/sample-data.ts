@@ -167,10 +167,18 @@ export class SampleData {
         this.multiTypeChartOptionsCategory.yaxis.labelFormat.options = '1.1';
         this.multiTypeChartOptionsCategory.series = [
             // { name: 'Series1', color: '#ff6161', type: 'bar' },
-            { name: 'Series1', color: '#bb78ff', type: 'bar' },
+            { name: 'Series1', color: '#bb78ff', type: 'bar', barStyle: {
+                // stroke: '#333',
+                // strokeWidth: 1,
+                // strokeDasharray: '10 5'
+            } },
             // { name: 'Series7', color: '#6670ff', type: 'bar' },
             { name: 'Series2', color: '#fff766', type: 'line' },
-            { name: 'Series3', color: '#66ffed', type: 'smooth-line' },
+            { name: 'Series3', color: '#027c6d', type: 'smooth-line', lineStyle: {
+                // stroke: '#333',
+                strokeWidth: 2,
+                strokeDasharray: '10 5'
+            } },
             { name: 'Series4', color: '#82ff66', type: 'area' },
             { name: 'Series5', color: '#6670ff', type: 'smooth-area' }
         ];
@@ -184,7 +192,12 @@ export class SampleData {
         this.lineChartOptionsCategory.yaxis.labelFormat.scale = 'lb';
         // options.xaxis.labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
         this.lineChartOptionsCategory.series = [
-            { name: 'Series1', color: '#619eff', type: 'line' },
+            {
+                name: 'Series1', color: '#619eff', type: 'line', lineStyle: {
+                    strokeWidth: 2,
+                    strokeDasharray: '10 5'
+                }
+            },
             { name: 'Series2', color: '#ff6161', type: 'line' },
             { name: 'Series3', color: '#66ae2c', type: 'line' }
         ];
@@ -199,7 +212,12 @@ export class SampleData {
 
         // options.xaxis.labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
         this.smoothLineChartOptionsCategory.series = [
-            { name: 'Series1', color: '#619eff', type: 'smooth-line' },
+            {
+                name: 'Series1', color: '#619eff', type: 'smooth-line', lineStyle: {
+                    strokeWidth: 2,
+                    strokeDasharray: '10 5'
+                }
+            },
             { name: 'Series2', color: '#ff6161', type: 'smooth-line' },
             { name: 'Series3', color: '#66ae2c', type: 'smooth-line' }
         ];
@@ -214,7 +232,12 @@ export class SampleData {
         this.areaChartOptionsCategory.yaxis.labelFormat.scale = 'A';
         // options.xaxis.labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
         this.areaChartOptionsCategory.series = [
-            { name: 'Series1', color: '#619eff', type: 'area' },
+            {
+                name: 'Series1', color: '#619eff', type: 'area', areaStyle: {
+                    strokeWidth: 2,
+                    strokeDasharray: '10 5'
+                }
+            },
             { name: 'Series2', color: '#ff6161', type: 'area' },
             { name: 'Series3', color: '#66ae2c', type: 'area' }
         ];
@@ -229,7 +252,12 @@ export class SampleData {
         this.smoothAreaChartOptionsCategory.yaxis.labelFormat.scale = 'km';
         // options.xaxis.labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
         this.smoothAreaChartOptionsCategory.series = [
-            { name: 'Series1', color: '#619eff', type: 'smooth-area' },
+            {
+                name: 'Series1', color: '#619eff', type: 'smooth-area', areaStyle: {
+                    strokeWidth: 2,
+                    strokeDasharray: '10 5'
+                }
+            },
             { name: 'Series2', color: '#ff6161', type: 'smooth-area' },
             { name: 'Series3', color: '#66ae2c', type: 'smooth-area' }
         ];
@@ -245,7 +273,13 @@ export class SampleData {
         this.barChartOptionsCategory.yaxis.labelFormat.options = '1.0-0';
 
         this.barChartOptionsCategory.series = [
-            { name: 'Series1', color: '#619eff', type: 'bar' },
+            {
+                name: 'Series1', color: '#619eff', type: 'bar', barStyle: {
+                    stroke: '#333',
+                    strokeWidth: 1,
+                    strokeDasharray: '10 5'
+                }
+            },
             { name: 'Series2', color: '#ff6161', type: 'bar' },
             { name: 'Series3', color: '#66ae2c', type: 'bar' }
         ];
@@ -258,14 +292,20 @@ export class SampleData {
         this.stackedBarChartOptionsCategory.yaxis.labelFormat.type = 'number';
         this.stackedBarChartOptionsCategory.yaxis.labelFormat.options = '1.0-2';
         this.stackedBarChartOptionsCategory.yaxis.labelFormat.scale = 'v';
-        this.stackedBarChartOptionsCategory.yaxis.axisWidth =  60;
+        this.stackedBarChartOptionsCategory.yaxis.axisWidth = 60;
         this.stackedBarChartOptionsCategory.innerPaddingBottom = 25;
         this.stackedBarChartOptionsCategory.yaxis.labelFormat.options = '1.0-0';
 
 
         // options.xaxis.labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
         this.stackedBarChartOptionsCategory.series = [
-            { name: 'Series1', color: '#619eff', type: 'stacked-bar' },
+            {
+                name: 'Series1', color: '#619eff', type: 'stacked-bar', barStyle: {
+                    // stroke: '#333',
+                    // strokeWidth: 1,
+                    // strokeDasharray: '10 5'
+                }
+            },
             { name: 'Series2', color: '#ff6161', type: 'stacked-bar' },
             { name: 'Series3', color: '#66ae2c', type: 'stacked-bar' }
         ];
@@ -283,7 +323,10 @@ export class SampleData {
         this.stackedAreaChartOptionsCategory.series = [
             { name: 'Series1', color: '#619eff', type: 'stacked-area' },
             { name: 'Series2', color: '#ff6161', type: 'stacked-area' },
-            { name: 'Series3', color: '#66ae2c', type: 'stacked-area' }
+            { name: 'Series3', color: '#66ae2c', type: 'stacked-area', areaStyle: {
+                strokeWidth: 1,
+                strokeDasharray: '10 5'
+            } }
         ];
 
     }

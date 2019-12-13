@@ -548,7 +548,19 @@ export class BasicChart implements OnInit, OnChanges {
             if (typeof val.yaxis.paddingRight === 'number') { poptions.yaxis.paddingRight = val.yaxis.paddingRight; }
             if (val.yaxis.minMax) { poptions.yaxis.minMax = val.yaxis.minMax; }
         }
-        if (typeof val.series === 'object') { poptions.series = val.series; }
+        if (typeof val.series === 'object' && val.series.length > 0) {
+
+            poptions.series = val.series.map((series, si) => {
+                if (series.type === 'line' || series.type === 'smooth-line') {
+                    series.lineStyle = Object.assign(Defaults.getdefaultLineStyle(), series.lineStyle);
+                } else if (series.type === 'area' || series.type === 'smooth-area' || series.type === 'stacked-area') {
+                    series.areaStyle = Object.assign(Defaults.getdefaultAreaStyle(), series.areaStyle);
+                } else if (series.type === 'bar' || series.type === 'stacked-bar') {
+                    series.barStyle = Object.assign(Defaults.getdefaultBarStyle(), series.barStyle);
+                }
+                return series;
+            });
+        }
         if (typeof val.bar === 'object') { Object.assign(poptions.bar, val.bar); }
 
         if (val.dataLabels) {

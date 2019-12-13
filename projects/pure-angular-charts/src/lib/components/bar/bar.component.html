@@ -2,7 +2,7 @@
     <svg:g *ngIf="math.round(point.px-(pActualBarWidth/2))>=pYaxis.axisWidth">
         
         <svg:rect [attr.x]="point.px-(pActualBarWidth/2)" [attr.y]="(point.py<=pxaxisLocation)?point.py:(point.py-point.height)" [attr.width]="pActualBarWidth" [attr.height]="point.height"
-            [style.fill]="series.series.color" (mouseenter)="(options.tooltip.show)?OnMouseEnter($event, point, series.series):false" (mouseover)="(options.tooltip.show)?OnMouseOver($event):false" (mouseleave)="(options.tooltip.show)?OnMouseLeave($event):false"></rect>
+        [ngStyle]="series.series.barStyle" [style.fill]="series.series.color" (mouseenter)="(options.tooltip.show)?OnMouseEnter($event, point, series.series):false" (mouseover)="(options.tooltip.show)?OnMouseOver($event):false" (mouseleave)="(options.tooltip.show)?OnMouseLeave($event):false"></rect>
 
         <!-- center data label for stacked bar  -->
         <svg:text *ngIf="series.series.type=='stacked-bar' && options.dataLabels.show && point.height>12" [attr.x]="point.px" [attr.y]="(point.py<=pxaxisLocation)?(point.py+(point.height/2)):(point.py-(point.height/2))" [ngStyle]="options.dataLabels.style" [style.fill]="'#ffffff'" dominant-baseline="middle" text-anchor="middle">
