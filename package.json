@@ -37,7 +37,7 @@
     "@angular/router": "~8.2.8",
     "ang-jsoneditor": "^1.8.4",
     "bootstrap": "^4.4.1",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "font-awesome": "^4.7.0",
     "jsoneditor": "^7.4.0",
     "rxjs": "~6.4.0",
